@@ -1,0 +1,209 @@
+// 官方文档 http://eslint.org/docs/rules/
+{
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  // "extends": "eslint:recommended",
+
+  // 规则按照首字母在字母表升序排序
+  "rules": {
+
+    // 单行代码块大括号后需要一个空格
+    "block-spacing": 2,
+
+    // 不使用外部块定义的变量
+    "block-scoped-var": 1,
+
+    // 大括号位置
+    "brace-style": [2, "1tbs"],
+
+    // 变量命名规则
+    "camelcase": [1, { "properties": "never" }],
+
+    // 逗号后使用空格
+    "comma-spacing": 2,
+
+    // 逗号位置
+    "comma-style": [2, "last"],
+
+    // 要求使用一致的 return 语句
+    "consistent-return": 2,
+
+    // 使用语句大括号
+    "curly": [2, "all"],
+
+    // 需要default在SwitchCase
+    "default-case": 2,
+
+    // 属性读取方式
+    // `foo['bar'] -> foo.bar`
+    "dot-notation": [2, { "allowKeywords": true }],
+
+    // 要求或禁止文件末尾保留一行空行
+    "eol-last": 0,
+
+    // 相等判断尽可能使用`===`
+    "eqeqeq": 1,
+
+    // 使用函数声明还是是函数表达式
+    "func-style": ["error", "expression"],
+
+    // 缩进空格
+    // `SwitchCase`时需要一个空格
+    "indent": [2, 4, {"SwitchCase": 1, "MemberExpression": 0}],
+
+    // 分号之间的空格
+    "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
+
+    // 换行符格式
+    "linebreak-style": [2, "unix"],
+
+    // 要求构造函数首字母大写
+    "new-cap": 0,
+
+    // 类构建函数需要括号
+    "new-parens": 2,
+
+    // 不允许使用`alert`函数
+    "no-alert": 2,
+
+    // 数组尽量不使用构造函数
+    "no-array-constructor": 2,
+
+    // 不使用`console`
+    "no-console": 0,
+
+    //不允许改变用const声明的变量
+    "no-const-assign": 2,
+
+    // 不使用`var x; delete x;`
+    "no-delete-var": 2,
+
+    //禁止空块语句
+    "no-empty": 1,
+
+    // 不使用`eval`
+    "no-eval": 2,
+
+    //禁用不必要的分号
+    "no-extra-semi": 2,
+
+    // 不允许扩展原生类型
+    "no-extend-native": 2,
+
+    // 不使用不必要的bind
+    "no-extra-bind": 2,
+
+    // 不允许不停止SwitchCase的
+    "no-fallthrough": 2,
+
+    // 使用显式的浮点数定义
+    // `.5 -> 0.5`
+    "no-floating-decimal": 2,
+
+    // 不使用非显式的函数执行
+    // `setTimeout("alert('Hi!');", 100);`
+    "no-implied-eval": 2,
+
+    // 不使用非显式this关键字
+    "no-invalid-this": 1,
+
+    // 不使用非遍历情况的label
+    "no-labels": 2,
+
+    // 不使用和变量同名的便签名
+    "no-label-var": 2,
+
+    // 禁止循环中存在函数
+    "no-loop-func": 2,
+
+    // 不允许缩进不统一
+    "no-mixed-spaces-and-tabs": [2],
+
+    // 不允许重复使用分隔空格
+    "no-multi-spaces": 2,
+
+    // 不允许转义换行符连接字符串
+    "no-multi-str": 2,
+
+    // 不允许赋值到关键字
+    "no-native-reassign": 2,
+
+    // 不嵌套ternary
+    // `var foo = bar ? baz : qux === quxx ? bing : bam;`
+    "no-nested-ternary": 2,
+
+    // 使用`new`需要赋值
+    "no-new": 2,
+
+    // 禁用Function构造函数
+    // `var x = new Function("a", "b", "return a + b");`
+    "no-new-func": 2,
+
+    // 禁止使用 Object 构造函数
+    "no-new-object": 2,
+
+    // 原始类型不使用`new`
+    // `typeof new String('foo') == 'object'`
+    // `typeof String('foo') == 'string'`
+    "no-new-wrappers": 2,
+
+    // 不使用八进制数字
+    // `var num = 071; -> 57`
+    "no-octal": 2,
+    "no-octal-escape": 2,
+
+    // 不使用被废弃的`__proto__`
+    "no-proto": 2,
+
+    //禁用 process.exit()
+    "no-process-exit": 1,
+
+    // 不重复声明变量
+    "no-redeclare": 2,
+
+    // 返回语句不赋值
+    "no-return-assign": 2,
+
+    // 不使用不加括号的逗号运算符
+    "no-sequences": 2,
+
+    // 禁止变量声明覆盖外层作用域的变量
+    "no-shadow": [2, { "builtinGlobals": false, "hoist": "functions", "allow": [] }],
+
+    //禁用行尾空白
+    "no-trailing-spaces": 0,
+
+    //在构造函数中禁止在调用super()之前使用this或super
+    "no-this-before-super": 2, 
+
+    //禁用未声明的变量
+    "no-undef": 2,
+
+    //禁止标识符中有悬空下划线
+    "no-underscore-dangle": 0,
+
+    //禁止在 return、throw、continue 和 break 语句后出现不可达代码
+    "no-unreachable": 1, 
+
+    //禁止未使用过的变量
+    "no-unused-vars": 1,
+
+    // 引号
+    "quotes": [2, "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
+
+    // 分号
+    "semi": [2, "always"],     
+
+    //强制 typeof 表达式与有效的字符串进行比较
+    "valid-typeof": 2,
+
+    //要求或者禁止Yoda条件
+    "yoda": 0
+  },
+  "globals": {
+    "think": true
+  }
+}
