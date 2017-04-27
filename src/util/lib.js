@@ -415,6 +415,20 @@ lib.arrRemove = function (arr, indexs) {
 
 /**
  * 
+ * 
+ * @param {any} objValue 
+ * @param {any} srcValue 
+ * @returns 
+ */
+/*eslint-disable consistent-return */
+lib.arrCustomizer = function (objValue, srcValue) {
+    if (lib.isArray(objValue)) {
+        return objValue.concat(srcValue);
+    }
+};
+
+/**
+ * 
  *
  * @param {string} p
  * @returns {boolean}
@@ -514,6 +528,21 @@ lib.log = function (log, type = 'log') {
 };
 
 /**
+ * 加载文件
+ * 
+ * @param {string} file
+ * @returns {*}
+ */
+lib.require = function (file) {
+    try {
+        let obj = require(file);
+        return (obj && obj.__esModule && obj.default) ? obj.default : obj;
+    } catch (e) {
+        return null;
+    }
+};
+
+/**
  * 转换express的middleware为koa使用
  * 
  * @param {any} fn 
@@ -535,4 +564,40 @@ lib.parseExpMiddleware = function (fn) {
             });
         }
     };
+};
+
+/**
+ * v8引擎优化
+ *
+ * @param {object} obj
+ */
+lib.toFastProperties = function (obj) {
+    let f = function f() { };
+    f.prototype = obj;
+    /*eslint-disable no-new*/
+    new f();
+};
+
+/**
+ * 配置读取
+ *
+ * @param {string} name
+ * @returns {*}
+ */
+lib.config = function (name) {
+    if (name === undefined) {
+        return think._caches.configs;
+    }
+    if (lib.isString(name)) {
+        //name不含. 一级
+        if (name.indexOf('.') === -1) {
+            return think._caches.configs[name];
+        } else { //name包含. 二级
+            let keys = name.split('.');
+            let value = think._caches.configs[keys[0]] || {};
+            return value[keys[1]];
+        }
+    } else {
+        return think._caches.configs[name];
+    }
 };

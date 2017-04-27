@@ -13,13 +13,13 @@ export default class {
      * @param args
      */
     constructor(...args) {
-        this.init(...args);
+        this._init(...args);
     }
 
     /**
      * init
      */
-    init() {
+    _init() {
 
     }
 
@@ -27,7 +27,7 @@ export default class {
      * get current class filename
      * @returns {*}
      */
-    filename() {
+    _filename() {
         let fname = this.__filename || __filename;
         return path.basename(fname, '.js');
     }

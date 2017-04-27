@@ -20,7 +20,7 @@
     "brace-style": [2, "1tbs"],
 
     // 变量命名规则
-    "camelcase": [1, { "properties": "never" }],
+    "camelcase": [0, { "properties": "never" }],
 
     // 逗号后使用空格
     "comma-spacing": 2,
@@ -39,7 +39,7 @@
 
     // 属性读取方式
     // `foo['bar'] -> foo.bar`
-    "dot-notation": [2, { "allowKeywords": true }],
+    "dot-notation": [1, { "allowKeywords": true }],
 
     // 要求或禁止文件末尾保留一行空行
     "eol-last": 0,
