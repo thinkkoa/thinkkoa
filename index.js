@@ -13,7 +13,4 @@ require('babel-runtime/core-js/promise').default = Promise;
 global.think = Object.create(require('./lib/util/lib.js'));
 
 //export framework
-var requireDefault = function (obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-};
-module.exports = requireDefault(require('./lib/think.js')).default;
+module.exports = require('./lib/think.js');
