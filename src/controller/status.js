@@ -3,10 +3,10 @@
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
- * @version    17/5/2
+ * @version    12/5/27
  */
+import base from './base.js';
 
-
-module.exports = async function (ctx, next) {
+export default class extends base {
     
-};
+}

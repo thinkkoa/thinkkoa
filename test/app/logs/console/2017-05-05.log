@@ -1,0 +1,96 @@
+[2017-05-05 13:57:07] [ERROR] SyntaxError: Unexpected identifier
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:546:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)
+[2017-05-05 13:58:20] [ERROR] SyntaxError: Unexpected identifier
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:546:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)
+[2017-05-05 13:58:57] [ERROR] SyntaxError: Unexpected identifier
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:546:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)
+[2017-05-05 14:01:05] [ERROR] SyntaxError: Unexpected identifier
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:546:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)
+[2017-05-05 14:01:10] [ERROR] SyntaxError: Unexpected identifier
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:546:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)
+[2017-05-05 14:27:28] [ERROR] ReferenceError: next is not defined
+    at GeneratorFunction.<anonymous> (/Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:20:14)
+    at next (native)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:65:19)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at GeneratorFunction.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at GeneratorFunction.createPromise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:30:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+[2017-05-05 14:30:14] [ERROR] TypeError: Cannot read property 'method' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:20:18
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:546:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)
+[2017-05-05 14:31:50] [ERROR] TypeError: Cannot read property 'method' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:20:18
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:546:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)

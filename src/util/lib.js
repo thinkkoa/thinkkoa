@@ -11,79 +11,44 @@ const co = require('co');
 const path = require('path');
 const util = require('util');
 const crypto = require('crypto');
+const lodash = require('lodash');
+
+/**
+ * console.log 封装
+ * @param str
+ */
+global.echo = function (str) {
+    let date = lib.datetime('', '');
+    console.log('----------' + date + '----------');
+    console.log(str);
+    console.log('----------' + date + '----------');
+};
 
 var lib = {
     sep: path.sep,
-    isArray: Array.isArray,
-    isBuffer: Buffer.isBuffer,
-    isDate: util.isDate,
-    isRegexp: util.isRegExp,
-    isSymbol: util.isSymbol,
-    isError: util.isError
-};
+    eq: lodash.eq,
+    gt: lodash.gt,
+    gte: lodash.gte,
+    lt: lodash.lt,
+    lte: lodash.lte,
+    isArray: lodash.isArray,
+    isBoolean: lodash.isBoolean,
+    isBuffer: lodash.isBuffer,
+    isDate: lodash.isDate,
+    isEqual: lodash.isEqual,
+    isError: lodash.isError,
+    isFunction: lodash.isFunction,
+    isMap: lodash.isMap,
+    isNull: lodash.isNull,
+    isNaN: lodash.isNaN,
+    isUndefined: lodash.isUndefined,
+    isNumber: lodash.isNumber,
+    isObject: lodash.isPlainObject, //lodash中isObject把Array也返回true,因此使用isPlainObject
+    isRegexp: lodash.isRegExp,
+    isSet: lodash.isSet,
+    isString: lodash.isString,
+    isSymbol: lodash.isSymbol
 
-/**
- * 是否是字符串
- *
- * @param {any} obj
- * @returns
- */
-lib.isString = function (obj) {
-    return Object.prototype.toString.call(obj) === '[object String]';
-};
-
-/**
- * 是否是数值
- *
- * @param {any} obj
- * @returns
- */
-lib.isNumber = function (obj) {
-    return Object.prototype.toString.call(obj) === '[object Number]';
-};
-
-/**
- *
- *
- * @param {any} obj
- * @returns
- */
-lib.isBoolean = function (obj) {
-    return Object.prototype.toString.call(obj) === '[object Boolean]';
-};
-
-/**
- * 是否是对象
- *
- * @param  {[type]}
- * @return {Boolean}
- */
-lib.isObject = function (obj) {
-    if (Buffer.isBuffer(obj)) {
-        return false;
-    }
-    return Object.prototype.toString.call(obj) === '[object Object]';
-};
-
-/**
- * 是否是函数
- *
- * @param {any} obj
- * @returns
- */
-lib.isFunction = function (obj) {
-    return typeof obj === 'function';
-};
-
-/**
- * 
- *
- * @param {*} obj
- * @returns {boolean}
- */
-lib.isScalar = function (obj) {
-    let _obj = Object.prototype.toString.call(obj);
-    return _obj === '[object Boolean]' || _obj === '[object Number]' || _obj === '[object String]';
 };
 
 /**
@@ -159,7 +124,7 @@ lib.toString = function (obj) {
     if (obj === undefined || obj === null) {
         return '';
     }
-    return String(obj);
+    return lodash.toString(obj);
 };
 
 /**
@@ -169,7 +134,7 @@ lib.toString = function (obj) {
  * @returns {number}
  */
 lib.toInt = function (obj) {
-    return isNaN(obj) ? 0 : parseInt(obj);
+    return isNaN(obj) ? 0 : lodash.toInteger(obj);
 };
 
 /**
@@ -189,7 +154,7 @@ lib.toFloat = function (obj) {
  * @returns {number}
  */
 lib.toNumber = function (obj) {
-    return isNaN(obj) ? 0 : Number(obj);
+    return isNaN(obj) ? 0 : lodash.toNumber(obj);
 };
 
 /**
@@ -198,8 +163,28 @@ lib.toNumber = function (obj) {
  * @param {*} obj
  * @returns {boolean}
  */
-lib.toBoolen = function (obj) {
+lib.toBoolean = function (obj) {
     return Boolean(obj);
+};
+
+/**
+ * 强制转换为数组
+ *
+ * @param {*} obj
+ * @returns {boolean}
+ */
+lib.toArray = function (obj) {
+    return lodash.toArray(obj);
+};
+
+/**
+ * 强制转换为对象
+ *
+ * @param {*} obj
+ * @returns {boolean}
+ */
+lib.toObject = function (obj) {
+    return lodash.toPlainObject(obj);
 };
 
 /**
@@ -378,15 +363,7 @@ lib.inArray = function (value, arr) {
  * @returns {*}
  */
 lib.arrUnique = function (arr) {
-    let ret = [], json = {}, len = arr.length, val;
-    for (let i = 0; i < len; i++) {
-        val = arr[i];
-        if (!json[val]) {
-            json[val] = 1;
-            ret.push(val);
-        }
-    }
-    return ret;
+    return lodash.union(arr);
 };
 
 /**
@@ -397,20 +374,9 @@ lib.arrUnique = function (arr) {
  * @returns {*}
  */
 lib.arrRemove = function (arr, indexs) {
-    let result = [], len = arr.length, need;
-    for (let i = 0; i < len; i++) {
-        need = false;
-        for (let j = 0; j < indexs.length; j++) {
-            if (i == indexs[j]) {
-                need = true;
-                break;
-            }
-        }
-        if (!need) {
-            result.push(arr[i]);
-        }
-    }
-    return result;
+    return lodash.remove(arr, function (n, i) {
+        return i === indexs;
+    });
 };
 
 /**
@@ -447,6 +413,162 @@ lib.isDir = function (p) {
     } catch (e) {
         return false;
     }
+};
+
+/**
+ * 判断一个文件或者目录是否可写
+ *
+ * @param {string} p
+ * @returns {boolean}
+ */
+lib.isWritable = function (p) {
+    if (!fs.existsSync(p)) {
+        return false;
+    }
+    let stats = fs.statSync(p);
+    let mode = stats.mode;
+    let uid = process.getuid ? process.getuid() : 0;
+    let gid = process.getgid ? process.getgid() : 0;
+    let owner = uid === stats.uid;
+    let group = gid === stats.gid;
+    return !!(owner && (mode & parseInt('00200', 8)) ||
+        group && (mode & parseInt('00020', 8)) ||
+        (mode & parseInt('00002', 8)));
+};
+
+/**
+ * 修改目录或者文件权限
+ * 同步模式
+ * @param {string} p
+ * @param {string} mode
+ * @returns {*}
+ */
+lib.chmod = function (p, mode) {
+    mode = mode || '0777';
+    if (!fs.existsSync(p)) {
+        return true;
+    }
+    return fs.chmodSync(p, mode);
+};
+
+/**
+ * 删除文件
+ * 同步模式
+ * @param {any} p 
+ * @returns 
+ */
+lib.rmFile = function (p) {
+    let fn = function () {};
+    if (lib.isFile(p)) {
+        fs.unlinkSync(p, fn);
+        return true;
+    }
+    return false;
+};
+
+/**
+ * 递归创建目录
+ * 同步模式
+ * @param {string} p
+ * @param {string} mode
+ * @returns {*}
+ */
+lib.mkDir = function (p, mode) {
+    mode = mode || '0777';
+    if (fs.existsSync(p)) {
+        fs.chmodSync(p, mode);
+        return true;
+    }
+    let pp = path.dirname(p);
+    if (fs.existsSync(pp)) {
+        fs.mkdirSync(p, mode);
+    } else {
+        lib.mkDir(pp, mode);
+        lib.mkDir(p, mode);
+    }
+    return true;
+};
+
+/**
+ * 递归读取目录
+ * 同步模式
+ * @param {any} p 
+ * @param {any} filter 
+ * @param {any} files 
+ * @param {any} prefix 
+ * @returns 
+ */
+lib.readDir = function (p, filter, files, prefix) {
+    prefix = prefix || '';
+    files = files || [];
+    filter = filter || function (x) {
+        return x[0] !== '.';
+    };
+
+    let dir = path.join(p, prefix);
+    if (!fs.existsSync(dir)) {
+        return files;
+    }
+    if (fs.statSync(dir).isDirectory()) {
+        fs.readdirSync(dir).filter(filter).forEach(function (name) {
+            lib.readDir(p, filter, files, path.join(prefix, name));
+        });
+    } else {
+        files.push(prefix);
+    }
+    return files;
+};
+
+/**
+ * 递归的删除目录
+ * 返回Promise
+ * @template T
+ * @param {string} p
+ * @param {boolean} reserve
+ * @returns {*}
+ */
+lib.rmDir = function (p, reserve) {
+    if (!lib.isDir) {
+        return Promise.resolve(null);
+    }
+    let deferred = lib.getDefer();
+    fs.readdir(p, function (err, files) {
+        if (err) {
+            return deferred.reject(err);
+        }
+        let spromise = Promise.resolve(null);
+        if (files.length > 0) {
+            let promises = files.map(function (item) {
+                let filePath = path.normalize(`${p}${path.sep}${item}`);
+                if (lib.isDir(filePath)) {
+                    return lib.rmDir(filePath, false);
+                } else {
+                    let defer = lib.getDefer();
+                    fs.unlink(filePath, function (er) {
+                        return er ? defer.reject(er) : defer.resolve();
+                    });
+                    return defer.promise;
+                }
+            });
+            spromise = Promise.all(promises);
+        }
+
+        return spromise.then(function () {
+            if (!reserve) {
+                let deferr = lib.getDefer();
+                fs.rmdir(p, function (e) {
+                    return e ? deferr.reject(e) : deferr.resolve();
+                });
+                return deferr.promise;
+            }
+            return Promise.resolve();
+        }).then(function () {
+            deferred.resolve();
+        }).catch(function (e) {
+            deferred.reject(e);
+        });
+    });
+    return deferred.promise;
 };
 
 /**
@@ -493,10 +615,14 @@ lib.isGenerator = function (obj) {
  * @param {any} method 
  */
 lib.generatorToPromise = function (instance, method) {
-    if (this.isGenerator(instance[method])) {
-        return co.wrap(instance[method]).bind(instance);
+    let cls = instance;
+    if (method) {
+        cls = instance[method];
     }
-    return instance[method].bind(instance);
+    if (this.isGenerator(cls)) {
+        return co.wrap(cls).bind(cls);
+    }
+    return cls.bind(cls);
 };
 
 /**
@@ -505,12 +631,38 @@ lib.generatorToPromise = function (instance, method) {
  * @param {any} log 
  * @param {string} [type='log'] 
  */
-lib.log = function (log, type = 'log') {
-    if (lib.isString(log)) {
-        console[type](`[${lib.datetime('', '')}] [ThinkKoa] ${log}`);
+lib.log = function (msg, type, showTime) {
+    let dateTime = `[${lib.datetime('', '')}] `;
+    let message = msg;
+    if (lib.isError(msg)) {
+        type = 'ERROR';
+        message = msg.stack;
+        ('prototype' in console.error) && console.error(msg.stack);
+    } else if (type === 'ERROR') {
+        type = 'ERROR';
+        if (!lib.isString(msg)) {
+            message = JSON.stringify(msg);
+        }
+        ('prototype' in console.error) && console.error(message);
+    } else if (type === 'WARNING') {
+        type = 'WARNING';
+        if (!lib.isString(msg)) {
+            message = JSON.stringify(msg);
+        }
+        ('prototype' in console.warn) && console.warn(message);
     } else {
-        console[type](log);
+        if (!lib.isString(msg)) {
+            message = JSON.stringify(msg);
+        }
+        if (lib.isNumber(showTime)) {
+            let _time = Date.now() - showTime;
+            message += '  ' + `${_time}ms`;
+        }
+        type = type || 'INFO';
+        //判断console.info是否被重写
+        ('prototype' in console.info) && console.info(message);
     }
+    (think.app_debug || type === 'THINK') && console.log(`${dateTime}[${type}] ${message}`);
 };
 
 /**
@@ -553,47 +705,34 @@ lib.parseExpMiddleware = function (fn) {
 };
 
 /**
- * 继承
- * from jquery.具有深度克隆
- * @returns {*}
+ * 克隆
+ * 
+ * @param {any} source 
+ * @param {any} deep 
+ * @returns 
  */
-lib.extend = function () {
-    let args = [].slice.call(arguments), deep = true, target;
-    if (lib.isBoolean(args[0])) {
-        deep = args.shift();
-    }
+lib.clone = function (source, deep) {
     if (deep) {
-        target = lib.isArray(args[0]) ? [] : {};
+        return lodash.cloneDeep(source);
     } else {
-        target = args.shift();
+        return lodash.clone(source);
     }
-    target = target || {};
-    let i = 0, length = args.length, options, name, src, copy;
-    for (; i < length; i++) {
-        options = args[i];
-        if (!options) {
-            continue;
-        }
-        for (name in options) {
-            src = target[name];
-            copy = options[name];
-            if (src && src === copy) {
-                continue;
-            }
-            if (deep) {
-                if (lib.isObject(copy)) {
-                    target[name] = lib.extend(src && lib.isObject(src) ? src : {}, copy);
-                } else if (lib.isArray(copy)) {
-                    target[name] = lib.extend([], copy);
-                } else {
-                    target[name] = copy;
-                }
-            } else {
-                target[name] = copy;
-            }
-        }
+};
+
+/**
+ * 继承
+ * 
+ * @param {any} source 
+ * @param {any} target 
+ * @param {any} deep 
+ * @returns 
+ */
+lib.extend = function (source, target, deep) {
+    if (deep) {
+        return lodash.merge(lodash.cloneDeep(source), target);
+    } else {
+        return lodash.assignIn(source, target);
     }
-    return target;
 };
 
 /**
@@ -610,27 +749,38 @@ lib.toFastProperties = function (obj) {
 
 /**
  * 配置读取
- *
- * @param {string} name
- * @returns {*}
+ * 
+ * @param {any} name 
+ * @param {string} [type='config'] 
+ * @returns 
  */
-lib.config = function (name) {
+lib.config = function (name, type = 'config') {
+    think._caches.configs[type] || (think._caches.configs[type] = {});
     if (name === undefined) {
-        return think._caches.configs;
+        return think._caches.configs[type];
     }
     if (lib.isString(name)) {
         //name不含. 一级
         if (name.indexOf('.') === -1) {
-            return think._caches.configs[name];
+            return think._caches.configs[type][name];
         } else { //name包含. 二级
             let keys = name.split('.');
-            let value = think._caches.configs[keys[0]] || {};
+            let value = think._caches.configs[type][keys[0]] || {};
             return value[keys[1]];
         }
     } else {
-        return think._caches.configs[name];
+        return think._caches.configs[type][name];
     }
 };
 
+lib.action = function (ctx, status = 200, msg = ''){
+    ctx.status = status;
+    if (status > 399) {
+        let controller = null;
+        if (ctx.isStatusAction) {
+            controller = '';
+        }
+    }
+};
 
 module.exports = lib;

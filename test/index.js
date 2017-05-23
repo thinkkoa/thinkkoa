@@ -1,3 +1,6 @@
-var thinkkoa = require('../index.js');
+const path = require('path');
+const thinkkoa = require('../index.js');
 
-new thinkkoa().run();
+new thinkkoa({
+    root_path: __dirname
+}).run();

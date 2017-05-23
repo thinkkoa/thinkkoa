@@ -50,16 +50,7 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
-    "babel-runtime": "6.22.0",
-    "bluebird": "3.5.0",
-    "co": "4.6.0",
-    "compressible": "^2.0.10",
-    "koa": "2.2.0",
-    "koa-body": "^2.0.1",
-    "koa-convert": "1.2.0",
-    "lodash": "4.15.0",
-    "mime-types": "2.1.15",
-    "path-to-regexp": "1.7.0"
+    "babel-runtime": "6.22.0"
   },
   "maintainers": [
     {

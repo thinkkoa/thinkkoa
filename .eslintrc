@@ -204,6 +204,9 @@
     "yoda": 0
   },
   "globals": {
-    "think": true
+    "think": true,
+    "JsonError": true,
+    "PageError": true,
+    "echo": true
   }
 }

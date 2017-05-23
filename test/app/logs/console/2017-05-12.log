@@ -1,0 +1,306 @@
+[2017-05-12 09:24:18] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:15
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23
+[2017-05-12 09:24:22] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:15
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23
+[2017-05-12 09:24:25] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:15
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23
+[2017-05-12 09:24:28] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:15
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23
+[2017-05-12 10:48:33] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 10:49:46] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 10:49:46] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 10:53:32] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:46:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 10:53:58] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:46:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 10:54:02] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:46:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 10:55:14] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:46:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 10:57:42] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:144:19
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:264:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:46:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+[2017-05-12 11:51:31] [ERROR] TypeError: Cannot set property host of #<Object> which has only a getter
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:79:26
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:107:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+[2017-05-12 11:52:25] [ERROR] TypeError: Cannot set property hostname of #<Object> which has only a getter
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:81:30
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:108:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+[2017-05-12 11:56:38] [ERROR] TypeError: Cannot read property 'toLowerCase' of undefined
+    at Object.get (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/request.js:588:26)
+    at Object.proto.(anonymous function) [as get] (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/delegates/index.js:40:31)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:90:26
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:109:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+[2017-05-12 13:17:21] [ERROR] TypeError: Cannot read property 'isFile' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:182:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromiseCtx (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:606:10)
+    at Async._drainQueue (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:138:12)
+    at Async._drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:17:14)
+    at runCallback (timers.js:651:20)
+    at tryOnImmediate (timers.js:624:5)
+    at processImmediate [as _immediateCallback] (timers.js:596:5)
+[2017-05-12 13:17:21] [ERROR] Error: ENOENT: no such file or directory, stat '/static/a.png'
+    at Error (native)
+[2017-05-12 13:45:33] [ERROR] TypeError: Cannot read property 'buffer' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:190:22
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:266:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:51:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+[2017-05-12 15:05:25] [ERROR] TypeError: Cannot set property header of #<Object> which has only a getter
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:46:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:70:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)

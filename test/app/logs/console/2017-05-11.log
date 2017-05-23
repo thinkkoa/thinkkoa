@@ -1,0 +1,68 @@
+[2017-05-11 12:51:51] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:12:14
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+[2017-05-11 12:53:10] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:12:14
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+[2017-05-11 12:57:32] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:12:14
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+[2017-05-11 12:58:26] [ERROR] Error: 致命错误
+    at Error (native)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:16:15
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:147:28
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:263:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:44:23

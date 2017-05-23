@@ -1,0 +1,296 @@
+[2017-05-04 15:31:46] [ERROR] Error: 发送了一个致命错误
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/route.js:14:15
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:42:23
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/http.js:49:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+[2017-05-04 17:11:40] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:16:45] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:19:03] [ERROR] TypeError: Cannot read property 'method' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:124:21
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:255:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+[2017-05-04 17:21:02] [ERROR] TypeError: Cannot read property 'mtime' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:175:26
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromiseCtx (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:606:10)
+    at Async._drainQueue (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:138:12)
+    at Async._drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:17:14)
+    at runCallback (timers.js:651:20)
+    at tryOnImmediate (timers.js:624:5)
+    at processImmediate [as _immediateCallback] (timers.js:596:5)
+[2017-05-04 17:22:30] [ERROR] TypeError: Cannot read property 'mtime' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:176:26
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromiseCtx (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:606:10)
+    at Async._drainQueue (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:138:12)
+    at Async._drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:17:14)
+    at runCallback (timers.js:651:20)
+    at tryOnImmediate (timers.js:624:5)
+    at processImmediate [as _immediateCallback] (timers.js:596:5)
+[2017-05-04 17:23:03] [ERROR] TypeError: Cannot read property 'mtime' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:177:26
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromiseCtx (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:606:10)
+    at Async._drainQueue (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:138:12)
+    at Async._drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:17:14)
+    at runCallback (timers.js:651:20)
+    at tryOnImmediate (timers.js:624:5)
+    at processImmediate [as _immediateCallback] (timers.js:596:5)
+[2017-05-04 17:24:00] [ERROR] TypeError: Cannot read property 'mtime' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:175:26
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromiseCtx (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:606:10)
+    at Async._drainQueue (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:138:12)
+    at Async._drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:17:14)
+    at runCallback (timers.js:651:20)
+    at tryOnImmediate (timers.js:624:5)
+    at processImmediate [as _immediateCallback] (timers.js:596:5)
+[2017-05-04 17:24:14] [ERROR] TypeError: Cannot read property 'mtime' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:176:26
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromiseCtx (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:606:10)
+    at Async._drainQueue (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:138:12)
+    at Async._drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/async.js:17:14)
+    at runCallback (timers.js:651:20)
+    at tryOnImmediate (timers.js:624:5)
+    at processImmediate [as _immediateCallback] (timers.js:596:5)
+[2017-05-04 17:27:29] [ERROR] TypeError: next is not a function
+    at Object.<anonymous> (/Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:120:20)
+    at next (native)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:65:19)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+[2017-05-04 17:32:42] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:35:14] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:36:55] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:38:45] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:39:30] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:40:52] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:47:00] [ERROR] TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:101:25)
+    at onFulfilled (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:69:7)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:54:5
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at Object.co (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/co/index.js:50:10)
+    at converted (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-convert/index.js:17:15)
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+[2017-05-04 17:50:15] [ERROR] TypeError: Cannot read property 'method' of undefined
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:123:21
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:35:14
+    at Promise._execute (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:79:10)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:14:12
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/static.js:254:25
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/logger.js:75:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:36:12
+    at Server.handleRequest (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/application.js:136:14)
+    at emitTwo (events.js:106:13)

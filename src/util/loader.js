@@ -12,15 +12,17 @@ const lib = require('./lib.js');
 
 /*eslint-disable consistent-return */
 module.exports = class {
-    constructor(app_path, options) {
+    constructor(app_path, options, skip) {
         // 启动目录
         this.app_path = app_path;
         let loaders = {};
         if (options instanceof Array) {
             for (let option of options) {
-                loaders = lib.extend(false, loaders, this.load(option) || {});
+                option.skip = skip || false;
+                loaders = lib.extend(loaders, this.load(option) || {});
             }
         } else {
+            options.skip = skip || false;
             loaders = this.load(options) || {};
         }
         return loaders;
@@ -30,9 +32,10 @@ module.exports = class {
      * 
      * 
      * @param {any} dir 
+     * @param {boolean} [skip=false] 
      * @returns 
      */
-    walk(dir) {
+    walk(dir, skip = false) {
         dir = path.resolve(this.app_path, dir);
         const exist = fs.existsSync(dir);
         if (!exist) {
@@ -40,13 +43,14 @@ module.exports = class {
         }
 
         const files = fs.readdirSync(dir);
-        let list = [];
+        let list = [], p;
 
         for (let file of files) {
-            if (fs.statSync(path.resolve(dir, file)).isDirectory()) {
-                list = list.concat(this.walk(path.resolve(dir, file)));
-            } else {
+            p = fs.statSync(path.resolve(dir, file));
+            if (!skip && p.isFile()) {
                 list.push(path.resolve(dir, file));
+            } else if (p.isDirectory()){
+                list = list.concat(this.walk(path.resolve(dir, file), false));
             }
         }
 
@@ -57,35 +61,32 @@ module.exports = class {
      * 
      * 
      * @param {any} [options={}] 
+     * @param {boolean} [skip=false] 
      * @returns 
      */
     load(options = {}) {
         assert(typeof options.root === 'string', 'root must be specified');
 
         options.suffix = options.suffix || '.js';
-        options.prefix = options.prefix || '';
         options.filter = options.filter || [];
+        options.skip = options.prefix === '/' ? true : (options.skip || false);
+
         let loaders = {};
-        let paths = this.walk(options.root);
+
+        let paths = this.walk(options.root, options.skip);
         if (!paths) {
             return;
         }
-
+        let name = '', group = '', tempPath = '', tempGroup = '', regExp = new RegExp(`${options.suffix}$`);
         for (let key in paths) {
-            let name = path.relative(path.resolve(this.app_path, options.root), paths[key]);
-            let regExp = new RegExp(`${options.suffix}$`);
-
+            tempPath = paths[key].replace(new RegExp(lib.sep, 'g'), '/');
+            name = path.relative(path.resolve(this.app_path, options.root), tempPath);
             if (regExp.test(name)) {
                 name = name.slice(0, name.lastIndexOf(options.suffix));
-
                 options.filter.forEach(function (v, i) {
                     name = name.replace(v, '');
                 });
-
-                name = options.prefix + name;
-                name = name.replace(new RegExp(lib.sep, 'g'), '/');
-
-                loaders[name] = lib.require(paths[key]);
+                name && (loaders[name] = lib.require(tempPath));
             }
         }
 
