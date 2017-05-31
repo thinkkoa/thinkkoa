@@ -108,6 +108,7 @@ module.exports = function (options) {
     }
     /*eslint-disable consistent-return */
     return async function (ctx, next) {
+        echo('static')
         // only accept HEAD and GET
         if (ctx.method !== 'HEAD' && ctx.method !== 'GET') {
             return next();

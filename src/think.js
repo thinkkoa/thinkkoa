@@ -5,7 +5,6 @@
  * @license    MIT
  * @version    17/4/27
  */
-const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const koa = require('koa');
@@ -54,19 +53,20 @@ module.exports = class {
 
         // app
         think.app = this.koa;
+        think.loader = loader;
         // caches
         think._caches = {};
 
         // koa middleware
         think.use = fn => {
-            if (lib.isGenerator(fn)) {
+            if (think.isGenerator(fn)) {
                 fn = convert(fn);
             }
             think.app.use(fn);
         };
         //express middleware
         think.useExp = fn => {
-            fn = lib.parseExpMiddleware(fn);
+            fn = think.parseExpMiddleware(fn);
             think.use(fn);
         };
 
@@ -83,7 +83,7 @@ module.exports = class {
             nodeVersion = nodeVersion.slice(1);
         }
         if (think.node_engines > nodeVersion) {
-            lib.log(`ThinkKoa need node version > ${think.node_engines}, current version is ${nodeVersion}, please upgrade it.`, 'ERROR');
+            think.log(`ThinkKoa need node version > ${think.node_engines}, current version is ${nodeVersion}, please upgrade it.`, 'ERROR');
             process.exit();
         }
     }
@@ -95,17 +95,17 @@ module.exports = class {
     captureError() {
         //koa 错误
         think.app.on('error', (err, ctx) => {
-            lib.log(err, 'ERROR');
+            think.log(err, 'ERROR');
         });
 
         //promise reject错误
         process.on('unhandledRejection', (reason, promise) => {
-            lib.log(reason, 'ERROR');
+            think.log(reason, 'ERROR');
         });
 
         //未知错误
         process.on('uncaughtException', err => {
-            lib.log(err, 'ERROR');
+            think.log(err, 'ERROR');
             if (err.message.indexOf(' EADDRINUSE ') > -1) {
                 process.exit();
             }
@@ -118,7 +118,7 @@ module.exports = class {
      */
     loadConfigs() {
         think._caches.configs = new loader(__dirname, { root: 'config', prefix: '' });
-        think._caches.configs = lib.extend(think._caches.configs, new loader(think.app_path, { root: 'config', prefix: '' }));
+        think._caches.configs = think.extend(think._caches.configs, new loader(think.app_path, { root: 'config', prefix: '' }));
     }
 
     /**
@@ -128,12 +128,12 @@ module.exports = class {
     loadMiddlewares() {
         think._caches.middlewares = new loader(__dirname, config.loader.middlewares);
         //框架默认顺序加载的中间件
-        think._caches.middleware_list = ['logger', 'http', 'static', 'payload'];
+        think._caches.middleware_list = ['logger', 'http', 'error', 'static', 'payload', 'router', 'controller'];
         //加载应用中间件
         let loader_config = think._caches.configs.config.loader.middlewares || '';
         if (loader_config) {
             let app_middlewares = new loader(think.app_path, loader_config);
-            think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
+            think._caches.middlewares = think.extend(app_middlewares, think._caches.middlewares);
         }
         //挂载应用中间件
         if (think._caches.configs.middleware.list && think._caches.configs.middleware.list.length > 0) {
@@ -143,13 +143,10 @@ module.exports = class {
                 }
             });
         }
-        //加载路由中间件
-        (think._caches.middleware_list).push('router');
-
         // 自动调用中间件
         think._caches.middleware_list.forEach(key => {
             if (!think._caches.middlewares[key]) {
-                lib.log(`middleware ${key} not found, please export the middleware`, 'ERROR');
+                think.log(`middleware ${key} not found, please export the middleware`, 'ERROR');
                 return;
             }
             if (think._caches.configs.middleware.config[key] === false) {
@@ -164,32 +161,33 @@ module.exports = class {
     }
 
     /**
-     * 加载控制器
-     * 
-     */
-    loadControllers() {
-        think._caches.controllers = new loader(__dirname, config.loader.controllers);
-        think._caches.controllers.base && (think.controller = think._caches.controllers.base);
-        think._caches.controllers = lib.extend(new loader(think.app_path, think._caches.configs.config.loader.controllers), think._caches.controllers);
-    }
-
-    /**
      * 加载模块
      * 
      */
     loadModules() {
         let app_config = think._caches.configs.config || {};
-        let modules = [], deny_list = app_config.deny_modules || [];
-        for (let key in think._caches.controllers) {
-            let paths = key.split('/');
-            if (paths.length < 3) {
+        for (let key in app_config.loader) {
+            // 移除重复加载
+            if (key === 'configs' || key === 'middlewares') {
                 continue;
             }
-            modules.push(paths[1]);
+            think._caches[key] = new loader(think.app_path, app_config.loader[key]);
         }
-        let unionSet = new Set([...modules]);
-        modules = Array.from(unionSet);
-        think._caches.modules = modules.filter(x => deny_list.indexOf(x) === -1);
+
+        think._caches.modules = [];
+        if (think._caches.controllers) {
+            let modules = [], deny_list = app_config.deny_modules || [];
+            for (let key in think._caches.controllers) {
+                let paths = key.split('/');
+                if (paths.length < 3) {
+                    continue;
+                }
+                modules.push(paths[1]);
+            }
+            let unionSet = new Set([...modules]);
+            modules = Array.from(unionSet);
+            think._caches.modules = modules.filter(x => deny_list.indexOf(x) === -1);
+        }
     }
 
     /**
@@ -201,7 +199,6 @@ module.exports = class {
             setInterval(() => {
                 this.loadConfigs();
                 this.loadMiddlewares();
-                this.loadControllers();
             }, 2000);
         }
     }
@@ -217,7 +214,7 @@ module.exports = class {
         }
         let port = think._caches.configs.config.app_port || 3000;
         this.server.listen(port);
-        lib.log(`Server running at http://127.0.0.1:${port}/`, 'THINK');
+        think.log(`Server running at http://127.0.0.1:${port}/`, 'THINK');
     }
 
     /**
@@ -227,21 +224,20 @@ module.exports = class {
     run() {
         this.loadConfigs();
         this.loadMiddlewares();
-        this.loadControllers();
         //自动重载
-        this.autoReLoad();
+        // this.autoReLoad();
         //v8优化
-        lib.toFastProperties(think);
+        think.toFastProperties(think);
 
-        lib.log('====================================', 'THINK');
+        think.log('====================================', 'THINK');
         // start webserver
         this.createServer();
-        lib.log(`Node.js Version: ${process.version}`, 'THINK');
-        lib.log(`ThinkKoa Version: ${think.version}`, 'THINK');
-        lib.log(`App File Auto Reload: ${(think.app_debug ? 'open' : 'closed')}`, 'THINK');
-        lib.log(`App Enviroment: ${(think.app_debug ? 'debug mode' : 'production mode')}`, 'THINK');
-        lib.log('====================================', 'THINK');
-        think.app_debug && lib.log('Debugging mode is running, if the production environment, please modify the APP_DEBUG value to false', 'WARNING');
+        think.log(`Node.js Version: ${process.version}`, 'THINK');
+        think.log(`ThinkKoa Version: ${think.version}`, 'THINK');
+        think.log(`App File Auto Reload: ${(think.app_debug ? 'open' : 'closed')}`, 'THINK');
+        think.log(`App Enviroment: ${(think.app_debug ? 'debug mode' : 'production mode')}`, 'THINK');
+        think.log('====================================', 'THINK');
+        think.app_debug && think.log('Debugging mode is running, if the production environment, please modify the APP_DEBUG value to false', 'WARNING');
     }
 
 

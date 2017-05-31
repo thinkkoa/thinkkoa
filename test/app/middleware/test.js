@@ -12,5 +12,7 @@ module.exports = function (options) {
     //    think.addLogs('aa', '发送了一个致命错误');
     //    echo('aaa')
         // return next();
+        ctx._get['xx'] = 1;
+        echo(ctx.post())
     };
 };
