@@ -69,7 +69,7 @@ module.exports = class {
             fn = think.parseExpMiddleware(fn);
             think.use(fn);
         };
-
+        
     }
 
     /**
@@ -118,7 +118,7 @@ module.exports = class {
      */
     loadConfigs() {
         think._caches.configs = new loader(__dirname, { root: 'config', prefix: '' });
-        think._caches.configs = think.extend(think._caches.configs, new loader(think.app_path, { root: 'config', prefix: '' }));
+        think._caches.configs = think.extend(think._caches.configs, new loader(think.app_path, { root: 'config', prefix: '' }), true);
     }
 
     /**
@@ -224,6 +224,7 @@ module.exports = class {
     run() {
         this.loadConfigs();
         this.loadMiddlewares();
+        this.captureError();
         //自动重载
         // this.autoReLoad();
         //v8优化

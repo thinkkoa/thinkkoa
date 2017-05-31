@@ -8,7 +8,7 @@
 
 module.exports = {
     list: ['test'], //加载的中间件列表
-    config: { //中间件配置 {logger: {is_log: true}}
-        
+    config: { //中间件配置 {logger: {log: true}}
+        logger: {log: true}
     }
 };

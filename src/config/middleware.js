@@ -32,7 +32,7 @@ module.exports = {
             }
         },
         error: {
-            error_code: 503, //报错时的状态码
+            error_code: 500, //报错时的状态码
             error_no_key: 'errno', //错误号的key
             error_msg_key: 'errmsg', //错误消息的key
         },
