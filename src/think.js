@@ -176,7 +176,7 @@ module.exports = class {
 
         think._caches.modules = [];
         if (think._caches.controllers) {
-            let modules = [], deny_list = app_config.deny_modules || [];
+            let modules = [];
             for (let key in think._caches.controllers) {
                 let paths = key.split('/');
                 if (paths.length < 3) {
@@ -185,8 +185,7 @@ module.exports = class {
                 modules.push(paths[1]);
             }
             let unionSet = new Set([...modules]);
-            modules = Array.from(unionSet);
-            think._caches.modules = modules.filter(x => deny_list.indexOf(x) === -1);
+            think._caches.modules = Array.from(unionSet);
         }
     }
 

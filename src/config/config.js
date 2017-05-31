@@ -9,23 +9,25 @@
 module.exports = {
     /*app config*/
     app_port: 3000, 
-    http_timeout: 30, //http超时时间,30 seconds
     encoding: 'utf-8', //输出数据的编码
-
-    /*groups and controller*/
-    deny_modules: ['common'],
-    default_module: 'home',
-    default_controller: 'index', 
-    default_action: 'index', 
+    language: 'zh-cn', //默认语言设置 zh-cn en
 
     /*auto-load config*/
     loader: {
         'controllers': {
             root: 'controller',
-            prefix: '', //支持子目录
+            prefix: '', //设置为/支持子目录
         },
         'middlewares': {
             root: 'middleware',
+            prefix: '',
+        },
+        'models': {
+            root: 'model',
+            prefix: '',
+        },
+        'services': {
+            root: 'service',
             prefix: '',
         }
     }

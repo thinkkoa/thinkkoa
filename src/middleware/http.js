@@ -46,7 +46,7 @@ module.exports = function (options) {
             ctx.version = ctx.req.httpVersion;
 
             // set timeout
-            let timeout = think._caches.configs.http_timeout || 30;
+            let timeout = options.timeout || 30;
             ctx.timeoutTimer = ctx.res.setTimeout(timeout * 1000, () => ctx.throw(504));
 
             ctx.group = '';

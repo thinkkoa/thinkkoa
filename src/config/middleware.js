@@ -9,6 +9,9 @@
 module.exports = {
     list: [], //加载的中间件列表
     config: { //中间件配置 {logger: {is_log: true}}
+        http: {
+            timeout: 30, //http超时时间,30 seconds
+        },
         logger: {
             log: true, //是否存储日志
             level: ['warn', 'error'], //日志存储级别, info, warn, error, console类型日志有效
@@ -38,7 +41,14 @@ module.exports = {
         },
         router: {
             route_on: false, //是否开启自定义路由功能
-            pathname_suffix: '.jhtml', //不解析的pathname后缀，这样利于seo
+            deny_modules: ['common'], //禁止访问的模块
+            default_module: 'home', //默认的模块
+            default_controller: 'index', //默认控制器
+            default_action: 'index', //默认方法
+            prefix: [], // url prefix
+            suffix: ['.jhtml'], // url suffix
+            subdomain_offset: 2,
+            subdomain: {}, //subdomain
         }
     }
 };
