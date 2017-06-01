@@ -75,22 +75,17 @@ module.exports = function (options) {
             /**
              * is ajax request
              * 
-             * @param {any} method 
              * @returns 
              */
-            ctx.isAjax = function (method) {
-                if (method && ctx.method !== method.toUpperCase()) {
-                    return false;
-                }
+            ctx.isAjax = function () {
                 return ctx.header['x-requested-with'] === 'XMLHttpRequest';
             };
             /**
              * is pjax request
              * 
-             * @param {any} method 
              * @returns 
              */
-            ctx.isPjax = function (method) {
+            ctx.isPjax = function () {
                 return ctx.header['x-pjax'] || false;
             };
             /**
@@ -117,7 +112,7 @@ module.exports = function (options) {
              * @param {any} host 
              * @returns 
              */
-            ctx.referrer = function (host) {
+            ctx.referer = function (host) {
                 let ref = ctx.header.referer || ctx.header.referrer || '';
                 if (!ref || !host) {
                     return ref;
