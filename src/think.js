@@ -12,8 +12,10 @@ const convert = require('koa-convert');
 
 const lib = require('./util/lib.js');
 const pkg = require('../package.json');
+const base = require('./base.js');
 const loader = require('./util/loader.js');
 const config = require('./config/config.js');
+const controller = require('./controller/base.js');
 
 //define think object
 global.think = Object.create(lib);
@@ -56,6 +58,8 @@ module.exports = class {
         think.loader = loader;
         // caches
         think._caches = {};
+        think._caches.base = base;
+        think._caches.controller = controller;
 
         // koa middleware
         think.use = fn => {
@@ -167,8 +171,8 @@ module.exports = class {
     loadModules() {
         let app_config = think._caches.configs.config || {};
         for (let key in app_config.loader) {
-            // 移除重复加载
-            if (key === 'configs' || key === 'middlewares') {
+            // 保留关键字
+            if (['configs', 'middlewares', 'middleware_list', 'modules', 'controller', 'model', 'service'].indexOf(key) > -1) {
                 continue;
             }
             think._caches[key] = new loader(think.app_path, app_config.loader[key]);
@@ -179,10 +183,7 @@ module.exports = class {
             let modules = [];
             for (let key in think._caches.controllers) {
                 let paths = key.split('/');
-                if (paths.length < 3) {
-                    continue;
-                }
-                modules.push(paths[1]);
+                modules.push(paths[0]);
             }
             let unionSet = new Set([...modules]);
             think._caches.modules = Array.from(unionSet);
@@ -198,6 +199,7 @@ module.exports = class {
             setInterval(() => {
                 this.loadConfigs();
                 this.loadMiddlewares();
+                this.loadModules();
             }, 2000);
         }
     }
@@ -223,6 +225,7 @@ module.exports = class {
     run() {
         this.loadConfigs();
         this.loadMiddlewares();
+        this.loadModules();
         this.captureError();
         //自动重载
         // this.autoReLoad();

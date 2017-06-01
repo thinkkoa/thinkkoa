@@ -32,6 +32,15 @@ const afterEnd = function (ctx, status = 200, msg = {}) {
     });
 };
 
+/**
+ * 
+ * 
+ * @param {any} ctx 
+ */
+const execAction = function (ctx) {
+
+};
+
 module.exports = function (options) {
     return async function (ctx, next) {
         let endMsg = {};
@@ -226,6 +235,9 @@ module.exports = function (options) {
             echo('http')
             //执行后续中间件
             await next();
+            
+            //执行控制器
+            await execAction(ctx);
         } catch (err) {
             ctx.status = lib.isNumber(err.status) ? err.status : 500;
             endMsg = err;

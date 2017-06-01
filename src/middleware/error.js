@@ -3,7 +3,7 @@
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
- * @version    31/5/29
+ * @version    17/5/29
  */
 
 module.exports = function (options) {
@@ -13,10 +13,10 @@ module.exports = function (options) {
             await next();
             //404 error
             if (!ctx.response.body) {
-                ctx.throw(404);
+                ctx.throw(404, ctx.url);
             }
             if (ctx.response.status >= 400) {
-                ctx.throw(ctx.response.status);
+                ctx.throw(ctx.response.status, ctx.url);
             }
         } catch (err) {
             ctx.status = typeof err.status === 'number' ? err.status : (options.error_code || 500);

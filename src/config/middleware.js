@@ -40,7 +40,6 @@ module.exports = {
             error_msg_key: 'errmsg', //错误消息的key
         },
         router: {
-            route_on: false, //是否开启自定义路由功能
             deny_modules: ['common'], //禁止访问的模块
             default_module: 'home', //默认的模块
             default_controller: 'index', //默认控制器
