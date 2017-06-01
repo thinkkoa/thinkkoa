@@ -186,6 +186,9 @@ module.exports = class {
             let modules = [];
             for (let key in think._caches.controllers) {
                 let paths = key.split('/');
+                if (paths.length < 2) {
+                    continue;
+                }
                 modules.push(paths[0]);
             }
             let unionSet = new Set([...modules]);

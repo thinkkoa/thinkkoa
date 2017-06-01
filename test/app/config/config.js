@@ -11,7 +11,7 @@ module.exports = {
     loader: {
         'controllers': {
             root: 'controller',
-            prefix: '/', //支持子目录
+            prefix: '', //支持子目录
         },
         'middlewares': {
             root: 'middleware',
@@ -19,7 +19,7 @@ module.exports = {
         },
         'models': {
             root: 'model',
-            prefix: '/',
+            prefix: '',
         }
     }
 };

@@ -1482,3 +1482,88 @@
     at runCallback (timers.js:651:20)
     at tryOnImmediate (timers.js:624:5)
     at processImmediate [as _immediateCallback] (timers.js:596:5)
+[2017-06-01 20:03:22] [ERROR] NotFoundError: Controller statuss/test not found.
+    at Object.throw (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/context.js:91:23)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/controller.js:33:22
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:19:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:269:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/payload.js:244:20
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+[2017-06-01 20:03:34] [ERROR] NotFoundError: Controller statuss/test not found.
+    at Object.throw (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/context.js:91:23)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/controller.js:33:22
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:19:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:269:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/payload.js:244:20
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+[2017-06-01 20:04:12] [ERROR] NotFoundError: Controller statuss/test not found.
+    at Object.throw (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/context.js:91:23)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/controller.js:34:22
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:19:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:269:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/payload.js:244:20
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+[2017-06-01 20:04:36] [ERROR] NotFoundError: Controller statuss/test not found.
+    at Object.throw (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/context.js:91:23)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/controller.js:36:22
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:19:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:269:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/payload.js:244:20
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
+[2017-06-01 20:05:24] [ERROR] NotFoundError: Controller statuss/test not found.
+    at Object.throw (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa/lib/context.js:91:23)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/controller.js:36:22
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/test/app/middleware/test.js:19:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/router.js:269:16
+    at dispatch (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/koa-compose/index.js:45:18)
+    at /Users/richen/Workspace/nodejs/thinkkoa/lib/middleware/payload.js:244:20
+    at next (native)
+    at step (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+    at /Users/richen/Workspace/nodejs/thinkkoa/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+    at tryCatcher (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/Users/richen/Workspace/nodejs/thinkkoa/node_modules/bluebird/js/release/promise.js:512:31)
