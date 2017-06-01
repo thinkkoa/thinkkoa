@@ -197,7 +197,6 @@ module.exports = class {
     autoReLoad() {
         if (think.app_debug) {
             setInterval(() => {
-                this.loadConfigs();
                 this.loadMiddlewares();
                 this.loadModules();
             }, 2000);

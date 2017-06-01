@@ -5,7 +5,7 @@
  * @license    MIT
  * @version    17/5/2
  */
-const {parse} = require('url');
+const { parse } = require('url');
 const pathToRegexp = require('path-to-regexp');
 const lib = require('../util/lib.js');
 
@@ -194,7 +194,7 @@ const parseRoute = function (ctx, routers, options) {
     if (routers && routers.length) {
         for (let r in routers) {
             keys = [];
-            regexp = pathToRegexp(routers[r][0], keys, {strict: true, sensitive: true});
+            regexp = pathToRegexp(routers[r][0], keys, { strict: true, sensitive: true });
             regres = regexp.exec(ctx.path);
             if (regres) {
                 for (let k in keys) {
@@ -231,10 +231,13 @@ const parseRoute = function (ctx, routers, options) {
 module.exports = function (options) {
     return function (ctx, next) {
         echo('router')
-        const routers = think._caches.configs.router;
-        if (routers){
-            parseRoute(ctx, routers, options);
+        if (!ctx.routers) {
+            ctx.routers = think._caches.configs.router;
+            if (ctx.routers) {
+                parseRoute(ctx, ctx.routers, options);
+            }
         }
+
         const pathname = getPathname(ctx, options);
         ctx.originalPath = ctx.path;
         ctx.path = pathname;
@@ -247,7 +250,7 @@ module.exports = function (options) {
         } else {
             parsePathname(ctx, pathname, options);
         }
-        
+
         return next();
     };
 };

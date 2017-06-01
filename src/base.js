@@ -13,13 +13,13 @@ module.exports = class {
      * @param args
      */
     constructor(...args) {
-        this._init(...args);
+        this.init(...args);
     }
 
     /**
      * init
      */
-    _init() {
+    init() {
 
     }
 

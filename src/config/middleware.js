@@ -11,6 +11,10 @@ module.exports = {
     config: { //中间件配置 {logger: {is_log: true}}
         http: {
             timeout: 30, //http超时时间,30 seconds
+            action_suffix: 'Action', //方法后缀,带后缀的方法为公共方法
+            empty_action: '__empty', //空方法,如果访问控制器中不存在的方法,默认调用
+            common_before: '__before', //控制器类公共前置方法,除私有方法外其他方法执行时自动调用
+            self_before: '_before_', //控制器类某个方法自身的前置方法(前缀),该方法执行时自动调用
         },
         logger: {
             log: true, //是否存储日志
