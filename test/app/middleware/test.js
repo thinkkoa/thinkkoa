@@ -16,6 +16,6 @@ module.exports = function (options) {
         // ctx.status = 405;
         // ctx.response.body = 'sdfsdfsdf';
         ctx._get['xx'] = 1;
-        echo(ctx.post())
+        return next();
     };
 };

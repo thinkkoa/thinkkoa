@@ -6,7 +6,6 @@ exports.__esModule = true;
 
 exports.default = class extends think._caches.controller {
     testAction () {
-        echo(this.http)
         this.http.body = 'hahahahahahahahahhha';
     }
 }; /**

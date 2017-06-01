@@ -32,62 +32,6 @@ const afterEnd = function (ctx, status = 200, msg = {}) {
     });
 };
 
-/**
- * 
- * 
- * @param {any} ctx 
- * @param {any} options 
- */
-const exec = function (ctx, options) {
-    if (!ctx.controller) {
-        ctx.throw(404, 'Controller not found.');
-    }
-    let controller, cls;
-    try {
-        //multi mod
-        if (ctx.group) {
-            cls = think._caches.controllers[`${ctx.group}/${ctx.controller}`];
-        } else {
-            cls = think._caches.controllers[ctx.controller];
-        }
-        controller = new cls(ctx);
-    } catch (e) {
-        ctx.throw(404, `Controller ${ctx.group}/${ctx.controller} not found.`);
-    }
-    //exec action
-    const suffix = options.action_suffix || 'Action';
-    const empty = options.empty_action || '__empty';
-    let act = `${ctx.action}${suffix}`;
-    if (!controller[act] && controller[empty]) {
-        act = empty;
-    }
-    echo(controller[act])
-    if (!controller[act]) {
-        ctx.throw(404, `Action ${ctx.action} not found.`);
-    }
-
-    const commBefore = options.common_before || '__before';
-    const selfBefore = `${options.self_before || '_before_'}${ctx.action}`;
-
-    let promises = Promise.resolve();
-    //common befroe
-    if (controller[commBefore]) {
-        promises = promises.then(() => {
-            return controller[commBefore]();
-        });
-    }
-    //self before
-    if (controller[selfBefore]) {
-        promises = promises.then(() => {
-            return controller[selfBefore]();
-        });
-    }
-    //action
-    return promises.then(() => {
-        return controller[act]();
-    });
-};
-
 module.exports = function (options) {
     return async function (ctx, next) {
         let endMsg = {};
@@ -272,8 +216,6 @@ module.exports = function (options) {
                 return null;
             };
 
-
-
             //auto send header
             ctx.set('X-Powered-By', 'ThinkKoa');
             ctx.set('X-Content-Type-Options', 'nosniff');
@@ -282,9 +224,6 @@ module.exports = function (options) {
             echo('http')
             //执行后续中间件
             await next();
-
-            //执行控制器
-            await exec(ctx, options);
         } catch (err) {
             ctx.status = lib.isNumber(err.status) ? err.status : 500;
             endMsg = err;

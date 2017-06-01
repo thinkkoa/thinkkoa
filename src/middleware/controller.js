@@ -1,11 +1,3 @@
-'use strict';
-
-var _promise = require('babel-runtime/core-js/promise');
-
-var _promise2 = _interopRequireDefault(_promise);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 /**
  *
  * @author     richen
@@ -16,7 +8,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 module.exports = function (options) {
     return function (ctx, next) {
-        echo('controller');
+        echo('controller')
         if (!ctx.controller) {
             ctx.throw(404, 'Controller not found.');
         }
@@ -46,7 +38,7 @@ module.exports = function (options) {
         const commBefore = options.common_before || '__before';
         const selfBefore = `${options.self_before || '_before_'}${ctx.action}`;
 
-        let promises = _promise2.default.resolve();
+        let promises = Promise.resolve();
         //common befroe
         if (controller[commBefore]) {
             promises = promises.then(() => {
