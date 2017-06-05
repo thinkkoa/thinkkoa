@@ -31,4 +31,4 @@ module.exports = class {
         let fname = this.__filename || __filename;
         return path.basename(fname, '.js');
     }
-}
+};
