@@ -7,4 +7,4 @@
 
 A lightweight, scalable web framework, based on koa.
 
-ThinkKoa 是对Koa进行了薄封装,相对于ThinkNode,它更加轻量级,扩张性和性能也更好。
+ThinkKoa 是对Koa进行了薄封装,相对于ThinkNode,它更加轻量级,扩展性和性能也更好。
