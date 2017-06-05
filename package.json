@@ -53,6 +53,7 @@
     "babel-runtime": "6.22.0",
     "bluebird": "3.5.0",
     "compressible": "^2.0.10",
+    "cookies": "^0.7.0",
     "formidable": "^1.1.1",
     "inflation": "^2.0.0",
     "koa": "2.2.0",

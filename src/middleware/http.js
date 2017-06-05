@@ -5,9 +5,9 @@
  * @license    MIT
  * @version    17/4/29
  */
-const fs = require('fs');
 const url = require('url');
 const mime = require('mime-types');
+const cookies = require('cookies');
 const lib = require('../util/lib.js');
 
 /**
@@ -127,7 +127,7 @@ module.exports = function (options) {
              * @param {any} value 
              * @returns 
              */
-            ctx.set = function (name, value) {
+            ctx.headers = function (name, value) {
                 if (name === undefined) {
                     return ctx.header;
                 }
@@ -155,7 +155,7 @@ module.exports = function (options) {
              * @param {any} contentType 
              * @param {any} encoding 
              */
-            ctx.type = function (contentType, encoding) {
+            ctx.types = function (contentType, encoding) {
                 if (!contentType) {
                     return (ctx.header['content-type'] || '').split(';')[0].trim();
                 }
@@ -167,7 +167,7 @@ module.exports = function (options) {
                 }
                 ctx._sendType = contentType;
                 if (encoding !== false && contentType.toLowerCase().indexOf('charset=') === -1) {
-                    contentType += '; charset=' + (encoding || think.config('encoding'));
+                    contentType += '; charset=' + (encoding || lib.config('encoding'));
                 }
                 ctx.set('Content-Type', contentType);
                 return null;
@@ -181,7 +181,17 @@ module.exports = function (options) {
              */
             ctx.redirect = function (urls, code = 302) {
                 ctx.set('Location', urls || '/');
-                return think.statusAction(ctx, code || 302);
+                return ctx.throw(code);
+            };
+
+            /**
+             * 
+             * 
+             * @param {number} [code=403] 
+             * @returns 
+             */
+            ctx.deny = function(code = 403) {
+                return ctx.throw(code);
             };
 
             /**
@@ -211,10 +221,65 @@ module.exports = function (options) {
                 return null;
             };
 
+            /**
+             * get or set cookie
+             * @param {String} name
+             * @param {String} value
+             * @param {Object} options
+             */
+            ctx.cookies = function(name, value, option = {}) {
+                if (!lib.isString(name)) {
+                    lib.log('cookie.name must be a string', 'ERROR');
+                    return null;
+                }
+                option = Object.assign({}, options.coolie || {}, option);
+                const instance = new cookies(ctx.req, ctx.res, {
+                    keys: option.keys,
+                    secure: ctx.req.secure
+                });
+                //get cookie
+                if (value === undefined) {
+                    return instance.get(name, option);
+                }
+                //remove cookie
+                if (value === null) {
+                    return instance.set(name, '', {
+                        maxAge: -1
+                    });
+                }
+                if (!lib.isString(value)) {
+                    lib.log('cookie value must be a string', 'ERROR');
+                    return null;
+                }
+                //http://browsercookielimits.squawky.net/
+                if (value.length >= 4094) {
+                    lib.log('cookie limit has error length', 'ERROR');
+                    return null;
+                }
+                //set cookie
+                return instance.set(name, value, option);
+            };
+
+            /**
+             * 
+             * 
+             * @param {any} content 
+             * @param {any} contentType 
+             * @param {any} encoding 
+             * @returns 
+             */
+            ctx.echo = function(content, contentType, encoding) {
+                contentType = contentType || 'text/plain';
+                encoding = encoding || lib.config('encoding');
+                ctx.types(contentType, encoding);
+                ctx.body = content;
+                return null;
+            };
+
             //auto send header
-            ctx.set('X-Powered-By', 'ThinkKoa');
-            ctx.set('X-Content-Type-Options', 'nosniff');
-            ctx.set('X-XSS-Protection', '1;mode=block');
+            ctx.headers('X-Powered-By', 'ThinkKoa');
+            ctx.headers('X-Content-Type-Options', 'nosniff');
+            ctx.headers('X-XSS-Protection', '1;mode=block');
 
             echo('http')
             //执行后续中间件

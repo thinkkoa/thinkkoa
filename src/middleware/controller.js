@@ -16,10 +16,8 @@ module.exports = function (options) {
         try {
             //multi mod
             if (ctx.group) {
-                echo(`${ctx.group}/${ctx.controller}`)
                 cls = think._caches.controllers[`${ctx.group}/${ctx.controller}`];
             } else {
-                echo(ctx.controller)
                 cls = think._caches.controllers[ctx.controller];
             }
             controller = new cls(ctx);
