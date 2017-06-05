@@ -117,8 +117,8 @@ module.exports = class extends base {
      * @param value
      * @returns {type[]}
      */
-    headers(name, value) {
-        return this.http.headers(name, value);
+    heads(name, value) {
+        return this.http.heads(name, value);
     }
 
     /**
@@ -220,7 +220,7 @@ module.exports = class extends base {
         } else {
             obj.data = {};
         }
-        return this.http.echo(data, 'application/json');
+        return this.http.echo(obj, 'application/json');
     }
 
     /**
@@ -256,7 +256,7 @@ module.exports = class extends base {
         } else {
             obj.data = {};
         }
-        return this.http.echo(data, 'application/json');
+        return this.http.echo(obj, 'application/json');
     }
 
     /**

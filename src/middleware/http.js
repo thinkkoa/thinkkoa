@@ -127,7 +127,7 @@ module.exports = function (options) {
              * @param {any} value 
              * @returns 
              */
-            ctx.headers = function (name, value) {
+            ctx.heads = function (name, value) {
                 if (name === undefined) {
                     return ctx.header;
                 }
@@ -277,9 +277,9 @@ module.exports = function (options) {
             };
 
             //auto send header
-            ctx.headers('X-Powered-By', 'ThinkKoa');
-            ctx.headers('X-Content-Type-Options', 'nosniff');
-            ctx.headers('X-XSS-Protection', '1;mode=block');
+            ctx.heads('X-Powered-By', 'ThinkKoa');
+            ctx.heads('X-Content-Type-Options', 'nosniff');
+            ctx.heads('X-XSS-Protection', '1;mode=block');
 
             echo('http')
             //执行后续中间件
