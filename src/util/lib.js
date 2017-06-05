@@ -66,7 +66,7 @@ lib.config = function (name, type = 'config') {
 };
 
 /**
- * 
+ * 获取或实例化控制器
  * 
  * @param {any} name 
  * @param {any} http 
@@ -80,8 +80,8 @@ lib.controller = function (name, http) {
         let cls;
         if (lib.isObject(name) && name.__filename) {
             cls = lib.require(name.__filename);
-        } else if (think._caches.controllers[name]){
-            cls = lib.require(think._caches.controllers[name]);
+        } else if (think._caches.controllers[name]) {
+            cls = think._caches.controllers[name];
         }
         if (!cls) {
             return lib.log(`Controller ${name} is undefined`, 'ERROR');
@@ -97,29 +97,48 @@ lib.controller = function (name, http) {
 };
 
 /**
- * 
+ * 执行控制器某个方法
  * 
  * @param {any} name 
  * @param {any} http 
  */
 lib.action = function (name, http) {
-    try {
-        return lib.controller();
-    } catch (e) {
-        lib.log(e);
-        return null;
+    name = name.split('/');
+    if (name.length < 2 || !name[0]) {
+        return http.throw(`When call think.action, controller is undefined,  `, 'ERROR');
     }
+    let cls = lib.controller(`${name[1] ? (name[0] + '/' + name[1]) : name[0]}`, http);
+    if (!cls) {
+        return http.throw(`When call think.action, controller ${name[1] ? (name[0] + '/' + name[1]) : name[0]} is undefined`, 'ERROR');
+    }
+    let act = name[2] ? name[2] : name[1];
+    if (!act) {
+        return http.throw(`When call think.action, action ${act} is undefined`, 'ERROR');
+    }
+    return cls[act]();
 };
 
 /**
- * 
+ * 获取或实例化模型类
  * 
  * @param {any} name 
  * @param {any} config 
  */
 lib.model = function (name, config) {
     try {
-        return null;
+        let cls;
+        if (!lib.isString(name) && name.__filename) {
+            cls = lib.require(name.__filename);
+        } else if (think._caches.models[name]) {
+            cls = think._caches.models[name];
+        }
+        if (!cls) {
+            return lib.log(`Model ${name} is undefined`, 'ERROR');
+        }
+        if (config === undefined) {
+            return cls;
+        }
+        return new cls(config || {});
     } catch (e) {
         lib.log(e);
         return null;
@@ -127,7 +146,7 @@ lib.model = function (name, config) {
 };
 
 /**
- * 
+ * 获取或实例化服务类
  * 
  * @param {any} name 
  * @param {any} params 
@@ -137,16 +156,16 @@ lib.service = function (name, params) {
         let cls;
         if (lib.isObject(name) && name.__filename) {
             cls = lib.require(name.__filename);
-        } else if (think._caches.controllers[name]){
-            cls = lib.require(think._caches.controllers[name]);
+        } else if (think._caches.services[name]) {
+            cls = think._caches.services[name];
         }
         if (!cls) {
             return lib.log(`Controller ${name} is undefined`, 'ERROR');
         }
-        if (params !== undefined) {
-            return new cls(params || {});
+        if (params === undefined) {
+            return cls;
         }
-        return cls;
+        return new cls(params || {});
     } catch (e) {
         lib.log(e);
         return null;
