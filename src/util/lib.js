@@ -78,7 +78,7 @@ lib.controller = function (name, http) {
             return think._caches.controller;
         }
         let cls;
-        if (!lib.isString(name) && name.__filename) {
+        if (lib.isObject(name) && name.__filename) {
             cls = lib.require(name.__filename);
         } else if (think._caches.controllers[name]){
             cls = lib.require(think._caches.controllers[name]);
@@ -104,7 +104,7 @@ lib.controller = function (name, http) {
  */
 lib.action = function (name, http) {
     try {
-        return null;
+        return lib.controller();
     } catch (e) {
         lib.log(e);
         return null;
@@ -134,7 +134,19 @@ lib.model = function (name, config) {
  */
 lib.service = function (name, params) {
     try {
-        return null;
+        let cls;
+        if (lib.isObject(name) && name.__filename) {
+            cls = lib.require(name.__filename);
+        } else if (think._caches.controllers[name]){
+            cls = lib.require(think._caches.controllers[name]);
+        }
+        if (!cls) {
+            return lib.log(`Controller ${name} is undefined`, 'ERROR');
+        }
+        if (params !== undefined) {
+            return new cls(params || {});
+        }
+        return cls;
     } catch (e) {
         lib.log(e);
         return null;
