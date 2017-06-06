@@ -58,7 +58,7 @@ module.exports = class {
         think.loader = loader;
         // caches
         think._caches = {};
-        think._caches.base = base;
+        think.base = base;
         think._caches.controller = controller;
 
         // koa middleware
