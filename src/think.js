@@ -58,7 +58,7 @@ module.exports = class {
         think.loader = loader;
         // caches
         think._caches = {};
-        think.base = base;
+        think._caches.base = base;
         think._caches.controller = controller;
 
         // koa middleware
@@ -174,8 +174,13 @@ module.exports = class {
     loadModules() {
         let app_config = think._caches.configs.config || {};
         for (let key in app_config.loader) {
+            // 避免重复加载
+            if (['configs', 'middlewares'].indexOf(key) > -1) {
+                continue;
+            }
             // 保留关键字
-            if (['configs', 'middlewares', 'middleware_list', 'modules', 'controller', 'model', 'service'].indexOf(key) > -1) {
+            if (['base', 'middleware_list', 'modules', 'controller', 'model', 'service'].indexOf(key) > -1) {
+                think.log('Reserved keywords are used in the load configuration', 'WARNING');
                 continue;
             }
             think._caches[key] = new loader(think.app_path, app_config.loader[key]);
@@ -200,14 +205,14 @@ module.exports = class {
      * 自动重载
      * 
      */
-    autoReLoad() {
-        if (think.app_debug) {
-            setInterval(() => {
-                this.loadMiddlewares();
-                this.loadModules();
-            }, 2000);
-        }
-    }
+    // autoReLoad() {
+    //     if (think.app_debug) {
+    //         setInterval(() => {
+    //             this.loadMiddlewares();
+    //             this.loadModules();
+    //         }, 2000);
+    //     }
+    // }
 
     /**
      * 
@@ -233,7 +238,7 @@ module.exports = class {
         this.loadModules();
         this.captureError();
         //自动重载
-        this.autoReLoad();
+        // this.autoReLoad();
         //emit app ready
         think.app.emit('appReady');
         //v8优化
@@ -249,6 +254,5 @@ module.exports = class {
         think.log('====================================', 'THINK');
         think.app_debug && think.log('Debugging mode is running, if the production environment, please modify the APP_DEBUG value to false', 'WARNING');
     }
-
 
 };
