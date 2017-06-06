@@ -17,7 +17,7 @@ const lib = require('../util/lib.js');
  * @param {any} msgs 
  */
 const write = function (path, name, msgs) {
-    try { 
+    try {
         let log_path = `${think.root_path}${lib.sep}logs${lib.sep}${lib.isEmpty(path) ? 'console' : path}`;
         think.isDir(log_path) || think.mkDir(log_path);
         if (!think.isEmpty(msgs)) {
@@ -26,7 +26,7 @@ const write = function (path, name, msgs) {
             let message = util.format.apply(null, msgs) + '\n';
             fs.appendFile(file, message);
         }
-    } catch (e) {}
+    } catch (e) { }
 };
 
 /**
@@ -57,20 +57,19 @@ const logCustom = function (name, msgs) {
 
 
 module.exports = function (options) {
-    return function (ctx, next) {
-        if (!options || !options.log) {
-            return next();
-        }
-        //logger仅执行一次
-        if (think.addLogs) {
-            return next();
-        }
+    //logger仅执行一次
+    think.app.once('appReady', () => {
         echo('logger')
+        if (!options || !options.log) {
+            return;
+        }
         //日志
         let level = options.level || [];
         logConsole(level);
         think.addLogs = logCustom;
-        
+    });
+
+    return function (ctx, next) {
         return next();
     };
 };

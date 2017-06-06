@@ -234,6 +234,8 @@ module.exports = class {
         this.captureError();
         //自动重载
         // this.autoReLoad();
+        //emit app ready
+        think.app.emit('appReady');
         //v8优化
         think.toFastProperties(think);
 
