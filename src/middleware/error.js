@@ -9,7 +9,6 @@
 module.exports = function (options) {
     return async function error(ctx, next) {
         try {
-            echo('error')
             await next();
             //404 error
             if (!ctx.response.body) {

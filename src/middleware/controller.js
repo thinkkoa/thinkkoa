@@ -8,7 +8,6 @@
 
 module.exports = function (options) {
     return function (ctx, next) {
-        echo('controller')
         if (!ctx.controller) {
             ctx.throw(404, 'Controller not found.');
         }

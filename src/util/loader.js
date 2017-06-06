@@ -83,7 +83,8 @@ module.exports = class {
             name = path.relative(path.resolve(this.app_path, options.root), tempPath);
             if (regExp.test(name)) {
                 name = name.slice(0, name.lastIndexOf(options.suffix));
-                options.filter.forEach(function (v, i) {
+                /*eslint-disable no-loop-func */
+                options.filter.forEach( (v, i) => {
                     name = name.replace(v, '');
                 });
                 name && (loaders[name] = lib.require(tempPath));

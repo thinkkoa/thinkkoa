@@ -59,7 +59,6 @@ const logCustom = function (name, msgs) {
 module.exports = function (options) {
     //logger仅执行一次
     think.app.once('appReady', () => {
-        echo('logger')
         if (!options || !options.log) {
             return;
         }

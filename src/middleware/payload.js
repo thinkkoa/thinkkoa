@@ -131,7 +131,6 @@ const parsePayload = function (ctx, options) {
 
 module.exports = function (options) {
     return async function (ctx, next) {
-        echo('payload')
         ctx._get = ctx.query;
         // parse payload
         ctx.request.body = await parsePayload(ctx, options);

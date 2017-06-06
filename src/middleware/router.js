@@ -230,7 +230,6 @@ const parseRoute = function (ctx, routers, options) {
 
 module.exports = function (options) {
     return function (ctx, next) {
-        echo('router')
         ctx.routers = think._caches.configs.router;
         if (ctx.routers) {
             parseRoute(ctx, ctx.routers, options);

@@ -281,14 +281,12 @@ module.exports = function (options) {
             ctx.heads('X-Content-Type-Options', 'nosniff');
             ctx.heads('X-XSS-Protection', '1;mode=block');
 
-            echo('http')
             //执行后续中间件
             await next();
         } catch (err) {
             ctx.status = lib.isNumber(err.status) ? err.status : 500;
             endMsg = err;
         } finally {
-            echo('afterEnd')
             ctx.afterEnd(ctx, ctx.status, endMsg);
         }
     };
