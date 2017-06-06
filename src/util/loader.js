@@ -29,7 +29,7 @@ module.exports = class {
     }
 
     /**
-     * 
+     * loop load
      * 
      * @param {any} dir 
      * @param {boolean} [skip=false] 
@@ -58,7 +58,7 @@ module.exports = class {
     }
 
     /**
-     * 
+     * load files
      * 
      * @param {any} [options={}] 
      * @param {boolean} [skip=false] 
@@ -87,10 +87,29 @@ module.exports = class {
                 options.filter.forEach( (v, i) => {
                     name = name.replace(v, '');
                 });
-                name && (loaders[name] = lib.require(tempPath));
+                if (name) {
+                    //clear require cache
+                    this.cleanCache(tempPath);
+                    loaders[name] = lib.require(tempPath);
+                }
             }
         }
 
         return loaders;
     }
+
+    /**
+     * clear require cache
+     * 
+     * @param {any} modulePath 
+     */
+    cleanCache(modulePath) {
+        let module = require.cache[modulePath];
+        // remove reference in module.parent
+        if (module.parent) {
+            module.parent.children.splice(module.parent.children.indexOf(module), 1);
+        }
+        require.cache[modulePath] = null;
+    }
+
 };
