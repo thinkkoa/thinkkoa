@@ -1,2 +1,8 @@
 .idea
 .DS_Store
+node_modules
+npm-debug.log
+coverage
+src
+.travis.yml
+.coveralls.yml
