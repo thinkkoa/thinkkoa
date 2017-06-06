@@ -152,7 +152,7 @@ module.exports = class {
         
         // 自动调用中间件
         think._caches.middleware_list.forEach(key => {
-            if (!think._caches.middlewares[key]) {
+            if (!key || !think._caches.middlewares[key]) {
                 think.log(`middleware ${key} not found, please export the middleware`, 'ERROR');
                 return;
             }
