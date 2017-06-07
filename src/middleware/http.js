@@ -6,7 +6,6 @@
  * @version    17/4/29
  */
 const url = require('url');
-const mime = require('mime-types');
 const lib = require('../util/lib.js');
 
 /**
@@ -33,9 +32,6 @@ const afterEnd = function (ctx, status = 200, msg = {}) {
 
 module.exports = function (options) {
     return async function (ctx, next) {
-        //content type is send
-        ctx._typeSend = false;
-        ctx._sendType = '';
 
         //set http start time
         ctx.startTime = Date.now();
@@ -124,7 +120,8 @@ module.exports = function (options) {
          * @param {any} value 
          * @returns 
          */
-        ctx.heads = function (name, value) {
+        Object.defineProperty(ctx, 'headers', {writable: true});
+        ctx.headers = function (name, value) {
             if (name === undefined) {
                 return ctx.header;
             }
@@ -132,16 +129,9 @@ module.exports = function (options) {
             if (value === undefined) {
                 return ctx.header[name] || '';
             }
-            //set content-type
-            if (name === 'content-type') {
-                if (ctx._typeSend) {
-                    return null;
-                }
-                ctx._typeSend = true;
-            }
             //set header
             if (!ctx.res.headersSent) {
-                ctx.res.setHeader(name, value);
+                ctx.set(name, value);
             }
             return null;
         };
@@ -154,15 +144,9 @@ module.exports = function (options) {
          */
         ctx.types = function (contentType, encoding) {
             if (!contentType) {
-                return (ctx.header['content-type'] || '').split(';')[0].trim();
+                // return (ctx.header['content-type'] || '').split(';')[0].trim();
+                return ctx.type;
             }
-            if (ctx._typeSend) {
-                return null;
-            }
-            if (contentType.indexOf('/') === -1) {
-                contentType = mime.lookup(contentType);
-            }
-            ctx._sendType = contentType;
             if (encoding !== false && contentType.toLowerCase().indexOf('charset=') === -1) {
                 contentType += '; charset=' + (encoding || lib.config('encoding'));
             }
@@ -286,9 +270,9 @@ module.exports = function (options) {
         };
 
         //auto send header
-        ctx.heads('X-Powered-By', 'ThinkKoa');
-        ctx.heads('X-Content-Type-Options', 'nosniff');
-        ctx.heads('X-XSS-Protection', '1;mode=block');
+        ctx.headers('X-Powered-By', 'ThinkKoa');
+        ctx.headers('X-Content-Type-Options', 'nosniff');
+        ctx.headers('X-XSS-Protection', '1;mode=block');
 
         
         let endMsg = {};
