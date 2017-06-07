@@ -170,18 +170,7 @@ module.exports = function (options) {
             ctx.set('Content-Type', contentType);
             return null;
         };
-
-        /**
-         * redirect
-         * 
-         * @param {any} urls 
-         * @param {number} [code=302] 
-         */
-        ctx.redirect = function (urls, code = 302) {
-            ctx.set('Location', urls || '/');
-            return ctx.throw(code);
-        };
-
+        
         /**
          * 
          * 
