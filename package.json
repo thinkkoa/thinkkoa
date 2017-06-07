@@ -1,6 +1,6 @@
 {
   "name": "thinkkoa",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A lightweight, scalable web framework, based on koa.",
   "scripts": {
     "test": "npm run eslint",
@@ -53,7 +53,6 @@
     "babel-runtime": "6.22.0",
     "bluebird": "3.5.0",
     "koa": "2.2.0",
-    "koa-convert": "1.2.0",
     "think_lib": "^1.x.x",
     "think_router": "^1.x.x",
     "think_static": "^1.x.x",
