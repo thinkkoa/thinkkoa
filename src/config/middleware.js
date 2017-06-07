@@ -22,7 +22,8 @@ module.exports = {
             level: ['warn', 'error'], //日志存储级别, info, warn, error, console类型日志有效
         },
         static: { //静态资源,如果配置了Nginx代理,请设置为 static: false
-            prefix: '/static', //resource prefix 
+            dir: '/static', //resource path
+            prefix: '/', //resource prefix 
             gzip: true, //enable gzip
             filter: null, //function or array['jpg', 'gif']
             maxAge: 3600 * 24, //cache maxAge seconds

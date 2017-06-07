@@ -52,16 +52,13 @@
   "dependencies": {
     "babel-runtime": "6.22.0",
     "bluebird": "3.5.0",
-    "compressible": "^2.0.10",
-    "formidable": "^1.1.1",
-    "inflation": "^2.0.0",
     "koa": "2.2.0",
     "koa-convert": "1.2.0",
-    "mime-types": "2.1.15",
     "path-to-regexp": "1.7.0",
-    "raw-body": "^2.2.0",
-    "think_lib": "^1.0.2",
-    "xml2js": "^0.4.17"
+    "think_lib": "^1.x.x",
+    "think_router": "^1.x.x",
+    "think_static": "^1.x.x",
+    "think_payload": "^1.x.x"
   },
   "maintainers": [
     {
