@@ -230,7 +230,7 @@ module.exports = function (options) {
                 lib.log('cookie.name must be a string', 'ERROR');
                 return null;
             }
-            option = Object.assign({}, options.coolie || {}, option);
+            option = Object.assign({}, options.cookie || {}, option);
             const instance = new cookies(ctx.req, ctx.res, {
                 keys: option.keys,
                 secure: ctx.req.secure
