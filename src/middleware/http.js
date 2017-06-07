@@ -7,7 +7,6 @@
  */
 const url = require('url');
 const mime = require('mime-types');
-const cookies = require('cookies');
 const lib = require('../util/lib.js');
 
 /**
@@ -214,23 +213,19 @@ module.exports = function (options) {
          * @param {String} value
          * @param {Object} options
          */
-        ctx.cookies = function(name, value, option = {}) {
+        ctx.cookie = function(name, value, option = {}) {
             if (!lib.isString(name)) {
                 lib.log('cookie.name must be a string', 'ERROR');
                 return null;
             }
-            option = Object.assign({}, options.cookie || {}, option);
-            const instance = new cookies(ctx.req, ctx.res, {
-                keys: option.keys,
-                secure: ctx.req.secure
-            });
             //get cookie
             if (value === undefined) {
-                return instance.get(name, option);
+                return ctx.cookies.get(name, option);
             }
+            option = Object.assign({}, options.cookie || {}, option);
             //remove cookie
             if (value === null) {
-                return instance.set(name, '', {
+                return ctx.cookies.set(name, '', {
                     maxAge: -1
                 });
             }
@@ -244,7 +239,34 @@ module.exports = function (options) {
                 return null;
             }
             //set cookie
-            return instance.set(name, value, option);
+            return ctx.cookies.set(name, value, option);
+
+            // const cookies = require('cookies');
+            // const instance = new cookies(ctx.req, ctx.res, {
+            //     keys: option.keys,
+            //     secure: ctx.req.secure
+            // });
+            // //get cookie
+            // if (value === undefined) {
+            //     return instance.get(name, option);
+            // }
+            // //remove cookie
+            // if (value === null) {
+            //     return instance.set(name, '', {
+            //         maxAge: -1
+            //     });
+            // }
+            // if (!lib.isString(value)) {
+            //     lib.log('cookie value must be a string', 'ERROR');
+            //     return null;
+            // }
+            // //http://browsercookielimits.squawky.net/
+            // if (value.length >= 4094) {
+            //     lib.log('cookie limit has error length', 'ERROR');
+            //     return null;
+            // }
+            // //set cookie
+            // return instance.set(name, value, option);
         };
 
         /**
