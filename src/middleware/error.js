@@ -11,9 +11,6 @@ module.exports = function (options) {
         try {
             await next();
             //404 error
-            if (!ctx.response.body) {
-                ctx.throw(404, ctx.url);
-            }
             if (ctx.response.status >= 400) {
                 ctx.throw(ctx.response.status, ctx.url);
             }
