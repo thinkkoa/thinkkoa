@@ -146,48 +146,6 @@ lib.model = function (name, config) {
 };
 
 /**
- * console format
- * 
- * @param {any} msg 
- * @param {any} type 
- * @param {any} showTime 
- * @param {any} debug 
- */
-lib.log = function (msg, type, showTime, debug = true) {
-    let dateTime = `[${lib.datetime('', '')}] `;
-    let message = msg;
-    if (lib.isError(msg)) {
-        type = 'ERROR';
-        message = msg.stack;
-        ('prototype' in console.error) && console.error(msg.stack);
-    } else if (type === 'ERROR') {
-        type = 'ERROR';
-        if (!lib.isString(msg)) {
-            message = JSON.stringify(msg);
-        }
-        ('prototype' in console.error) && console.error(message);
-    } else if (type === 'WARNING') {
-        type = 'WARNING';
-        if (!lib.isString(msg)) {
-            message = JSON.stringify(msg);
-        }
-        ('prototype' in console.warn) && console.warn(message);
-    } else {
-        if (!lib.isString(msg)) {
-            message = JSON.stringify(msg);
-        }
-        if (lib.isNumber(showTime)) {
-            let _time = Date.now() - showTime;
-            message += '  ' + `${_time}ms`;
-        }
-        type = type || 'INFO';
-        //判断console.info是否被重写
-        ('prototype' in console.info) && console.info(message);
-    }
-    (debug || type === 'THINK') && console.log(`${dateTime}[${type}] ${message}`);
-};
-
-/**
  * 获取或实例化服务类
  * 
  * @param {any} name 
