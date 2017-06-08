@@ -77,7 +77,7 @@ module.exports = class {
         if (!paths) {
             return;
         }
-        let name = '', group = '', tempPath = '', tempGroup = '', regExp = new RegExp(`${options.suffix}$`);
+        let name = '', tempPath = '', regExp = new RegExp(`${options.suffix}$`);
         for (let key in paths) {
             tempPath = paths[key].replace(new RegExp(lib.sep, 'g'), '/');
             name = path.relative(path.resolve(this.app_path, options.root), tempPath);

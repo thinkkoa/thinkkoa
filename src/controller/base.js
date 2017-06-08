@@ -193,7 +193,7 @@ module.exports = class extends base {
      * @returns 
      */
     json(data) {
-        return this.http.echo(data, 'application/json');
+        return this.http.echo(JSON.stringify(data), 'application/json');
     }
 
     /**
@@ -207,9 +207,9 @@ module.exports = class extends base {
         //过滤callback值里的非法字符
         callback = callback.replace(/[^\w\.]/g, '');
         if (callback) {
-            data = `${callback}(${(data !== undefined ? JSON.stringify(data) : '')})`;
+            data = `${callback}(${(data !== undefined ? data : '')})`;
         }
-        return this.http.echo(data, 'application/json');
+        return this.http.echo(JSON.stringify(data), 'application/json');
     }
 
     /**
