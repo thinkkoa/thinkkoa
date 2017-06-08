@@ -55,10 +55,11 @@ module.exports = class {
         // app
         think.app = this.koa;
         think.loader = loader;
+        think.base = base;
+        think.controller.base = controller;
+
         // caches
         think._caches = {};
-        think._caches.base = base;
-        think._caches.controller = controller;
 
         // koa middleware
         think.use = fn => {
@@ -178,7 +179,7 @@ module.exports = class {
                 continue;
             }
             // 保留关键字
-            if (['base', 'middleware_list', 'modules', 'controller', 'model', 'service'].indexOf(key) > -1) {
+            if (['middleware_list', 'modules'].indexOf(key) > -1) {
                 lib.log('Reserved keywords are used in the load configuration', 'WARNING');
                 continue;
             }
