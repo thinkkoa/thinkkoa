@@ -20,12 +20,12 @@ const afterEnd = function (ctx, status = 200, msg = {}) {
     process.nextTick(() => {
         try {
             clearTimeout(ctx.timeoutTimer);
-            lib.log(`${(ctx.method).toUpperCase()}  ${ctx.status}  ${ctx.originalPath || '/'}`, 'HTTP', ctx.startTime);
+            think.log(`${(ctx.method).toUpperCase()}  ${ctx.status}  ${ctx.originalPath || '/'}`, 'HTTP', ctx.startTime);
             if (lib.isError(msg)) {
                 think.app.emit('error', msg, ctx);
             }
         } catch (err) {
-            lib.log(err, 'ERROR');
+            think.log(err, 'ERROR');
         }
     });
 };
@@ -199,7 +199,7 @@ module.exports = function (options) {
          */
         ctx.cookie = function(name, value, option = {}) {
             if (!lib.isString(name)) {
-                lib.log('cookie.name must be a string', 'ERROR');
+                think.log('cookie.name must be a string', 'ERROR');
                 return null;
             }
             //get cookie
@@ -214,12 +214,12 @@ module.exports = function (options) {
                 });
             }
             if (!lib.isString(value)) {
-                lib.log('cookie value must be a string', 'ERROR');
+                think.log('cookie value must be a string', 'ERROR');
                 return null;
             }
             //http://browsercookielimits.squawky.net/
             if (value.length >= 4094) {
-                lib.log('cookie limit has error length', 'ERROR');
+                think.log('cookie limit has error length', 'ERROR');
                 return null;
             }
             //set cookie
@@ -241,12 +241,12 @@ module.exports = function (options) {
             //     });
             // }
             // if (!lib.isString(value)) {
-            //     lib.log('cookie value must be a string', 'ERROR');
+            //     think.log('cookie value must be a string', 'ERROR');
             //     return null;
             // }
             // //http://browsercookielimits.squawky.net/
             // if (value.length >= 4094) {
-            //     lib.log('cookie limit has error length', 'ERROR');
+            //     think.log('cookie limit has error length', 'ERROR');
             //     return null;
             // }
             // //set cookie

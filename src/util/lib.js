@@ -60,9 +60,52 @@ lib.config = function (name, type = 'config') {
             return think._caches.configs[type][name];
         }
     } catch (e) {
-        lib.log(e);
+        think.log(e);
         return null;
     }
+};
+
+/**
+ * console format
+ * 
+ * @param {any} msg 
+ * @param {any} type 
+ * @param {any} showTime 
+ * @param {any} debug 
+ */
+lib.log = function (msg, type, showTime, debug) {
+    debug = debug || think.app_debug || false;
+    let dateTime = `[${lib.datetime('', '')}] `;
+    let message = msg;
+    if (lib.isError(msg)) {
+        type = 'ERROR';
+        message = msg.stack;
+        ('prototype' in console.error) && console.error(msg.stack);
+    } else if (type === 'ERROR') {
+        type = 'ERROR';
+        if (!lib.isString(msg)) {
+            message = JSON.stringify(msg);
+        }
+        ('prototype' in console.error) && console.error(message);
+    } else if (type === 'WARNING') {
+        type = 'WARNING';
+        if (!lib.isString(msg)) {
+            message = JSON.stringify(msg);
+        }
+        ('prototype' in console.warn) && console.warn(message);
+    } else {
+        if (!lib.isString(msg)) {
+            message = JSON.stringify(msg);
+        }
+        if (lib.isNumber(showTime)) {
+            let _time = Date.now() - showTime;
+            message += '  ' + `${_time}ms`;
+        }
+        type = type || 'INFO';
+        //判断console.info是否被重写
+        ('prototype' in console.info) && console.info(message);
+    }
+    (debug || type === 'THINK') && console.log(`${dateTime}[${type}] ${message}`);
 };
 
 /**
@@ -84,14 +127,14 @@ lib.controller = function (name, http) {
             cls = think._caches.controllers[name];
         }
         if (!cls) {
-            return lib.log(`Controller ${name} is undefined`, 'ERROR');
+            return think.log(`Controller ${name} is undefined`, 'ERROR');
         }
         if (http && http.req) {
             return new cls(http);
         }
         return cls;
     } catch (e) {
-        lib.log(e);
+        think.log(e);
         return null;
     }
 };
@@ -133,14 +176,14 @@ lib.model = function (name, config) {
             cls = think._caches.models[name];
         }
         if (!cls) {
-            return lib.log(`Model ${name} is undefined`, 'ERROR');
+            return think.log(`Model ${name} is undefined`, 'ERROR');
         }
         if (config === undefined) {
             return cls;
         }
         return new cls(config || {});
     } catch (e) {
-        lib.log(e);
+        think.log(e);
         return null;
     }
 };
@@ -160,14 +203,14 @@ lib.service = function (name, params) {
             cls = think._caches.services[name];
         }
         if (!cls) {
-            return lib.log(`Controller ${name} is undefined`, 'ERROR');
+            return think.log(`Controller ${name} is undefined`, 'ERROR');
         }
         if (params === undefined) {
             return cls;
         }
         return new cls(params || {});
     } catch (e) {
-        lib.log(e);
+        think.log(e);
         return null;
     }
 };
