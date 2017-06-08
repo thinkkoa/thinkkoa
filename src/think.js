@@ -35,7 +35,7 @@ module.exports = class {
         think.app_path = app_path;
         think.root_path = root_path;
         think.think_path = think_path;
-        think.app_debug = this.options.app_debug || true;
+        think.app_debug = this.options.app_debug || false;
 
         //debug模式 node --debug index.js
         if (think.app_debug || process.execArgv.indexOf('--debug') > -1) {
