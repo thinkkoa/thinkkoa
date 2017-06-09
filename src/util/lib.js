@@ -181,6 +181,9 @@ lib.model = function (name, config) {
         if (config === undefined) {
             return cls;
         }
+        config = lib.extend(think._caches.configs.middleware.config['model'] || {}, config);
+        //print sql
+        config.db_ext_config.db_log_sql = think.app_debug || false;
         return new cls(config || {});
     } catch (e) {
         think.log(e);
