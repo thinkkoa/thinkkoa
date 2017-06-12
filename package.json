@@ -1,6 +1,6 @@
 {
   "name": "thinkkoa",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "description": "A lightweight, scalable web framework, based on koa.",
   "scripts": {
     "test": "npm run eslint",
