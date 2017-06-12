@@ -168,7 +168,7 @@ lib.action = function (name, http) {
  * @param {any} config 
  * @returns 
  */
-think.model = function (name, config) {
+lib.model = function (name, config) {
     try {
         let cls;
         if (!lib.isString(name) && name.__filename) {
@@ -177,7 +177,7 @@ think.model = function (name, config) {
             cls = think._caches.models[name];
         }
         if (!cls) {
-            return think.log(`Model ${name} is undefined`, 'ERROR');
+            return lib.log(`Model ${name} is undefined`, 'ERROR');
         }
         if (config === undefined) {
             return cls;
@@ -187,7 +187,7 @@ think.model = function (name, config) {
         config.db_ext_config && (config.db_ext_config.db_log_sql = think.app_debug || false);
         return new cls(config || {});
     } catch (e) {
-        think.log(e);
+        lib.log(e);
         return null;
     }
 };
