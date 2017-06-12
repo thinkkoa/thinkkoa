@@ -162,6 +162,37 @@ lib.action = function (name, http) {
 };
 
 /**
+ * 获取或实例化模型类
+ * 
+ * @param {any} name 
+ * @param {any} config 
+ * @returns 
+ */
+think.model = function (name, config) {
+    try {
+        let cls;
+        if (!lib.isString(name) && name.__filename) {
+            cls = lib.require(name.__filename);
+        } else if (think._caches.models[name]) {
+            cls = think._caches.models[name];
+        }
+        if (!cls) {
+            return think.log(`Model ${name} is undefined`, 'ERROR');
+        }
+        if (config === undefined) {
+            return cls;
+        }
+        config = lib.extend(think._caches.configs.middleware.config['model'] || {}, config);
+        //print sql
+        config.db_ext_config && (config.db_ext_config.db_log_sql = think.app_debug || false);
+        return new cls(config || {});
+    } catch (e) {
+        think.log(e);
+        return null;
+    }
+};
+
+/**
  * 获取或实例化服务类
  * 
  * @param {any} name 
