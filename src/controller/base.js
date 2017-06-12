@@ -119,8 +119,8 @@ module.exports = class extends base {
      * @param {any} encoding 
      * @returns 
      */
-    types(contentType, encoding) {
-        return this.http.types(contentType, encoding);
+    type(contentType, encoding) {
+        return this.http.type(contentType, encoding);
     }
 
     /**
@@ -129,8 +129,8 @@ module.exports = class extends base {
      * @param value
      * @returns {type[]}
      */
-    headers(name, value) {
-        return this.http.headers(name, value);
+    header(name, value) {
+        return this.http.header(name, value);
     }
 
     /**

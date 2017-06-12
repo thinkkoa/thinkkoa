@@ -120,14 +120,14 @@ module.exports = function (options) {
          * @param {any} value 
          * @returns 
          */
-        Object.defineProperty(ctx, 'headers', {writable: true});
-        ctx.headers = function (name, value) {
+        Object.defineProperty(ctx, 'header', { writable: true });
+        ctx.header = function (name, value) {
             if (name === undefined) {
-                return ctx.header;
+                return ctx.headers;
             }
             name = name.toLowerCase();
             if (value === undefined) {
-                return ctx.header[name] || '';
+                return ctx.headers[name] || '';
             }
             //set header
             if (!ctx.res.headersSent) {
@@ -142,10 +142,11 @@ module.exports = function (options) {
          * @param {any} contentType 
          * @param {any} encoding 
          */
-        ctx.types = function (contentType, encoding) {
+        Object.defineProperty(ctx, 'type', { writable: true });
+        ctx.type = function (contentType, encoding) {
             if (!contentType) {
-                // return (ctx.header['content-type'] || '').split(';')[0].trim();
-                return ctx.type;
+                ctx.types = ctx.types || (ctx.header['content-type'] || '').split(';')[0].trim();
+                return ctx.types;
             }
             if (encoding !== false && contentType.toLowerCase().indexOf('charset=') === -1) {
                 contentType += '; charset=' + (encoding || lib.config('encoding'));
@@ -153,14 +154,14 @@ module.exports = function (options) {
             ctx.set('Content-Type', contentType);
             return null;
         };
-        
+
         /**
          * 
          * 
          * @param {number} [code=403] 
          * @returns 
          */
-        ctx.deny = function(code = 403) {
+        ctx.deny = function (code = 403) {
             return ctx.throw(code);
         };
 
@@ -197,7 +198,7 @@ module.exports = function (options) {
          * @param {String} value
          * @param {Object} options
          */
-        ctx.cookie = function(name, value, option = {}) {
+        ctx.cookie = function (name, value, option = {}) {
             if (!lib.isString(name)) {
                 think.log('cookie.name must be a string', 'ERROR');
                 return null;
@@ -261,20 +262,20 @@ module.exports = function (options) {
          * @param {any} encoding 
          * @returns 
          */
-        ctx.echo = function(content, contentType, encoding) {
+        ctx.echo = function (content, contentType, encoding) {
             contentType = contentType || 'text/plain';
             encoding = encoding || lib.config('encoding');
-            ctx.types(contentType, encoding);
+            ctx.type(contentType, encoding);
             ctx.body = content;
             return null;
         };
 
         //auto send header
-        ctx.headers('X-Powered-By', 'ThinkKoa');
-        ctx.headers('X-Content-Type-Options', 'nosniff');
-        ctx.headers('X-XSS-Protection', '1;mode=block');
+        ctx.set('X-Powered-By', 'ThinkKoa');
+        ctx.set('X-Content-Type-Options', 'nosniff');
+        ctx.set('X-XSS-Protection', '1;mode=block');
 
-        
+
         let endMsg = {};
         try {
             //执行后续中间件
