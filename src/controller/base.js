@@ -320,8 +320,25 @@ module.exports = class extends base {
         return this.set(name, value);
     }
 
+
+
     /**
+     * 渲染模板并输出内容,依赖中间件think_view
      * 
+     * @param {any} templateFile 
+     * @param {any} charset 
+     * @param {any} contentType 
+     */
+    fatch(templateFile, data){
+        if (!this.http.fatch) {
+            return this.http.throw(500, 'please install think_view middleware');
+        }
+        data = data || this.tVar;
+        return this.http.render(templateFile, data);
+    }
+    
+    /**
+     * 渲染模板并输出内容,依赖中间件think_view
      * 
      * @param {any} templateFile 
      * @param {any} charset 
@@ -331,7 +348,7 @@ module.exports = class extends base {
         if (!this.http.render) {
             return this.http.throw(500, 'please install think_view middleware');
         }
-        return this.http.render(templateFile, charset, contentType);
+        return this.http.render(templateFile, this.tVar, charset, contentType);
     }
 
     /**
