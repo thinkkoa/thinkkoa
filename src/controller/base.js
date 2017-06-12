@@ -334,7 +334,7 @@ module.exports = class extends base {
             return this.http.throw(500, 'please install think_view middleware');
         }
         data = data || this.tVar;
-        return this.http.render(templateFile, data);
+        return this.http.fatch(templateFile, data);
     }
     
     /**
