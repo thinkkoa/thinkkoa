@@ -71,7 +71,7 @@ module.exports = function (options) {
          * @returns 
          */
         ctx.isAjax = function () {
-            return ctx.header['x-requested-with'] === 'XMLHttpRequest';
+            return ['x-requested-with'] === 'XMLHttpRequest';
         };
         /**
          * is pjax request
@@ -79,7 +79,7 @@ module.exports = function (options) {
          * @returns 
          */
         ctx.isPjax = function () {
-            return ctx.header['x-pjax'] || false;
+            return ctx.headers['x-pjax'] || false;
         };
         /**
          * is jsonp request
@@ -97,7 +97,7 @@ module.exports = function (options) {
          * @returns 
          */
         ctx.userAgent = function () {
-            return ctx.header['user-agent'] || '';
+            return ctx.headers['user-agent'] || '';
         };
         /**
          * get page request referrer
@@ -106,7 +106,7 @@ module.exports = function (options) {
          * @returns 
          */
         ctx.referer = function (host) {
-            let ref = ctx.header.referer || ctx.header.referrer || '';
+            let ref = ctx.headers.referer || ctx.headers.referrer || '';
             if (!ref || !host) {
                 return ref;
             }
@@ -142,10 +142,11 @@ module.exports = function (options) {
          * @param {any} contentType 
          * @param {any} encoding 
          */
+        ctx.types = (ctx.headers['content-type'] || '').split(';')[0].trim();
         Object.defineProperty(ctx, 'type', { writable: true });
         ctx.type = function (contentType, encoding) {
             if (!contentType) {
-                ctx.types = ctx.types || (ctx.header['content-type'] || '').split(';')[0].trim();
+                // ctx.types = ctx.types || (ctx.headers['content-type'] || '').split(';')[0].trim();
                 return ctx.types;
             }
             if (encoding !== false && contentType.toLowerCase().indexOf('charset=') === -1) {
