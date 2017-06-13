@@ -71,7 +71,7 @@ module.exports = function (options) {
          * @returns 
          */
         ctx.isAjax = function () {
-            return ['x-requested-with'] === 'XMLHttpRequest';
+            return ctx.headers['x-requested-with'] === 'XMLHttpRequest';
         };
         /**
          * is pjax request
