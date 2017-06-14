@@ -29,7 +29,8 @@ module.exports = {
             maxAge: 3600 * 24, //cache maxAge seconds
             buffer: false, //enable buffer
             alias: {},  //alias files {key: path}
-            preload: false //preload files
+            preload: false, //preload files
+            cache: true //resource cache
         },
         payload: {
             extTypes: {
