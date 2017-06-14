@@ -30,23 +30,20 @@ const afterEnd = function (ctx, status = 200, msg = {}) {
     });
 };
 
+
 module.exports = function (options) {
     return async function (ctx, next) {
-
         //set http start time
-        ctx.startTime = Date.now();
+        lib.define(ctx, 'startTime', Date.now());
         //http version
-        ctx.version = ctx.req.httpVersion;
+        lib.define(ctx, 'version', ctx.req.httpVersion);
 
         // set timeout
-        let timeout = options.timeout || 30;
-        ctx.timeoutTimer = ctx.res.setTimeout(timeout * 1000, () => ctx.throw(504));
-
-        ctx.group = '';
-        ctx.controller = '';
-        ctx.action = '';
-
-        ctx.afterEnd = afterEnd;
+        lib.define(ctx, 'timeoutTimer', ctx.res.setTimeout((options.timeout || 30) * 1000, function () {
+            return ctx.throw(504);
+        }));
+        //afterEnd
+        lib.define(ctx, 'afterEnd', afterEnd);
 
         //assign method
         /**
@@ -54,65 +51,56 @@ module.exports = function (options) {
          * 
          * @returns 
          */
-        ctx.isGet = function () {
+        lib.define(ctx, 'isGet', function () {
             return ctx.method === 'GET';
-        };
+        });
         /**
          * check http method is post
          * 
          * @returns 
          */
-        ctx.isPost = function () {
+        lib.define(ctx, 'isPost', function () {
             return ctx.method === 'POST';
-        };
+        });
         /**
          * is ajax request
          * 
          * @returns 
          */
-        ctx.isAjax = function () {
+        lib.define(ctx, 'isAjax', function () {
             return ctx.headers['x-requested-with'] === 'XMLHttpRequest';
-        };
+        });
         /**
          * is pjax request
          * 
          * @returns 
          */
-        ctx.isPjax = function () {
+        lib.define(ctx, 'isPjax', function () {
             return ctx.headers['x-pjax'] || false;
-        };
+        });
         /**
          * is jsonp request
          * 
          * @param {any} name 
          * @returns 
          */
-        ctx.isJsonp = function (name) {
+        lib.define(ctx, 'isJsonp', function (name) {
             name = name || 'jsonpcallback';
             return !!ctx.get(name);
-        };
-        /**
-         * get user agent
-         * 
-         * @returns 
-         */
-        ctx.userAgent = function () {
-            return ctx.headers['user-agent'] || '';
-        };
+        });
         /**
          * get page request referrer
          * 
          * @param {any} host 
          * @returns 
          */
-        ctx.referer = function (host) {
+        lib.define(ctx, 'referer', function (host) {
             let ref = ctx.headers.referer || ctx.headers.referrer || '';
             if (!ref || !host) {
                 return ref;
             }
-            return url.parse(ref).hostname || '';
-        };
-
+            return url.parse(host).hostname || '';
+        });
         /**
          * get or set header
          * 
@@ -120,8 +108,7 @@ module.exports = function (options) {
          * @param {any} value 
          * @returns 
          */
-        Object.defineProperty(ctx, 'header', { writable: true });
-        ctx.header = function (name, value) {
+        lib.define(ctx, 'header', function (name, value) {
             if (name === undefined) {
                 return ctx.headers;
             }
@@ -134,17 +121,15 @@ module.exports = function (options) {
                 ctx.set(name, value);
             }
             return null;
-        };
-
+        });
         /**
          * get or set content type
          * 
          * @param {any} contentType 
          * @param {any} encoding 
          */
-        ctx.types = (ctx.headers['content-type'] || '').split(';')[0].trim();
-        Object.defineProperty(ctx, 'type', { writable: true });
-        ctx.type = function (contentType, encoding) {
+        lib.define(ctx, 'types', (ctx.headers['content-type'] || '').split(';')[0].trim());
+        lib.define(ctx, 'type', function (contentType, encoding) {
             if (!contentType) {
                 // ctx.types = ctx.types || (ctx.headers['content-type'] || '').split(';')[0].trim();
                 return ctx.types;
@@ -154,54 +139,50 @@ module.exports = function (options) {
             }
             ctx.set('Content-Type', contentType);
             return null;
-        };
-
+        });
         /**
          * 
          * 
          * @param {number} [code=403] 
          * @returns 
          */
-        ctx.deny = function (code = 403) {
+        lib.define(ctx, 'deny', function (code = 403) {
             return ctx.throw(code);
-        };
-
+        });
         /**
          * send execute time
          * 
          * @param {any} name 
          */
-        ctx.sendTime = function (name) {
+        lib.define(ctx, 'sendTime', function (name) {
             let time = Date.now() - ctx.startTime;
             ctx.set('X-' + (name || 'EXEC-TIME'), time + 'ms');
             return null;
-        };
-
+        });
         /**
          * set cache-control and expires header
          * 
          * @param {any} time 
          */
-        ctx.expires = function (time) {
-            if (think.isNumber(time)) {
+        lib.define(ctx, 'expires', function (time) {
+            if (lib.isNumber(time)) {
                 time = 30;
             }
-            time = think.toNumber(time) * 1000;
+            time = lib.toNumber(time) * 1000;
             let date = new Date(Date.now() + time);
             ctx.set('Cache-Control', `max-age=${time}`);
             ctx.set('Expires', date.toUTCString());
             return null;
-        };
-
+        });
         /**
          * get or set cookie
          * @param {String} name
          * @param {String} value
          * @param {Object} options
          */
-        ctx.cookie = function (name, value, option = {}) {
+        lib.define(ctx, 'cookie', function (name, value, option = {}) {
             if (!lib.isString(name)) {
-                think.log('cookie.name must be a string', 'ERROR');
+                ctx.throw('cookie.name must be a string');
                 return null;
             }
             //get cookie
@@ -216,45 +197,17 @@ module.exports = function (options) {
                 });
             }
             if (!lib.isString(value)) {
-                think.log('cookie value must be a string', 'ERROR');
+                ctx.throw('cookie value must be a string');
                 return null;
             }
             //http://browsercookielimits.squawky.net/
             if (value.length >= 4094) {
-                think.log('cookie limit has error length', 'ERROR');
+                ctx.throw('cookie limit has error length');
                 return null;
             }
             //set cookie
             return ctx.cookies.set(name, value, option);
-
-            // const cookies = require('cookies');
-            // const instance = new cookies(ctx.req, ctx.res, {
-            //     keys: option.keys,
-            //     secure: ctx.req.secure
-            // });
-            // //get cookie
-            // if (value === undefined) {
-            //     return instance.get(name, option);
-            // }
-            // //remove cookie
-            // if (value === null) {
-            //     return instance.set(name, '', {
-            //         maxAge: -1
-            //     });
-            // }
-            // if (!lib.isString(value)) {
-            //     think.log('cookie value must be a string', 'ERROR');
-            //     return null;
-            // }
-            // //http://browsercookielimits.squawky.net/
-            // if (value.length >= 4094) {
-            //     think.log('cookie limit has error length', 'ERROR');
-            //     return null;
-            // }
-            // //set cookie
-            // return instance.set(name, value, option);
-        };
-
+        });
         /**
          * 
          * 
@@ -263,13 +216,13 @@ module.exports = function (options) {
          * @param {any} encoding 
          * @returns 
          */
-        ctx.echo = function (content, contentType, encoding) {
+        lib.define(ctx, 'echo', function (content, contentType, encoding) {
             contentType = contentType || 'text/plain';
             encoding = encoding || lib.config('encoding');
             ctx.type(contentType, encoding);
             ctx.body = content;
             return null;
-        };
+        });
 
         //auto send header
         ctx.set('X-Powered-By', 'ThinkKoa');

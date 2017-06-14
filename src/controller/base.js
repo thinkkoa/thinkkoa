@@ -139,7 +139,7 @@ module.exports = class extends base {
      * @returns {String|*}
      */
     referer(host) {
-        return this.http.referrer(host);
+        return this.http.referer(host);
     }
 
     /**
@@ -170,8 +170,23 @@ module.exports = class extends base {
      * @param {any} option 
      * @returns 
      */
-    cookies(name, value, option){
-        return this.http.cookies(name, value, option);
+    cookie(name, value, option) {
+        return this.http.cookie(name, value, option);
+    }
+
+    /**
+     * 
+     * 
+     * @param {any} name 
+     * @param {any} value 
+     * @param {any} timeout 
+     * @returns 
+     */
+    session(name, value, timeout) {
+        if (!this.http.session) {
+            return this.http.throw(500, 'please install think_session middleware');
+        }
+        return this.http.session(name, value, timeout);
     }
 
     /**
@@ -361,21 +376,6 @@ module.exports = class extends base {
      */
     display(templateFile, charset, contentType){
         return this.render(templateFile, charset, contentType);
-    }
-
-    /**
-     * 
-     * 
-     * @param {any} name 
-     * @param {any} value 
-     * @param {any} timeout 
-     * @returns 
-     */
-    session(name, value, timeout) {
-        if (!this.http.session) {
-            return this.http.throw(500, 'please install think_session middleware');
-        }
-        return this.http.session(name, value, timeout);
     }
 
 };
