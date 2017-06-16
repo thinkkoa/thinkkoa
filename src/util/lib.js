@@ -7,7 +7,7 @@
  */
 
 const thinklib = require('think_lib');
-var lib = thinklib;
+let lib = thinklib;
 
 /**
  * console format
