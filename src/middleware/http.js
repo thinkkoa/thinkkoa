@@ -30,8 +30,20 @@ const afterEnd = function (ctx, status = 200, msg = {}) {
     });
 };
 
+/**
+ * default options
+ */
+const defaultOptions = {
+    timeout: 30, //http超时时间,30 seconds
+    cookie: {
+        domain: '',
+        path: '/',
+        timeout: 0
+    }
+};
 
 module.exports = function (options) {
+    options = options ? lib.extend(defaultOptions, options, true) : defaultOptions;
     return async function (ctx, next) {
         //set http start time
         lib.define(ctx, 'startTime', Date.now());
