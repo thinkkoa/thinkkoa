@@ -15,10 +15,10 @@ ThinkKoa是对Koa2进行了薄封装,保持了ThinkNode相似的用法,仅需少
 * 使用 ES6/7 全新特性来开发项目
 * 基于Koa2微内核架构,扩展性好,高性能
 * 支持多种项目结构和多种项目环境
-* 兼容Koa以及Express中间件
+* 兼容Koa以及Express中间件
 * 开发模式下代码自动更新,自动重启 Node 服务
 * 支持切面编程,支持 __before，_berore_xxx, _after_xxx 等多种魔术方法
-* web开发常用功能如缓存、session等均已封装为中间件,在项目中灵活引用
+* web开发常用功能如缓存、session等均已封装为中间件,在项目中灵活引用
 
 
 
