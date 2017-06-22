@@ -13,11 +13,34 @@ const lib = require('./util/lib.js');
 const pkg = require('../package.json');
 const base = require('./base.js');
 const loader = require('./util/loader.js');
-const config = require('./config/config.js');
 const controller = require('./controller/base.js');
 
 //define think object
 global.think = lib;
+
+//auto load config
+const loaderConf = {
+    'configs': {
+        root: 'config',
+        prefix: '',
+    },
+    'controllers': {
+        root: 'controller',
+        prefix: '',
+    },
+    'middlewares': {
+        root: 'middleware',
+        prefix: '',
+    },
+    'models': {
+        root: 'model',
+        prefix: '',
+    },
+    'services': {
+        root: 'service',
+        prefix: '',
+    }
+};
 
 module.exports = class {
     constructor(options = {}) {
@@ -102,8 +125,8 @@ module.exports = class {
      * 
      */
     loadConfigs() {
-        think._caches.configs = new loader(__dirname, { root: 'config', prefix: '' });
-        think._caches.configs = lib.extend(think._caches.configs, new loader(think.app_path, { root: 'config', prefix: '' }), true);
+        think._caches.configs = new loader(__dirname, loaderConf.configs);
+        think._caches.configs = lib.extend(think._caches.configs, new loader(think.app_path, loaderConf.configs), true);
     }
 
     /**
@@ -111,15 +134,12 @@ module.exports = class {
      * 
      */
     loadMiddlewares() {
-        think._caches.middlewares = new loader(__dirname, config.loader.middlewares);
+        think._caches.middlewares = new loader(__dirname, loaderConf.middlewares);
         //框架默认顺序加载的中间件
         think._caches._middleware_list = ['logger', 'http', 'error', 'static', 'payload', 'router'];
         //加载应用中间件
-        let loader_config = think._caches.configs.config.loader.middlewares || '';
-        if (loader_config) {
-            let app_middlewares = new loader(think.app_path, loader_config);
-            think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
-        }
+        let app_middlewares = new loader(think.app_path, loaderConf.middlewares);
+        think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
         //挂载应用中间件
         if (think._caches.configs.middleware.list && think._caches.configs.middleware.list.length > 0) {
             think._caches.configs.middleware.list.forEach(item => {
@@ -130,7 +150,7 @@ module.exports = class {
         }
         //挂载控制器中间件
         (think._caches._middleware_list).push('controller');
-        
+
         // 自动调用中间件
         think._caches._middleware_list.forEach(key => {
             if (!key || !think._caches.middlewares[key]) {
@@ -153,8 +173,7 @@ module.exports = class {
      * 
      */
     loadModules() {
-        let app_config = think._caches.configs.config || {};
-        for (let key in app_config.loader) {
+        for (let key in loaderConf) {
             // 避免重复加载
             if (['configs', 'middlewares'].indexOf(key) > -1) {
                 continue;
@@ -164,7 +183,7 @@ module.exports = class {
                 lib.log('Reserved keywords are used in the load configuration', 'WARNING');
                 continue;
             }
-            think._caches[key] = new loader(think.app_path, app_config.loader[key]);
+            think._caches[key] = new loader(think.app_path, loaderConf[key]);
         }
 
         think._caches._modules = [];
