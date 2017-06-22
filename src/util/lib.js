@@ -126,7 +126,7 @@ thinklib.define(lib, 'controller', function (name, http) {
             cls = think._caches.controllers[name];
         }
         if (!cls) {
-            throw Error(`Controller ${name} is undefined`, 'ERROR');
+            throw Error(`Controller ${name} is undefined`);
         }
         if (http && http.req) {
             return new cls(http);
@@ -147,15 +147,15 @@ thinklib.define(lib, 'controller', function (name, http) {
 thinklib.define(lib, 'action', function (name, http) {
     name = name.split('/');
     if (name.length < 2 || !name[0]) {
-        return http.throw(`When call think.action, controller is undefined,  `, 'ERROR');
+        return http.throw(404, `When call think.action, controller is undefined,  `);
     }
     let cls = lib.controller(`${name[1] ? (name[0] + '/' + name[1]) : name[0]}`, http);
     if (!cls) {
-        return http.throw(`When call think.action, controller ${name[1] ? (name[0] + '/' + name[1]) : name[0]} is undefined`, 'ERROR');
+        return http.throw(404, `When call think.action, controller ${name[1] ? (name[0] + '/' + name[1]) : name[0]} is undefined`);
     }
     let act = name[2] ? name[2] : name[1];
     if (!act) {
-        return http.throw(`When call think.action, action ${act} is undefined`, 'ERROR');
+        return http.throw(404, `When call think.action, action ${act} is undefined`);
     }
     return cls[act]();
 });
@@ -179,7 +179,7 @@ thinklib.define(lib, 'model', function (name, config) {
             cls = think._caches.models[name];
         }
         if (!cls) {
-            throw Error(`Model ${name} is undefined`, 'ERROR');
+            throw Error(`Model ${name} is undefined`);
         }
         if (config === undefined) {
             return cls;
@@ -209,7 +209,7 @@ thinklib.define(lib, 'service', function (name, params) {
             cls = think._caches.services[name];
         }
         if (!cls) {
-            throw Error(`Controller ${name} is undefined`, 'ERROR');
+            throw Error(`Controller ${name} is undefined`);
         }
         if (params === undefined) {
             return cls;
