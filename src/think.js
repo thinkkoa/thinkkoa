@@ -115,7 +115,7 @@ module.exports = class {
             nodeVersion = nodeVersion.slice(1);
         }
         if (think.node_engines > nodeVersion) {
-            lib.log(`ThinkKoa need node version > ${think.node_engines}, current version is ${nodeVersion}, please upgrade it.`, 'ERROR');
+            lib.log(new Error(`ThinkKoa need node version > ${think.node_engines}, current version is ${nodeVersion}, please upgrade it.`));
             process.exit();
         }
     }
@@ -154,7 +154,7 @@ module.exports = class {
         // 自动调用中间件
         think._caches._middleware_list.forEach(key => {
             if (!key || !think._caches.middlewares[key]) {
-                lib.log(`middleware ${key} not found, please export the middleware`, 'ERROR');
+                lib.log(new Error(`middleware ${key} load error, please check the middleware`));
                 return;
             }
             if (think._caches.configs.middleware.config[key] === false) {
