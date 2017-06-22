@@ -126,7 +126,7 @@ thinklib.define(lib, 'controller', function (name, http) {
             cls = think._caches.controllers[name];
         }
         if (!cls) {
-            return think.log(`Controller ${name} is undefined`, 'ERROR');
+            throw Error(`Controller ${name} is undefined`, 'ERROR');
         }
         if (http && http.req) {
             return new cls(http);
@@ -179,7 +179,7 @@ thinklib.define(lib, 'model', function (name, config) {
             cls = think._caches.models[name];
         }
         if (!cls) {
-            return lib.log(`Model ${name} is undefined`, 'ERROR');
+            throw Error(`Model ${name} is undefined`, 'ERROR');
         }
         if (config === undefined) {
             return cls;
@@ -209,7 +209,7 @@ thinklib.define(lib, 'service', function (name, params) {
             cls = think._caches.services[name];
         }
         if (!cls) {
-            return think.log(`Controller ${name} is undefined`, 'ERROR');
+            throw Error(`Controller ${name} is undefined`, 'ERROR');
         }
         if (params === undefined) {
             return cls;
