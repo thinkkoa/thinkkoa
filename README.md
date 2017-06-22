@@ -8,7 +8,7 @@ A lightweight, scalable web framework, based on koa.
 
 ThinkKoa 轻量级高性能敏捷开发Node.js框架,支持ES6/7全新特性,支持Koa、Express中间件。
 
-ThinkKoa是对Koa2进行了薄封装。既扩展了Koa的功能,能够迅速的满足Web开发需要;又保持了原有的API和风格。
+ThinkKoa是对Koa2进行了薄封装。既扩展了Koa的功能,能够迅速的进行Web开发;又保持了原有的API和风格。
 
 # 特性
 
