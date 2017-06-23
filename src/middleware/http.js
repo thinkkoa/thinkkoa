@@ -20,12 +20,12 @@ const afterEnd = function (ctx, status = 200, msg = {}) {
     process.nextTick(() => {
         try {
             clearTimeout(ctx.timeoutTimer);
-            think.log(`${(ctx.method).toUpperCase()}  ${ctx.status}  ${ctx.originalPath || '/'}`, 'HTTP', ctx.startTime);
+            think.logs(`${(ctx.method).toUpperCase()}  ${ctx.status}  ${ctx.originalPath || '/'}`, 'HTTP', ctx.startTime);
             if (lib.isError(msg)) {
                 think.app.emit('error', msg, ctx);
             }
         } catch (err) {
-            think.log(err, 'ERROR');
+            think.logs(err, 'ERROR');
         }
     });
 };
