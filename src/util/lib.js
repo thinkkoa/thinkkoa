@@ -10,14 +10,18 @@ const thinklib = require('think_lib');
 let lib = thinklib;
 
 /**
- * console format
+ * 
  * 
  * @param {any} msg 
  * @param {any} type 
  * @param {any} showTime 
  * @param {any} debug 
  */
-thinklib.define(lib, 'log', function (msg, type, showTime, debug) {
+thinklib.define(lib, 'logs', function (msg, type, showTime, debug) {
+    if (type === true) {
+        debug = true;
+        type = '';
+    }
     debug = debug || think.app_debug || false;
     let dateTime = `[${lib.datetime('', '')}] `;
     let message = msg;
@@ -102,7 +106,7 @@ thinklib.define(lib, 'config', function (name, type = 'config') {
             return think._caches.configs[type][name];
         }
     } catch (e) {
-        lib.log(e);
+        lib.logs(e);
         return null;
     }
 });
@@ -133,7 +137,7 @@ thinklib.define(lib, 'controller', function (name, http) {
         }
         return cls;
     } catch (e) {
-        lib.log(e);
+        lib.logs(e);
         return null;
     }
 });
@@ -189,7 +193,7 @@ thinklib.define(lib, 'model', function (name, config) {
         config.db_ext_config && (config.db_ext_config.db_log_sql = think.app_debug || false);
         return new cls(config || {});
     } catch (e) {
-        lib.log(e);
+        lib.logs(e);
         return null;
     }
 });
@@ -216,7 +220,7 @@ thinklib.define(lib, 'service', function (name, params) {
         }
         return new cls(params || {});
     } catch (e) {
-        lib.log(e);
+        lib.logs(e);
         return null;
     }
 });
