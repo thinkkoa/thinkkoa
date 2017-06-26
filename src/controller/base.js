@@ -335,8 +335,6 @@ module.exports = class extends base {
         return this.set(name, value);
     }
 
-
-
     /**
      * 渲染模板并输出内容,依赖中间件think_view
      * 
