@@ -3,8 +3,8 @@
   "version": "1.2.10",
   "description": "A lightweight, scalable web framework, based on koa.",
   "scripts": {
-    "test": "npm run eslint",
-    "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -t 50000 --recursive  -R spec test/",
+    "test": "npm run test-cov",
+    "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -t 5000 --recursive  -R spec test/{,**/}*.test.js",
     "compile": "babel src -d lib",
     "watch-compile": "npm run compile -- --watch",
     "prepublish": "npm run compile && npm test",
@@ -57,9 +57,9 @@
     "think_error": "^1.x.x",
     "think_lib": "^1.x.x",
     "think_logger": "^1.x.x",
+    "think_payload": "^1.x.x",
     "think_router": "^1.x.x",
-    "think_static": "^1.x.x",
-    "think_payload": "^1.x.x"
+    "think_static": "^1.x.x"
   },
   "maintainers": [
     {
