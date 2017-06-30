@@ -142,11 +142,9 @@ module.exports = function (options) {
          * @param {any} contentType 
          * @param {any} encoding 
          */
-        lib.define(ctx, 'types', (ctx.headers['content-type'] || '').split(';')[0].trim());
-        lib.define(ctx, 'type', function (contentType, encoding) {
+        lib.define(ctx, 'types', function (contentType, encoding) {
             if (!contentType) {
-                // ctx.types = ctx.types || (ctx.headers['content-type'] || '').split(';')[0].trim();
-                return ctx.types;
+                return (ctx.headers['content-type'] || '').split(';')[0].trim();
             }
             if (encoding !== false && contentType.toLowerCase().indexOf('charset=') === -1) {
                 contentType += '; charset=' + (encoding || lib.config('encoding'));
@@ -233,7 +231,7 @@ module.exports = function (options) {
         lib.define(ctx, 'echo', function (content, contentType, encoding) {
             contentType = contentType || 'text/plain';
             encoding = encoding || lib.config('encoding');
-            ctx.type(contentType, encoding);
+            ctx.types(contentType, encoding);
             ctx.body = content;
             return null;
         });
