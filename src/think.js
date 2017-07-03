@@ -136,7 +136,7 @@ module.exports = class {
     loadMiddlewares() {
         think._caches.middlewares = new loader(__dirname, loaderConf.middlewares);
         //框架默认顺序加载的中间件
-        think._caches._middleware_list = ['logger', 'http', 'error', 'static', 'payload', 'router'];
+        think._caches._middleware_list = ['logger', 'http', 'error', 'static', 'payload'];
         //加载应用中间件
         let app_middlewares = new loader(think.app_path, loaderConf.middlewares);
         think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
@@ -148,6 +148,8 @@ module.exports = class {
                 }
             });
         }
+        //挂载路由中间件
+        (think._caches._middleware_list).push('router');
         //挂载控制器中间件
         (think._caches._middleware_list).push('controller');
 
