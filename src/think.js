@@ -13,7 +13,6 @@ const pkg = require('../package.json');
 const base = require('./base.js');
 const loader = require('./util/loader.js');
 const server = require('./util/server.js');
-const controller = require('./controller/base.js');
 
 //define think object
 global.think = lib;
@@ -56,7 +55,6 @@ module.exports = class {
         lib.define(think, 'app', this.koa);
         lib.define(think, 'base', base);
         lib.define(think, 'loader', loader);
-        lib.define(think.controller, 'base', controller);
 
         // caches
         Object.defineProperty(think, '_caches', {

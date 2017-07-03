@@ -7,6 +7,7 @@
  */
 
 const thinklib = require('think_lib');
+const controller = require('../controller/base.js');
 let lib = thinklib;
 
 /**
@@ -141,6 +142,11 @@ thinklib.define(lib, 'controller', function (name, http) {
         return null;
     }
 });
+
+/**
+ * 定义控制器基类
+ */
+lib.define(think.controller, 'base', controller);
 
 /**
  * 执行控制器某个方法
