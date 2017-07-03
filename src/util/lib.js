@@ -146,7 +146,7 @@ thinklib.define(lib, 'controller', function (name, http) {
 /**
  * 定义控制器基类
  */
-lib.define(think.controller, 'base', controller);
+lib.define(lib.controller, 'base', controller);
 
 /**
  * 执行控制器某个方法

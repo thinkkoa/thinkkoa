@@ -1,6 +1,6 @@
 {
   "name": "thinkkoa",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A lightweight, scalable web framework, based on koa.",
   "scripts": {
     "test": "npm run test-cov",
