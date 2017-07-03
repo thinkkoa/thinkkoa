@@ -105,7 +105,7 @@ describe('util lib', () => {
     });
 
     describe('think.config', () => {
-        app.loadConfigs();
+        think.loader.loadConfigs();
         it('read project config', () => {
             assert.equal(think.config('app_port'), 3000);
         });
@@ -116,8 +116,8 @@ describe('util lib', () => {
     });
 
     describe('think.controller', () => {
-        app.loadConfigs();
-        app.loadModules();
+        think.loader.loadConfigs();
+        think.loader.loadModules();
         it('get base controller', () => {
             assert.deepEqual(think.controller(), think.controller.base);
         });
@@ -130,8 +130,8 @@ describe('util lib', () => {
     });
 
     describe('think.model', () => {
-        app.loadConfigs();
-        app.loadModules();
+        think.loader.loadConfigs();
+        think.loader.loadModules();
         it('get base model', () => {
             assert.deepEqual(think.model(), think.model.base);
         });
@@ -144,8 +144,8 @@ describe('util lib', () => {
     });
 
     describe('think.service', () => {
-        app.loadConfigs();
-        app.loadModules();
+        think.loader.loadConfigs();
+        think.loader.loadModules();
 
         it('get service class', () => {
             assert.equal(lib.isFunction(think.service('user')), true);
