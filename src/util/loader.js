@@ -10,6 +10,30 @@ const fs = require('fs');
 const assert = require('assert');
 const lib = require('./lib.js');
 
+//auto load config
+const loaderConf = {
+    'configs': {
+        root: 'config',
+        prefix: '',
+    },
+    'controllers': {
+        root: 'controller',
+        prefix: '',
+    },
+    'middlewares': {
+        root: 'middleware',
+        prefix: '',
+    },
+    'models': {
+        root: 'model',
+        prefix: '',
+    },
+    'services': {
+        root: 'service',
+        prefix: '',
+    }
+};
+
 /*eslint-disable consistent-return */
 module.exports = class {
     constructor(loadPath, options, skip) {
@@ -49,7 +73,7 @@ module.exports = class {
             p = fs.statSync(path.resolve(dir, file));
             if (!skip && p.isFile()) {
                 list.push(path.resolve(dir, file));
-            } else if (p.isDirectory()){
+            } else if (p.isDirectory()) {
                 list = list.concat(this.walk(path.resolve(dir, file), false));
             }
         }
@@ -84,7 +108,7 @@ module.exports = class {
             if (regExp.test(name)) {
                 name = name.slice(0, name.lastIndexOf(options.suffix));
                 /*eslint-disable no-loop-func */
-                options.filter.forEach( (v, i) => {
+                options.filter.forEach((v, i) => {
                     name = name.replace(v, '');
                 });
                 if (name) {
@@ -110,6 +134,95 @@ module.exports = class {
             module.parent.children.splice(module.parent.children.indexOf(module), 1);
         }
         require.cache[modulePath] = null;
+    }
+
+    /**
+     * 加载配置
+     * 
+     * @static
+     * @memberof loader
+     */
+    static loadConfigs() {
+        think._caches.configs = new this(think.think_path + '/lib', loaderConf.configs);
+        think._caches.configs = lib.extend(think._caches.configs, new this(think.app_path, loaderConf.configs), true);
+    }
+
+    /**
+     * 加载中间件
+     * 
+     * @static
+     * @memberof loader
+     */
+    static loadMiddlewares() {
+        think._caches.middlewares = new this(think.think_path + '/lib', loaderConf.middlewares);
+        //框架默认顺序加载的中间件
+        think._caches._middleware_list = ['logger', 'http', 'error', 'static', 'payload'];
+        //加载应用中间件
+        let app_middlewares = new this(think.app_path, loaderConf.middlewares);
+        think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
+        //挂载应用中间件
+        if (think._caches.configs.middleware.list && think._caches.configs.middleware.list.length > 0) {
+            think._caches.configs.middleware.list.forEach(item => {
+                if (!(think._caches._middleware_list).includes(item)) {
+                    (think._caches._middleware_list).push(item);
+                }
+            });
+        }
+        //挂载路由中间件
+        (think._caches._middleware_list).push('router');
+        //挂载控制器中间件
+        (think._caches._middleware_list).push('controller');
+
+        // 自动调用中间件
+        think._caches._middleware_list.forEach(key => {
+            if (!key || !think._caches.middlewares[key]) {
+                lib.logs(new Error(`middleware ${key} load error, please check the middleware`));
+                return;
+            }
+            if (think._caches.configs.middleware.config[key] === false) {
+                return;
+            }
+            if (think._caches.configs.middleware.config[key] === true) {
+                think.use(think._caches.middlewares[key]());
+                return;
+            }
+            think.use(think._caches.middlewares[key](think._caches.configs.middleware.config[key] || {}));
+        });
+    }
+
+    /**
+     * 加载模块
+     * 
+     * @static
+     * @memberof loader
+     */
+    static loadModules() {
+        for (let key in loaderConf) {
+            // 避免重复加载
+            if (['configs', 'middlewares'].indexOf(key) > -1) {
+                continue;
+            }
+            // 保留关键字
+            if (key.indexOf('_') === 0) {
+                lib.logs('Reserved keywords are used in the load configuration', 'WARNING');
+                continue;
+            }
+            think._caches[key] = new this(think.app_path, loaderConf[key]);
+        }
+
+        think._caches._modules = [];
+        if (think._caches.controllers) {
+            let modules = [];
+            for (let key in think._caches.controllers) {
+                let paths = key.split('/');
+                if (paths.length < 2) {
+                    continue;
+                }
+                modules.push(paths[0]);
+            }
+            let unionSet = new Set([...modules]);
+            think._caches._modules = Array.from(unionSet);
+        }
     }
 
 };
