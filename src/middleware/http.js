@@ -12,29 +12,20 @@ const lib = require('../util/lib.js');
  * 
  * 
  * @param {any} ctx 
- * @param {number} [status=200] 
- * @param {any} [msg={}] 
  */
-const afterEnd = function (ctx, status = 200, msg = {}) {
+const trace = function (ctx) {
     // next-tick
     process.nextTick(() => {
-        try {
-            clearTimeout(ctx.timeoutTimer);
-            think.logs(`${(ctx.method).toUpperCase()}  ${ctx.status}  ${ctx.originalPath || '/'}`, 'HTTP', ctx.startTime);
-            if (lib.isError(msg)) {
-                think.app.emit('error', msg, ctx);
-            }
-        } catch (err) {
-            think.logs(err, 'ERROR');
-        }
+        //
+        think.logs(`${ctx.method.toUpperCase()}  ${ctx.status}  ${ctx.originalPath || '/'}`, 'HTTP', ctx.startTime);
     });
+    return;
 };
 
 /**
  * default options
  */
 const defaultOptions = {
-    timeout: 30, //http超时时间,30 seconds
     cookie: {
         domain: '',
         path: '/',
@@ -44,20 +35,13 @@ const defaultOptions = {
 
 module.exports = function (options) {
     options = options ? lib.extend(defaultOptions, options, true) : defaultOptions;
-    return async function (ctx, next) {
+    return function* (ctx, next) {
         //set http start time
         lib.define(ctx, 'startTime', Date.now());
         //http version
         lib.define(ctx, 'version', ctx.req.httpVersion);
         //originalPath
         lib.define(ctx, 'originalPath', ctx.path);
-
-        // set timeout
-        lib.define(ctx, 'timeoutTimer', ctx.res.setTimeout((options.timeout || 30) * 1000, function () {
-            return ctx.throw(504);
-        }));
-        //afterEnd
-        lib.define(ctx, 'afterEnd', afterEnd);
 
         //assign method
         /**
@@ -241,17 +225,9 @@ module.exports = function (options) {
         ctx.set('X-Content-Type-Options', 'nosniff');
         ctx.set('X-XSS-Protection', '1;mode=block');
 
-
-        let endMsg = {};
-        try {
-            //执行后续中间件
-            await next();
-        } catch (err) {
-            ctx.status = lib.isNumber(err.status) ? err.status : 500;
-            endMsg = err;
-        } finally {
-            ctx.afterEnd(ctx, ctx.status, endMsg);
-        }
+        //执行后续中间件
+        yield next();
+        return trace(ctx);
     };
 };
 
