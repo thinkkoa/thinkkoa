@@ -8,9 +8,10 @@
 const base = require('../base.js');
 
 module.exports = class extends base {
-    init(http) {
-        this.ctx = http;
-        this.http = http;
+    init(ctx) {
+        this.ctx = ctx;
+        //别名,兼容之前的用法
+        this.http = this.ctx;
     }
 
     /**
@@ -19,7 +20,7 @@ module.exports = class extends base {
      * @returns 
      */
     __empty() {
-        return this.http.throw(404);
+        return this.ctx.throw(404);
     }
 
     /**
@@ -27,7 +28,7 @@ module.exports = class extends base {
      * @return {Boolean} [description]
      */
     isGet() {
-        return this.http.isGet();
+        return this.ctx.isGet();
     }
 
     /**
@@ -35,7 +36,7 @@ module.exports = class extends base {
      * @return {Boolean} [description]
      */
     isPost() {
-        return this.http.isPost();
+        return this.ctx.isPost();
     }
 
     /**
@@ -44,7 +45,7 @@ module.exports = class extends base {
      * @return {Boolean}        [description]
      */
     isMethod(method) {
-        return this.http.method === method.toUpperCase();
+        return this.ctx.method === method.toUpperCase();
     }
 
     /**
@@ -52,7 +53,7 @@ module.exports = class extends base {
      * @return {Boolean} [description]
      */
     isAjax() {
-        return this.http.isAjax();
+        return this.ctx.isAjax();
     }
 
     /**
@@ -60,7 +61,7 @@ module.exports = class extends base {
      * @return {Boolean} [description]
      */
     isPjax() {
-        return this.http.isPjax();
+        return this.ctx.isPjax();
     }
 
     /**
@@ -69,7 +70,7 @@ module.exports = class extends base {
      * @returns {Boolean}
      */
     isJsonp(name) {
-        return this.http.isJsonp(name);
+        return this.ctx.isJsonp(name);
     }
 
     /**
@@ -79,7 +80,7 @@ module.exports = class extends base {
      * @returns {*}
      */
     get(name, value) {
-        return this.http.get(name, value);
+        return this.ctx.querys(name, value);
     }
 
     /**
@@ -89,7 +90,7 @@ module.exports = class extends base {
      * @returns {Object|String|type[]|*}
      */
     post(name, value) {
-        return this.http.post(name, value);
+        return this.ctx.post(name, value);
     }
 
     /**
@@ -98,7 +99,7 @@ module.exports = class extends base {
      * @returns {type[]|*|Object|String}
      */
     param(name) {
-        return this.http.param(name);
+        return this.ctx.param(name);
     }
 
     /**
@@ -108,10 +109,10 @@ module.exports = class extends base {
      * @returns {*}
      */
     file(name, value) {
-        return this.http.file(name, value);
+        return this.ctx.file(name, value);
     }
 
-    
+
     /**
      * content-type 操作
      * 
@@ -120,7 +121,7 @@ module.exports = class extends base {
      * @returns 
      */
     types(contentType, encoding) {
-        return this.http.types(contentType, encoding);
+        return this.ctx.types(contentType, encoding);
     }
 
     /**
@@ -130,7 +131,17 @@ module.exports = class extends base {
      * @returns {type[]}
      */
     header(name, value) {
-        return this.http.header(name, value);
+        if (name === undefined) {
+            return this.ctx.headers;
+        }
+        if (value === undefined) {
+            return this.ctx.get(name) || '';
+        }
+        //set header
+        if (!this.ctx.res.headersSent) {
+            this.ctx.set(name, value);
+        }
+        return null;
     }
 
     /**
@@ -139,7 +150,7 @@ module.exports = class extends base {
      * @returns {String|*}
      */
     referer(host) {
-        return this.http.referer(host);
+        return this.ctx.referer(host);
     }
 
     /**
@@ -150,7 +161,7 @@ module.exports = class extends base {
      * @returns 
      */
     redirect(urls, code) {
-        return this.http.redirect(urls, code);
+        return this.ctx.redirect(urls, code);
     }
 
     /**
@@ -159,7 +170,7 @@ module.exports = class extends base {
      * @returns 
      */
     deny() {
-        return this.http.deny();
+        return this.ctx.deny();
     }
 
     /**
@@ -171,7 +182,7 @@ module.exports = class extends base {
      * @returns 
      */
     cookie(name, value, option) {
-        return this.http.cookie(name, value, option);
+        return this.ctx.cookie(name, value, option);
     }
 
     /**
@@ -183,10 +194,10 @@ module.exports = class extends base {
      * @returns 
      */
     session(name, value, timeout) {
-        if (!this.http.session) {
-            return this.http.throw(500, 'please install think_session middleware');
+        if (!this.ctx.session) {
+            return this.ctx.throw(500, 'please install think_session middleware');
         }
-        return this.http.session(name, value, timeout);
+        return this.ctx.session(name, value, timeout);
     }
 
     /**
@@ -197,8 +208,19 @@ module.exports = class extends base {
      * @param {any} encoding 
      * @returns 
      */
+    write(data, contentType, encoding) {
+        return this.ctx.write(data, contentType, encoding);
+    }
+
+    /**
+     * 
+     * 
+     * @param {any} data 
+     * @param {any} contentType 
+     * @param {any} encoding 
+     */
     echo(data, contentType, encoding) {
-        return this.http.echo(data, contentType, encoding);
+        return this.write(data, contentType, encoding);
     }
 
     /**
@@ -208,7 +230,7 @@ module.exports = class extends base {
      * @returns 
      */
     json(data) {
-        return this.http.echo(data, 'application/json');
+        return this.ctx.write(data, 'application/json');
     }
 
     /**
@@ -217,14 +239,14 @@ module.exports = class extends base {
      * @param {any} data 
      * @returns 
      */
-    jsonp(data){
-        let callback = this.get('callback') || 'callback';
+    jsonp(data) {
+        let callback = this.ctx.querys('callback') || 'callback';
         //过滤callback值里的非法字符
         callback = callback.replace(/[^\w\.]/g, '');
         if (callback) {
             data = `${callback}(${(data !== undefined ? JSON.stringify(data) : '')})`;
         }
-        return this.http.echo(data, 'application/json');
+        return this.ctx.write(data, 'application/json');
     }
 
     /**
@@ -247,7 +269,7 @@ module.exports = class extends base {
         } else {
             obj.data = {};
         }
-        return this.http.echo(obj, 'application/json');
+        return this.ctx.write(obj, 'application/json');
     }
 
     /**
@@ -259,7 +281,7 @@ module.exports = class extends base {
      * @param {any} [options={}] 
      * @returns 
      */
-    ok(errmsg, data, code = 200, options = {}){
+    ok(errmsg, data, code = 200, options = {}) {
         return this.success(errmsg, data, code, options);
     }
 
@@ -272,7 +294,7 @@ module.exports = class extends base {
      * @param {any} [options={}] 
      * @returns 
      */
-    error(errmsg, data, code = 500, options = {}){
+    error(errmsg, data, code = 500, options = {}) {
         let obj = {
             'status': 0,
             [(options.error_no_key || 'errno')]: code,
@@ -283,7 +305,7 @@ module.exports = class extends base {
         } else {
             obj.data = {};
         }
-        return this.http.echo(obj, 'application/json');
+        return this.ctx.write(obj, 'application/json');
     }
 
     /**
@@ -295,7 +317,7 @@ module.exports = class extends base {
      * @param {any} [options={}] 
      * @returns 
      */
-    fail(errmsg, data, code = 500, options = {}){
+    fail(errmsg, data, code = 500, options = {}) {
         return this.error(errmsg, data, code, options);
     }
 
@@ -331,7 +353,7 @@ module.exports = class extends base {
      * @param {any} value 
      * @returns 
      */
-    assign(name, value){
+    assign(name, value) {
         return this.set(name, value);
     }
 
@@ -342,14 +364,14 @@ module.exports = class extends base {
      * @param {any} charset 
      * @param {any} contentType 
      */
-    fatch(templateFile, data){
-        if (!this.http.fatch) {
-            return this.http.throw(500, 'please install think_view middleware');
+    fatch(templateFile, data) {
+        if (!this.ctx.fatch) {
+            return this.ctx.throw(500, 'please install think_view middleware');
         }
         data = data || this.tVar;
-        return this.http.fatch(templateFile, data);
+        return this.ctx.fatch(templateFile, data);
     }
-    
+
     /**
      * 渲染模板并输出内容,依赖中间件think_view
      * 
@@ -357,11 +379,11 @@ module.exports = class extends base {
      * @param {any} charset 
      * @param {any} contentType 
      */
-    render(templateFile, charset, contentType){
-        if (!this.http.render) {
-            return this.http.throw(500, 'please install think_view middleware');
+    render(templateFile, charset, contentType) {
+        if (!this.ctx.render) {
+            return this.ctx.throw(500, 'please install think_view middleware');
         }
-        return this.http.render(templateFile, this.tVar, charset, contentType);
+        return this.ctx.render(templateFile, this.tVar, charset, contentType);
     }
 
     /**
@@ -372,7 +394,7 @@ module.exports = class extends base {
      * @param {any} contentType 
      * @returns 
      */
-    display(templateFile, charset, contentType){
+    display(templateFile, charset, contentType) {
         return this.render(templateFile, charset, contentType);
     }
 
