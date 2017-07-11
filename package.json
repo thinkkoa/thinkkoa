@@ -13,7 +13,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/richenlin/thinkkoa.git"
+    "url": "git+https://github.com/thinkkoa/thinkkoa.git"
   },
   "keywords": [
     "web",
@@ -36,9 +36,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/richenlin/thinkkoa/issues"
+    "url": "https://github.com/thinkkoa/thinkkoa/issues"
   },
-  "homepage": "https://github.com/richenlin/thinkkoa",
+  "homepage": "https://github.com/thinkkoa/thinkkoa",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
