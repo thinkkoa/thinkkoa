@@ -17,22 +17,6 @@ const thinkkoa = require('../../lib/think.js');
 //     app.loadModules();
 // });
 
-// test('think.logs: log error', t => {
-//     t.is(lib.logs(new Error('test error')));
-// });
-// test('think.logs: log error', t => {
-//     t.is(lib.logs('test error', 'ERROR'));
-// });
-// test('think.logs: log info', t => {
-//     t.is(lib.logs('test error'));
-// });
-// test('think.logs: log warning', t => {
-//     t.is(lib.logs('test error', 'WARNING'));
-// });
-// test('think.logs: log think', t => {
-//     t.is(lib.logs('test error', 'THINK'));
-// });
-
 
 // test('think.config: read project config', t => {
 //     t.is(think.config('app_port'), 3000);
@@ -81,27 +65,6 @@ describe('util lib', () => {
         root_path: path.resolve('./test'),
         app_path: path.resolve('./test') + path.sep + 'app',
         app_debug: false
-    });
-
-    describe('think.logs', () => {
-        it('log error', () => {
-            assert.equal(lib.logs(new Error('test error')));
-        });
-        it('log error', () => {
-            assert.equal(lib.logs('test error', 'ERROR'));
-        });
-        it('log info', () => {
-            assert.equal(lib.logs('test info'));
-        });
-        it('log info', () => {
-            assert.equal(lib.logs('test info', 'INFO'));
-        });
-        it('log warning', () => {
-            assert.equal(lib.logs('test warning', 'WARNING'));
-        });
-        it('log think', () => {
-            assert.equal(lib.logs('test think', 'THINK'));
-        });
     });
 
     describe('think.config', () => {

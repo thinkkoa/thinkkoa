@@ -45,13 +45,14 @@ module.exports = class {
      * 
      */
     started() {
-        lib.logs('====================================', 'THINK');
-        lib.logs(`Server running at http://127.0.0.1:${this.options.port}/`, 'THINK');
-        lib.logs(`Nodejs Version: ${process.version}`, 'THINK');
-        lib.logs(`ThinkKoa Version: v${think.version}`, 'THINK');
-        lib.logs(`App Enviroment: ${(think.app_debug ? 'debug mode' : 'production mode')}`, 'THINK');
-        lib.logs('====================================', 'THINK');
-        think.app_debug && lib.logs('Debugging mode is running, if the production environment, please modify the APP_DEBUG value to false', 'WARNING');
+        let now = lib.datetime('', '');
+        console.log(` \x1B[34m[${now}] [THINK] ====================================\x1B[39m`);
+        console.log(` \x1B[34m[${now}] [THINK] Server running at http://127.0.0.1:${this.options.port}/\x1B[39m`);
+        console.log(` \x1B[34m[${now}] [THINK] Nodejs Version: ${process.version}\x1B[39m`);
+        console.log(` \x1B[34m[${now}] [THINK] ThinkKoa Version: v${think.version}\x1B[39m`);
+        console.log(` \x1B[34m[${now}] [THINK] App Enviroment: ${(think.app_debug ? 'debug mode' : 'production mode')}\x1B[39m`);
+        console.log(` \x1B[34m[${now}] [THINK] ====================================\x1B[39m`);
+        think.app_debug && console.log(` \x1B[33m[${now}] [THINK] Debugging mode is running, if the production environment, please modify the app_debug value to false\x1B[39m`);
     }
 
 };

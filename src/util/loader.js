@@ -176,7 +176,7 @@ module.exports = class {
         // 自动调用中间件
         think._caches._middleware_list.forEach(key => {
             if (!key || !think._caches.middlewares[key]) {
-                lib.logs(new Error(`middleware ${key} load error, please check the middleware`));
+                console.error(`middleware ${key} load error, please check the middleware`);
                 return;
             }
             if (think._caches.configs.middleware.config[key] === false) {
@@ -204,7 +204,7 @@ module.exports = class {
             }
             // 保留关键字
             if (key.indexOf('_') === 0) {
-                lib.logs('Reserved keywords are used in the load configuration', 'WARNING');
+                console.error('Reserved keywords are used in the load configuration');
                 continue;
             }
             think._caches[key] = new this(think.app_path, loaderConf[key]);
