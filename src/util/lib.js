@@ -10,53 +10,6 @@ const thinklib = require('think_lib');
 let lib = thinklib;
 
 /**
- * 
- * 
- * @param {any} msg 
- * @param {any} type 
- * @param {any} showTime 
- * @param {any} debug 
- */
-thinklib.define(lib, 'logs', function (msg, type, showTime, debug) {
-    if (type === true) {
-        debug = true;
-        type = '';
-    }
-    debug = debug === undefined ? (think.app_debug || false) : (debug || false);
-    let dateTime = `[${lib.datetime('', '')}] `;
-    let message = msg;
-    if (lib.isError(msg)) {
-        type = 'ERROR';
-        message = msg.stack;
-        ('prototype' in console.error) && console.error(msg.stack);
-    } else if (type === 'ERROR') {
-        type = 'ERROR';
-        if (!lib.isString(msg)) {
-            message = JSON.stringify(msg);
-        }
-        ('prototype' in console.error) && console.error(message);
-    } else if (type === 'WARNING') {
-        type = 'WARNING';
-        if (!lib.isString(msg)) {
-            message = JSON.stringify(msg);
-        }
-        ('prototype' in console.warn) && console.warn(message);
-    } else {
-        if (!lib.isString(msg)) {
-            message = JSON.stringify(msg);
-        }
-        if (lib.isNumber(showTime)) {
-            let _time = Date.now() - showTime;
-            message += '  ' + `${_time}ms`;
-        }
-        type = type || 'INFO';
-        //判断console.info是否被重写
-        ('prototype' in console.info) && console.info(message);
-    }
-    (debug || type === 'THINK') && console.log(`${dateTime}[${type}] ${message}`);
-});
-
-/**
  * 转换express的middleware为koa使用
  * 
  * @param {any} fn 
@@ -105,8 +58,8 @@ thinklib.define(lib, 'config', function (name, type = 'config') {
         } else {
             return think._caches.configs[type][name];
         }
-    } catch (e) {
-        lib.logs(e);
+    } catch (err) {
+        think.logger ? think.logger.error(err) : console.error(err);
         return null;
     }
 });
@@ -136,8 +89,8 @@ thinklib.define(lib, 'controller', function (name, http) {
             return new cls(http);
         }
         return cls;
-    } catch (e) {
-        lib.logs(e);
+    } catch (err) {
+        think.logger ? think.logger.error(err) : console.error(err);
         return null;
     }
 });
@@ -192,8 +145,8 @@ thinklib.define(lib, 'model', function (name, config) {
         //print sql
         config.db_ext_config && (config.db_ext_config.db_log_sql = think.app_debug || false);
         return new cls(config || {});
-    } catch (e) {
-        lib.logs(e);
+    } catch (err) {
+        think.logger ? think.logger.error(err) : console.error(err);
         return null;
     }
 });
@@ -219,8 +172,8 @@ thinklib.define(lib, 'service', function (name, params) {
             return cls;
         }
         return new cls(params || {});
-    } catch (e) {
-        lib.logs(e);
+    } catch (err) {
+        think.logger ? think.logger.error(err) : console.error(err);
         return null;
     }
 });
