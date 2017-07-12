@@ -6,7 +6,7 @@
 
 A lightweight, scalable for agile development Node.js web framework, based on koa2.
 
-ThinkKoa - 轻量级可扩展的敏捷开发Node.js框架,支持ES6/7全新特性,支持Koa、Express中间件,基于koa2。
+ThinkKoa - 轻量级可扩展的敏捷开发Node.js框架，支持ES6/7全新特性,支持Koa、Express中间件，基于koa2。
 
 # 特性
 
