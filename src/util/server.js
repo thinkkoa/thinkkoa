@@ -46,6 +46,8 @@ module.exports = class {
      */
     started() {
         let now = lib.datetime('', '');
+        console.log('  ________    _       __   __ __           \n /_  __/ /_  (_)___  / /__/ //_/___  ____ _\n  / / / __ \\/ / __ \\/ //_/ ,< / __ \\/ __ `/\n / / / / / / / / / / ,< / /| / /_/ / /_/ / \n/_/ /_/ /_/_/_/ /_/_/|_/_/ |_\\____/\\__,_/  ');
+        console.log(`                     http://thinkkoa.org/`);
         console.log(` \x1B[34m[${now}] [THINK] ====================================\x1B[39m`);
         console.log(` \x1B[34m[${now}] [THINK] Server running at http://127.0.0.1:${this.options.port}/\x1B[39m`);
         console.log(` \x1B[34m[${now}] [THINK] Nodejs Version: ${process.version}\x1B[39m`);
