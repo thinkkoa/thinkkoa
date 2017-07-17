@@ -18,7 +18,9 @@ ThinkKoa - 轻量级可扩展的敏捷开发Node.js框架，支持ES6/7全新特
 * 支持切面编程,支持 __before，_berore_xxx, _after_xxx 等多种魔术方法
 * Web开发常用功能如缓存、session等均已封装为中间件,可在项目中灵活引用
 
+# 文档
 
+[中文文档](http://thinkkoa.org/doc/)
 
 # 快速开始
 
