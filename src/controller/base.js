@@ -216,17 +216,6 @@ module.exports = class extends base {
      * 
      * 
      * @param {any} data 
-     * @param {any} contentType 
-     * @param {any} encoding 
-     */
-    echo(data, contentType, encoding) {
-        return this.write(data, contentType, encoding);
-    }
-
-    /**
-     * 
-     * 
-     * @param {any} data 
      * @returns 
      */
     json(data) {
