@@ -74,12 +74,33 @@ module.exports = class extends base {
     }
 
     /**
-     * 获取及构造QUERY参数
+     * 获取headers
      * @param name
-     * @param value
      * @returns {*}
      */
-    get(name, value) {
+    get(name) {
+        return this.ctx.get(name);
+    }
+
+    /**
+     * 设置headers
+     * 
+     * @param {any} name 
+     * @param {any} value 
+     * @returns 
+     */
+    set(name, value){
+        return this.ctx.set(name, value);
+    }
+
+    /**
+     * 获取及构造querystring参数
+     * 
+     * @param {any} name 
+     * @param {any} value 
+     * @returns 
+     */
+    querys(name, value){
         return this.ctx.querys(name, value);
     }
 
@@ -122,26 +143,6 @@ module.exports = class extends base {
      */
     types(contentType, encoding) {
         return this.ctx.types(contentType, encoding);
-    }
-
-    /**
-     * header操作
-     * @param name
-     * @param value
-     * @returns {type[]}
-     */
-    header(name, value) {
-        if (name === undefined) {
-            return this.ctx.headers;
-        }
-        if (value === undefined) {
-            return this.ctx.get(name) || '';
-        }
-        //set header
-        if (!this.ctx.res.headersSent) {
-            this.ctx.set(name, value);
-        }
-        return null;
     }
 
     /**
@@ -317,7 +318,7 @@ module.exports = class extends base {
      * @param {any} value 
      * @returns 
      */
-    set(name, value) {
+    assign(name, value) {
         !this.tVar && (this.tVar = {});
         if (name === undefined) {
             return this.tVar;
@@ -333,17 +334,6 @@ module.exports = class extends base {
             this.tVar[name] = value;
         }
         return null;
-    }
-
-    /**
-     * 
-     * 
-     * @param {any} name 
-     * @param {any} value 
-     * @returns 
-     */
-    assign(name, value) {
-        return this.set(name, value);
     }
 
     /**
@@ -373,18 +363,6 @@ module.exports = class extends base {
             return this.ctx.throw(500, 'please install think_view middleware');
         }
         return this.ctx.render(templateFile, this.tVar, charset, contentType);
-    }
-
-    /**
-     * 
-     * 
-     * @param {any} templateFile 
-     * @param {any} charset 
-     * @param {any} contentType 
-     * @returns 
-     */
-    display(templateFile, charset, contentType) {
-        return this.render(templateFile, charset, contentType);
     }
 
 };
