@@ -365,4 +365,15 @@ module.exports = class extends base {
         return this.ctx.render(templateFile, this.tVar, charset, contentType);
     }
 
+
+    /**
+     * 
+     * 
+     * @param {any} templateFile 
+     * @param {any} charset 
+     * @param {any} contentType 
+     */
+    display(templateFile, charset, contentType) {
+        return this.render(templateFile, charset, contentType);
+    }
 };
