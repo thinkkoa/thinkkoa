@@ -312,32 +312,21 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * 模板赋值,依赖中间件think_view
      * 
      * @param {any} name 
      * @param {any} value 
      * @returns 
      */
     assign(name, value) {
-        !this.tVar && (this.tVar = {});
-        if (name === undefined) {
-            return this.tVar;
+        if (!this.ctx.assign) {
+            return this.ctx.throw(500, 'please install think_view middleware');
         }
-        if (think.isString(name) && arguments.length === 1) {
-            return this.tVar[name];
-        }
-        if (think.isObject(name)) {
-            for (let key in name) {
-                this.tVar[key] = name[key];
-            }
-        } else {
-            this.tVar[name] = value;
-        }
-        return null;
+        return this.ctx.assign(name, value);
     }
 
     /**
-     * 渲染模板并输出内容,依赖中间件think_view
+     * 渲染模板并返回内容,依赖中间件think_view
      * 
      * @param {any} templateFile 
      * @param {any} charset 
@@ -347,22 +336,23 @@ module.exports = class extends base {
         if (!this.ctx.fatch) {
             return this.ctx.throw(500, 'please install think_view middleware');
         }
-        data = data || this.tVar;
         return this.ctx.fatch(templateFile, data);
     }
 
     /**
-     * 渲染模板并输出内容,依赖中间件think_view
+     * 定位、渲染、输出模板,依赖中间件think_view
      * 
      * @param {any} templateFile 
+     * @param {any} data 
      * @param {any} charset 
      * @param {any} contentType 
+     * @returns 
      */
-    render(templateFile, charset, contentType) {
+    render(templateFile, data, charset, contentType) {
         if (!this.ctx.render) {
             return this.ctx.throw(500, 'please install think_view middleware');
         }
-        return this.ctx.render(templateFile, this.tVar, charset, contentType);
+        return this.ctx.render(templateFile, data, charset, contentType);
     }
 
 
