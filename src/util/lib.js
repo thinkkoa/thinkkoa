@@ -178,4 +178,22 @@ thinklib.define(lib, 'service', function (name, params) {
     }
 });
 
+/**
+ * prevent next process
+ * @return {Promise} []
+ */
+const preventMessage = 'PREVENT_NEXT_PROCESS';
+thinklib.define(lib, 'prevent', () => {
+    let err = new Error(preventMessage);
+    return Promise.reject(err);
+});
+/**
+ * check is prevent error
+ * @param  {Error}  err [error message]
+ * @return {Boolean}     []
+ */
+thinklib.define(lib, 'isPrevent', err => {
+    return think.isError(err) && err.message === preventMessage;
+});
+
 module.exports = lib;
