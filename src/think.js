@@ -114,6 +114,7 @@ module.exports = class {
         });
 
         //promise reject错误
+        process.removeAllListeners('unhandledRejection');
         process.on('unhandledRejection', (reason, promise) => {
             console.error(reason);
         });
