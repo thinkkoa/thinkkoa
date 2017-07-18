@@ -158,11 +158,13 @@ module.exports = class extends base {
      * 
      * 
      * @param {any} urls 
-     * @param {any} code 
+     * @param {any} alt 
      * @returns 
      */
-    redirect(urls, code) {
-        return this.ctx.redirect(urls, code);
+    redirect(urls, alt) {
+        this.ctx.redirect(urls, alt);
+        // this.ctx.res.end();
+        return think.prevent();
     }
 
     /**
@@ -170,8 +172,9 @@ module.exports = class extends base {
      * 
      * @returns 
      */
-    deny() {
-        return this.ctx.deny();
+    deny(code = 403) {
+        this.ctx.throw(code);
+        return think.prevent();
     }
 
     /**
@@ -332,11 +335,11 @@ module.exports = class extends base {
      * @param {any} charset 
      * @param {any} contentType 
      */
-    fatch(templateFile, data) {
-        if (!this.ctx.fatch) {
+    compile(templateFile, data) {
+        if (!this.ctx.compile) {
             return this.ctx.throw(500, 'please install think_view middleware');
         }
-        return this.ctx.fatch(templateFile, data);
+        return this.ctx.compile(templateFile, data);
     }
 
     /**
