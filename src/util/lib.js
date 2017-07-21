@@ -68,10 +68,10 @@ thinklib.define(lib, 'config', function (name, type = 'config') {
  * 获取或实例化控制器
  * 
  * @param {any} name 
- * @param {any} http 
+ * @param {any} ctx 
  * @returns 
  */
-thinklib.define(lib, 'controller', function (name, http) {
+thinklib.define(lib, 'controller', function (name, ctx) {
     try {
         if (!name) {
             return think.controller.base;
@@ -85,36 +85,14 @@ thinklib.define(lib, 'controller', function (name, http) {
         if (!cls) {
             throw Error(`Controller ${name} is undefined`);
         }
-        if (http && http.req) {
-            return new cls(http);
+        if (ctx && ctx.req) {
+            return new cls(ctx);
         }
         return cls;
     } catch (err) {
         think.logger ? think.logger.error(err) : console.error(err);
         return null;
     }
-});
-
-/**
- * 执行控制器某个方法
- * 
- * @param {any} name 
- * @param {any} http 
- */
-thinklib.define(lib, 'action', function (name, http) {
-    name = name.split('/');
-    if (name.length < 2 || !name[0]) {
-        return http.throw(404, `When call think.action, controller is undefined,  `);
-    }
-    let cls = lib.controller(`${name[1] ? (name[0] + '/' + name[1]) : name[0]}`, http);
-    if (!cls) {
-        return http.throw(404, `When call think.action, controller ${name[1] ? (name[0] + '/' + name[1]) : name[0]} is undefined`);
-    }
-    let act = name[2] ? name[2] : name[1];
-    if (!act) {
-        return http.throw(404, `When call think.action, action ${act} is undefined`);
-    }
-    return cls[act]();
 });
 
 /**
