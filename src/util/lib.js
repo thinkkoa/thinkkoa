@@ -166,7 +166,7 @@ thinklib.define(lib, 'service', function (name, params) {
             cls = think._caches.services[name];
         }
         if (!cls) {
-            throw Error(`Controller ${name} is undefined`);
+            throw Error(`Service ${name} is undefined`);
         }
         if (params === undefined) {
             return cls;
