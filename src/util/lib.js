@@ -174,4 +174,18 @@ thinklib.define(lib, 'isPrevent', err => {
     return think.isError(err) && err.message === preventMessage;
 });
 
+/**
+ * 执行等待，避免一个耗时的操作多次被执行。 callback 需要返回一个 Promise 。
+ * @param  {String}   key      []
+ * @param  {Function} callback []
+ * @return {Promise}            []
+ */
+thinklib.define(lib, 'await', function (key, callback) {
+    if (!think._caches._awaitInstances) {
+        const awaitjs = require('./await.js');
+        think._caches._awaitInstances = new awaitjs();
+    }
+    return think._caches._awaitInstances.run(key, callback);
+});
+
 module.exports = lib;
