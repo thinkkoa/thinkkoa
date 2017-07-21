@@ -110,18 +110,24 @@ module.exports = class {
     captureError() {
         //koa 错误
         think.app.on('error', (err, ctx) => {
-            console.error(err);
+            if(!lib.isPrevent(err)) {
+                console.error(err);
+            }
         });
 
         //promise reject错误
         process.removeAllListeners('unhandledRejection');
         process.on('unhandledRejection', (reason, promise) => {
-            console.error(reason);
+            if(!lib.isPrevent(reason)) {
+                console.error(reason);
+            }
         });
 
         //未知错误
         process.on('uncaughtException', err => {
-            console.error(err);
+            if(!lib.isPrevent(err)) {
+                console.error(err);
+            }
             if (err.message.indexOf(' EADDRINUSE ') > -1) {
                 process.exit();
             }
