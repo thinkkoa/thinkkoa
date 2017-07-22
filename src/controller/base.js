@@ -213,7 +213,8 @@ module.exports = class extends base {
      * @returns 
      */
     write(data, contentType, encoding) {
-        return this.ctx.write(data, contentType, encoding);
+        this.ctx.write(data, contentType, encoding);
+        return think.prevent();
     }
 
     /**
@@ -223,7 +224,7 @@ module.exports = class extends base {
      * @returns 
      */
     json(data) {
-        return this.ctx.write(data, 'application/json');
+        return this.write(data, 'application/json');
     }
 
     /**
@@ -239,7 +240,7 @@ module.exports = class extends base {
         if (callback) {
             data = `${callback}(${(data !== undefined ? JSON.stringify(data) : '')})`;
         }
-        return this.ctx.write(data, 'application/json');
+        return this.write(data, 'application/json');
     }
 
     /**
@@ -262,7 +263,7 @@ module.exports = class extends base {
         } else {
             obj.data = {};
         }
-        return this.ctx.write(obj, 'application/json');
+        return this.write(obj, 'application/json');
     }
 
     /**
@@ -298,7 +299,7 @@ module.exports = class extends base {
         } else {
             obj.data = {};
         }
-        return this.ctx.write(obj, 'application/json');
+        return this.write(obj, 'application/json');
     }
 
     /**
