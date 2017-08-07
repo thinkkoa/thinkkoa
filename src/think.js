@@ -145,6 +145,7 @@ module.exports = class {
             port: think._caches.configs.config.app_port || 3000,
             callback: this.koa.callback()
         }));
+        
         //v8优化
         think.toFastProperties(think);
         think.server.start();
