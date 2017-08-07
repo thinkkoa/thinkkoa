@@ -3,7 +3,7 @@
 const path = require('path');
 const assert = require('assert');
 const lib = require('../../lib/util/lib.js');
-const loader = require('../../lib/util/loader.js');
+const loader = require('../../lib/loader.js');
 const thinkkoa = require('../../lib/think.js');
 
 // 这个会在所有测试前运行
@@ -55,6 +55,7 @@ describe('loader', () => {
     });
 
     describe('loader files', () => {
+        loader.loadController();
         let files = new loader(app_path, { root: 'controller', prefix: '' });
         it('loade home/index class file', () => {
             assert.equal(lib.isFunction(files['home/index']), true);
@@ -65,6 +66,7 @@ describe('loader', () => {
     });
 
     describe('loader files on multi mod', () => {
+        loader.loadController();
         let files = new loader(app_path, { root: 'controller', prefix: '/' });
         it('loade home/index class file', () => {
             assert.equal(lib.isFunction(files['home/index']), true);

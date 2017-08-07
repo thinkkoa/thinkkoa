@@ -204,7 +204,7 @@ module.exports = class {
         let controllers = new this(think.think_path + '/lib', loaderConf.controllers);
         for (let n in controllers) {
             // base controller
-            lib.define(think.controller, n, controllers[n]);
+            !think.controller[n] && (lib.define(think.controller, n, controllers[n]));
         }
         // app controller
         think._caches.controllers = new this(think.app_path, loaderConf.controllers);
