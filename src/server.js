@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  *
  * @author     richen
@@ -9,7 +7,7 @@
  */
 
 const http = require('http');
-const lib = require('./lib.js');
+const lib = require('think_lib');
 
 module.exports = class {
     constructor(options) {
@@ -22,7 +20,7 @@ module.exports = class {
      * @returns 
      */
     getServer() {
-        if (this.server) {
+        if(this.server) {
             return this.server;
         }
         const server = http.Server(this.options.callback);
@@ -54,7 +52,7 @@ module.exports = class {
         console.log(` \x1B[34m[${now}] [THINK] Server running at http://127.0.0.1:${this.options.port}/\x1B[39m`);
         console.log(` \x1B[34m[${now}] [THINK] Nodejs Version: ${process.version}\x1B[39m`);
         console.log(` \x1B[34m[${now}] [THINK] ThinkKoa Version: v${think.version}\x1B[39m`);
-        console.log(` \x1B[34m[${now}] [THINK] App Enviroment: ${think.app_debug ? 'debug mode' : 'production mode'}\x1B[39m`);
+        console.log(` \x1B[34m[${now}] [THINK] App Enviroment: ${(think.app_debug ? 'debug mode' : 'production mode')}\x1B[39m`);
         console.log(` \x1B[34m[${now}] [THINK] ====================================\x1B[39m`);
         think.app_debug && console.log(` \x1B[33m[${now}] [THINK] Debugging mode is running, if the production environment, please modify the app_debug value to false\x1B[39m`);
     }

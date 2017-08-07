@@ -8,7 +8,7 @@
 const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
-const lib = require('./lib.js');
+const lib = require('think_lib');
 
 //auto load config
 const loaderConf = {
@@ -159,7 +159,7 @@ module.exports = class {
     static loadMiddlewares() {
         think._caches.middlewares = new this(think.think_path + '/lib', loaderConf.middlewares);
         //框架默认顺序加载的中间件
-        think._caches._middleware_list = ['logger', 'http', 'error', 'static', 'payload'];
+        think._caches._middleware_list = ['trace', 'context', 'cookie', 'static', 'payload'];
         //加载应用中间件
         let app_middlewares = new this(think.app_path, loaderConf.middlewares);
         think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
@@ -194,6 +194,23 @@ module.exports = class {
     }
 
     /**
+     * 加载控制器
+     * 
+     * @static
+     * @memberof loader
+     */
+    static loadController() {
+        !think.controller && (lib.define(think, 'controller', {}, 1));
+        let controllers = new this(think.think_path + '/lib', loaderConf.controllers);
+        for (let n in controllers) {
+            // base controller
+            lib.define(think.controller, n, controllers[n]);
+        }
+        // app controller
+        think._caches.controllers = new this(think.app_path, loaderConf.controllers);
+    }
+
+    /**
      * 加载模块
      * 
      * @static
@@ -202,7 +219,7 @@ module.exports = class {
     static loadModules() {
         for (let key in loaderConf) {
             // 避免重复加载
-            if (['configs', 'middlewares'].indexOf(key) > -1) {
+            if (['configs', 'controllers', 'middlewares'].indexOf(key) > -1) {
                 continue;
             }
             // 保留关键字

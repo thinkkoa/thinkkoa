@@ -8,16 +8,12 @@
 const path = require('path');
 const koa = require('koa');
 
-const lib = require('./util/lib.js');
+//define think object
+global.think = require('./util/lib.js');
 const pkg = require('../package.json');
 const base = require('./base.js');
-const loader = require('./util/loader.js');
-const server = require('./util/server.js');
-const controller = require('./controller/base.js');
-const restful = require('./controller/restful.js');
-
-//define think object
-global.think = lib;
+const loader = require('./loader.js');
+const server = require('./server.js');
 
 module.exports = class {
     constructor(options = {}) {
@@ -32,9 +28,9 @@ module.exports = class {
         const root_path = this.options.root_path || process.env.root_path || process.cwd();
         const app_path = path.resolve(root_path, this.options.app_path || process.env.app_path || 'app');
         const think_path = path.dirname(__dirname);
-        lib.define(think, 'root_path', root_path);
-        lib.define(think, 'think_path', think_path);
-        lib.define(think, 'app_path', app_path);
+        think.define(think, 'root_path', root_path);
+        think.define(think, 'think_path', think_path);
+        think.define(think, 'app_path', app_path);
 
         think.app_debug = this.options.app_debug || false;
 
@@ -51,19 +47,14 @@ module.exports = class {
 
         // check env
         this.checkEnv();
-        lib.define(think, 'version', pkg.version);
+        think.define(think, 'version', pkg.version);
 
         // app
-        lib.define(think, 'app', this.koa);
+        think.define(think, 'app', this.koa);
         // base class
-        lib.define(think, 'base', base);
+        think.define(think, 'base', base);
         // loader class
-        lib.define(think, 'loader', loader);
-        // base controller
-        !think.controller && (think.controller = {});
-        lib.define(think.controller, 'base', controller);
-        // restful controller
-        lib.define(think.controller, 'restful', restful);
+        think.define(think, 'loader', loader);
 
         // caches
         Object.defineProperty(think, '_caches', {
@@ -74,15 +65,15 @@ module.exports = class {
         });
 
         // koa middleware
-        lib.define(think, 'use', fn => {
-            if (lib.isGenerator(fn)) {
-                fn = lib.generatorToPromise(fn);
+        think.define(think, 'use', fn => {
+            if (think.isGenerator(fn)) {
+                fn = think.generatorToPromise(fn);
             }
             think.app.use(fn);
         });
         //express middleware
-        lib.define(think, 'useExp', fn => {
-            fn = lib.parseExpMiddleware(fn);
+        think.define(think, 'useExp', fn => {
+            fn = think.parseExpMiddleware(fn);
             think.use(fn);
         });
     }
@@ -110,7 +101,7 @@ module.exports = class {
     captureError() {
         //koa 错误
         think.app.on('error', (err, ctx) => {
-            if(!lib.isPrevent(err)) {
+            if(!think.isPrevent(err)) {
                 console.error(err);
             }
         });
@@ -118,14 +109,14 @@ module.exports = class {
         //promise reject错误
         process.removeAllListeners('unhandledRejection');
         process.on('unhandledRejection', (reason, promise) => {
-            if(!lib.isPrevent(reason)) {
+            if(!think.isPrevent(reason)) {
                 console.error(reason);
             }
         });
 
         //未知错误
         process.on('uncaughtException', err => {
-            if(!lib.isPrevent(err)) {
+            if(!think.isPrevent(err)) {
                 
             }
             if (err.message.indexOf(' EADDRINUSE ') > -1) {
@@ -141,6 +132,7 @@ module.exports = class {
     run() {
         loader.loadConfigs();
         loader.loadMiddlewares();
+        loader.loadController();
         loader.loadModules();
         
         //catch error
@@ -149,12 +141,12 @@ module.exports = class {
         think.app.emit('appReady');
 
         // start webserver
-        lib.define(think, 'server', new server({
+        think.define(think, 'server', new server({
             port: think._caches.configs.config.app_port || 3000,
             callback: this.koa.callback()
         }));
         //v8优化
-        lib.toFastProperties(think);
+        think.toFastProperties(think);
         think.server.start();
     }
 
