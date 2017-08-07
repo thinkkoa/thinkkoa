@@ -55,7 +55,7 @@ describe('loader', () => {
     });
 
     describe('loader files', () => {
-        loader.loadController();
+        loader.loadControllers();
         let files = new loader(app_path, { root: 'controller', prefix: '' });
         it('loade home/index class file', () => {
             assert.equal(lib.isFunction(files['home/index']), true);
@@ -66,7 +66,7 @@ describe('loader', () => {
     });
 
     describe('loader files on multi mod', () => {
-        loader.loadController();
+        loader.loadControllers();
         let files = new loader(app_path, { root: 'controller', prefix: '/' });
         it('loade home/index class file', () => {
             assert.equal(lib.isFunction(files['home/index']), true);
