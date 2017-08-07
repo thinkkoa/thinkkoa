@@ -1,6 +1,6 @@
 {
   "name": "thinkkoa",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "A lightweight, scalable for agile development Node.js web framework, based on koa2.",
   "scripts": {
     "test": "npm run test-cov",
@@ -51,17 +51,17 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
-    "babel-runtime": "6.23.0",
-    "bluebird": "3.5.0",
-    "koa": "2.3.0",
+    "babel-runtime": "^6.23.0",
+    "bluebird": "^3.5.0",
+    "koa": "^2.3.0",
+    "think_context": "^1.x.x",
     "think_controller": "^1.x.x",
-    "think_error": "^1.x.x",
-    "think_http": "^1.x.x",
+    "think_cookie": "^1.x.x",
     "think_lib": "^1.x.x",
-    "think_logger": "^1.x.x",
     "think_payload": "^1.x.x",
     "think_router": "^1.x.x",
-    "think_static": "^1.x.x"
+    "think_static": "^1.x.x",
+    "think_trace": "^1.x.x"
   },
   "maintainers": [
     {
