@@ -117,7 +117,7 @@ module.exports = class {
         //未知错误
         process.on('uncaughtException', err => {
             if(!think.isPrevent(err)) {
-                
+                console.error(err);
             }
             if (err.message.indexOf(' EADDRINUSE ') > -1) {
                 process.exit();
