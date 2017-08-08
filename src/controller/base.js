@@ -186,6 +186,9 @@ module.exports = class extends base {
      * @returns 
      */
     cookie(name, value, option) {
+        if (!this.ctx.cookie) {
+            return this.ctx.throw(500, 'please install think_cookie middleware');
+        }
         return this.ctx.cookie(name, value, option);
     }
 
