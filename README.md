@@ -1,3 +1,5 @@
+[![ThinkKoa](http://thinkkoa.org/img/logo.png)](http://thinkkoa.org/)
+
 # 介绍
 
 [![npm version](https://badge.fury.io/js/thinkkoa.svg)](https://badge.fury.io/js/thinkkoa)
