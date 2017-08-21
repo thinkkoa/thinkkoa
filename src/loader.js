@@ -1,5 +1,5 @@
 /**
- *
+ * loader class
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
@@ -140,7 +140,7 @@ module.exports = class {
     }
 
     /**
-     * 加载配置
+     * Load configuration
      * 
      * @static
      * @memberof loader
@@ -151,19 +151,19 @@ module.exports = class {
     }
 
     /**
-     * 加载中间件
+     * Load middleware
      * 
      * @static
      * @memberof loader
      */
     static loadMiddlewares() {
         think._caches.middlewares = new this(think.think_path + '/lib', loaderConf.middlewares);
-        //框架默认顺序加载的中间件
+        //The default loading order for middleware
         think._caches._middleware_list = ['trace', 'context', 'static', 'cookie', 'payload'];
-        //加载应用中间件
+        //Load the application middleware
         let app_middlewares = new this(think.app_path, loaderConf.middlewares);
         think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
-        //挂载应用中间件
+        //Mount application middleware
         if (think._caches.configs.middleware.list && think._caches.configs.middleware.list.length > 0) {
             think._caches.configs.middleware.list.forEach(item => {
                 if (!(think._caches._middleware_list).includes(item)) {
@@ -171,12 +171,12 @@ module.exports = class {
                 }
             });
         }
-        //挂载路由中间件
+        //Mount routing middleware
         (think._caches._middleware_list).push('router');
-        //挂载控制器中间件
+        //Mount the controller middleware
         (think._caches._middleware_list).push('controller');
 
-        // 自动调用中间件
+        //Automatically call middleware 
         think._caches._middleware_list.forEach(key => {
             if (!key || !think._caches.middlewares[key]) {
                 console.error(`middleware ${key} load error, please check the middleware`);
@@ -194,7 +194,7 @@ module.exports = class {
     }
 
     /**
-     * 加载控制器
+     * Load the controller
      * 
      * @static
      * @memberof loader
@@ -211,18 +211,18 @@ module.exports = class {
     }
 
     /**
-     * 加载模块
+     * Load the application module
      * 
      * @static
      * @memberof loader
      */
     static loadModules() {
         for (let key in loaderConf) {
-            // 避免重复加载
+            // Avoid repeated loading
             if (['configs', 'controllers', 'middlewares'].indexOf(key) > -1) {
                 continue;
             }
-            // 保留关键字
+            // Keep keywords
             if (key.indexOf('_') === 0) {
                 console.error('Reserved keywords are used in the load configuration');
                 continue;

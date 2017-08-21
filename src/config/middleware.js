@@ -1,5 +1,5 @@
 /**
- *
+ * middleware config
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
@@ -8,7 +8,9 @@
 
 module.exports = {
     list: [], //加载的中间件列表
-    config: { //中间件配置 {logger: {log: true}}
-        
+    config: { //中间件配置
+        // static: {
+        //     cache: false
+        // },
     }
 };

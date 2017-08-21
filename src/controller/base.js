@@ -1,5 +1,5 @@
 /**
- *
+ * base controller
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
@@ -8,14 +8,20 @@
 const base = require('../base.js');
 
 module.exports = class extends base {
+
+    /**
+     * constructor
+     * 
+     * @param {any} ctx 
+     */
     init(ctx) {
         this.ctx = ctx;
-        //别名,兼容之前的用法
+        //Ctx alias, compatible with previous usage
         this.http = this.ctx;
     }
 
     /**
-     * 
+     * Call if the action is not found
      * 
      * @returns 
      */
@@ -24,7 +30,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 是否是GET请求
+     * Whether it is a GET request
      * @return {Boolean} [description]
      */
     isGet() {
@@ -32,7 +38,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 是否是POST请求
+     * Whether it is a POST request
      * @return {Boolean} [description]
      */
     isPost() {
@@ -40,7 +46,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 是否是特定METHOD请求
+     * Determines whether the METHOD request is specified
      * @param  {[type]}  method [description]
      * @return {Boolean}        [description]
      */
@@ -49,7 +55,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 是否是AJAX请求
+     * Whether it is an AJAX request
      * @return {Boolean} [description]
      */
     isAjax() {
@@ -57,7 +63,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 是否是PJAX请求
+     * Whether it is a PJAX request
      * @return {Boolean} [description]
      */
     isPjax() {
@@ -65,7 +71,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 是否是jsonp接口
+     * Whether it is jsonp call
      * @param name
      * @returns {Boolean}
      */
@@ -74,7 +80,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 获取headers
+     * Get headers
      * @param name
      * @returns {*}
      */
@@ -83,7 +89,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 设置headers
+     * Set headers
      * 
      * @param {any} name 
      * @param {any} value 
@@ -94,7 +100,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 获取及构造querystring参数
+     * Get and construct querystring parameters
      * 
      * @param {any} name 
      * @param {any} value 
@@ -105,7 +111,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 获取及构造POST参数
+     * Get and construct POST parameters
      * @param name
      * @param value
      * @returns {Object|String|type[]|*}
@@ -115,7 +121,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 获取post或get参数,post优先
+     * Get post or get parameters, post priority
      * @param name
      * @returns {type[]|*|Object|String}
      */
@@ -124,7 +130,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 获取及构造上传的文件
+     * Obtain and construct uploaded files
      * @param name
      * @param value
      * @returns {*}
@@ -135,7 +141,7 @@ module.exports = class extends base {
 
 
     /**
-     * content-type 操作
+     * Content-type operation
      * 
      * @param {any} contentType 
      * @param {any} encoding 
@@ -146,7 +152,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 获取referrer
+     * Get referrer
      * @param host
      * @returns {String|*}
      */
@@ -155,7 +161,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Url redirect
      * 
      * @param {any} urls 
      * @param {any} alt 
@@ -168,7 +174,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Block access
      * 
      * @returns 
      */
@@ -178,7 +184,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Cookie operation
      * 
      * @param {any} name 
      * @param {any} value 
@@ -193,7 +199,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Session operation
      * 
      * @param {any} name 
      * @param {any} value 
@@ -208,7 +214,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Set response Body content
      * 
      * @param {any} data 
      * @param {any} contentType 
@@ -221,7 +227,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Respond to json formatted content 
      * 
      * @param {any} data 
      * @returns 
@@ -231,7 +237,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Respond to jsonp formatted content
      * 
      * @param {any} data 
      * @returns 
@@ -247,7 +253,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Response to normalize json format content for success
      * 
      * @param {any} errmsg 
      * @param {any} data 
@@ -270,7 +276,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Response to normalize json format content for success
      * 
      * @param {any} errmsg 
      * @param {any} data 
@@ -283,7 +289,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Response to normalize json format content for fail
      * 
      * @param {any} errmsg 
      * @param {any} data 
@@ -306,7 +312,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 
+     * Response to normalize json format content for fail
      * 
      * @param {any} errmsg 
      * @param {any} data 
@@ -319,7 +325,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 模板赋值,依赖中间件think_view
+     * Template assignment, dependent on middleware think_view
      * 
      * @param {any} name 
      * @param {any} value 
@@ -333,7 +339,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 渲染模板并返回内容,依赖中间件think_view
+     * Render the template and return the content, relying on the middleware think_view
      * 
      * @param {any} templateFile 
      * @param {any} charset 
@@ -347,7 +353,7 @@ module.exports = class extends base {
     }
 
     /**
-     * 定位、渲染、输出模板,依赖中间件think_view
+     * Positioning, rendering, output templates, relying on middleware think_view
      * 
      * @param {any} templateFile 
      * @param {any} data 
@@ -364,7 +370,7 @@ module.exports = class extends base {
 
 
     /**
-     * 
+     * Positioning, rendering, output templates, relying on middleware think_view
      * 
      * @param {any} templateFile 
      * @param {any} charset 

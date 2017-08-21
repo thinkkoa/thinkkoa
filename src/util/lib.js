@@ -10,7 +10,7 @@ const thinklib = require('think_lib');
 let lib = thinklib;
 
 /**
- * 转换express的middleware为koa使用
+ * Convert express middleware for koa
  * 
  * @param {any} fn 
  */
@@ -34,7 +34,7 @@ thinklib.define(lib, 'parseExpMiddleware', function (fn) {
 });
 
 /**
- * 配置读取
+ * Configuration read
  * 
  * @param {any} name 
  * @param {string} [type='config'] 
@@ -65,7 +65,7 @@ thinklib.define(lib, 'config', function (name, type = 'config') {
 });
 
 /**
- * 获取或实例化控制器
+ * Gets or instantiates the controller
  * 
  * @param {any} name 
  * @param {any} ctx 
@@ -96,7 +96,7 @@ thinklib.define(lib, 'controller', function (name, ctx) {
 });
 
 /**
- * 获取或实例化模型类
+ * Get or instantiate a model class
  * 
  * @param {any} name 
  * @param {any} config 
@@ -130,7 +130,7 @@ thinklib.define(lib, 'model', function (name, config) {
 });
 
 /**
- * 获取或实例化服务类
+ * Gets or instantiates a service class
  * 
  * @param {any} name 
  * @param {any} params 
@@ -175,9 +175,10 @@ thinklib.define(lib, 'isPrevent', err => {
 });
 
 /**
- * 执行等待，避免一个耗时的操作多次被执行。 callback 需要返回一个 Promise 。
+ * Execute wait, avoid a time-consuming operation multiple times to be executed. 
+ * Callback needs to return a Promise.
  * @param  {String}   key      []
- * @param  {Function} callback []
+ * @param  {Promise} callback []
  * @return {Promise}            []
  */
 thinklib.define(lib, 'await', function (key, callback) {

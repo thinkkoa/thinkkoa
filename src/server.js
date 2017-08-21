@@ -1,5 +1,5 @@
 /**
- *
+ * http server 
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
@@ -15,7 +15,7 @@ module.exports = class {
     }
 
     /**
-     * 
+     * create http server
      * 
      * @returns 
      */
@@ -29,7 +29,7 @@ module.exports = class {
     }
 
     /**
-     * 
+     * http server listening
      * 
      */
     start() {
@@ -41,7 +41,7 @@ module.exports = class {
     }
 
     /**
-     * 
+     * console log
      * 
      */
     started() {

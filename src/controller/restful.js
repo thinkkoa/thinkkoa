@@ -1,5 +1,5 @@
 /**
- *
+ * Restful controller
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
@@ -9,10 +9,20 @@ const base = require('./base.js');
 
 module.exports = class extends base {
 
+    /**
+     * constructor
+     * 
+     * @param {any} ctx 
+     */
     init(ctx) {
         super.init(ctx);
     }
 
+    /**
+     * Prefabrication method
+     * 
+     * @returns 
+     */
     _before() {
         //resource id
         this.id = this.querys('id') || '';
@@ -28,6 +38,11 @@ module.exports = class extends base {
         return null;
     }
 
+    /**
+     * 
+     * 
+     * @returns 
+     */
     async getAction() {
         if (this.id) {
             try {
@@ -47,6 +62,11 @@ module.exports = class extends base {
         }
     }
 
+    /**
+     * 
+     * 
+     * @returns 
+     */
     async postAction() {
         try {
             let pk = await this.model.getPk();
@@ -62,6 +82,11 @@ module.exports = class extends base {
         }
     }
 
+    /**
+     * 
+     * 
+     * @returns 
+     */
     async deleteAction() {
         try {
             if (!this.id) {
@@ -75,6 +100,11 @@ module.exports = class extends base {
         }
     }
 
+    /**
+     * 
+     * 
+     * @returns 
+     */
     async putAction() {
         try {
             if (!this.id) {

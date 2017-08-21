@@ -1,5 +1,5 @@
 /**
- *
+ * base class
  * @author     richen
  * @copyright  Copyright (c) 2017 - <richenlin(at)gmail.com>
  * @license    MIT
