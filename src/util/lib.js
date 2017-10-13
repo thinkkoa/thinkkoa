@@ -174,19 +174,4 @@ thinklib.define(lib, 'isPrevent', err => {
     return think.isError(err) && err.message === preventMessage;
 });
 
-/**
- * Execute wait, avoid a time-consuming operation multiple times to be executed. 
- * Callback needs to return a Promise.
- * @param  {String}   key      []
- * @param  {Promise} callback []
- * @return {Promise}            []
- */
-thinklib.define(lib, 'await', function (key, callback) {
-    if (!think._caches._awaitInstances) {
-        const awaitjs = require('./await.js');
-        think._caches._awaitInstances = new awaitjs();
-    }
-    return think._caches._awaitInstances.run(key, callback);
-});
-
 module.exports = lib;
