@@ -16,6 +16,13 @@ module.exports = class extends base {
      */
     init(ctx) {
         super.init(ctx);
+        try {
+            //resource id
+            this.id = this.get('id') || '';
+            this.model = this.ctx.group ? (think.model(`${this.ctx.group}/${this.ctx.controller}`, {}) || think.model(`common/${this.ctx.controller}`, {})) : think.model(this.ctx.controller, {});
+        } catch (e) {
+            this.model = null;
+        }
     }
 
     /**
@@ -23,19 +30,12 @@ module.exports = class extends base {
      * 
      * @returns 
      */
-    _before() {
-        //resource id
-        this.id = this.querys('id') || '';
+    __before() {
+        //access ctrl
+    }
 
-        try {
-            this.model = this.ctx.group ? (think.model(`${this.ctx.group}/${this.ctx.controller}`, {}) || think.model(`common/${this.ctx.controller}`, {})) : think.model(this.ctx.controller, {});
-        } catch(e) {
-            this.model = null;
-        }
-        if (!this.model) {
-            return this.fail('resource not found');
-        }
-        return null;
+    __empty() {
+        return this.fail('The URL format must be a resource_name/ID');
     }
 
     /**
@@ -44,12 +44,15 @@ module.exports = class extends base {
      * @returns 
      */
     async getAction() {
+        if (!this.model) {
+            return this.fail('resource not found');
+        }
         if (this.id) {
             try {
                 let pk = await this.model.getPk();
-                let data = await this.model.where({[pk]: this.id}).find();
+                let data = await this.model.where({ [pk]: this.id }).find();
                 return this.success('', data);
-            } catch (e){
+            } catch (e) {
                 return this.error(e.message);
             }
         } else {
@@ -68,6 +71,9 @@ module.exports = class extends base {
      * @returns 
      */
     async postAction() {
+        if (!this.model) {
+            return this.fail('resource not found');
+        }
         try {
             let pk = await this.model.getPk();
             let data = this.post();
@@ -88,12 +94,15 @@ module.exports = class extends base {
      * @returns 
      */
     async deleteAction() {
+        if (!this.model) {
+            return this.fail('resource not found');
+        }
+        if (!this.id) {
+            return this.error('params error');
+        }
         try {
-            if (!this.id) {
-                return this.error('params error');
-            }
             let pk = await this.model.getPk();
-            let rows = await this.model.where({[pk]: this.id}).delete();
+            let rows = await this.model.where({ [pk]: this.id }).delete();
             return this.success('', rows);
         } catch (e) {
             return this.error(e.message);
@@ -106,17 +115,20 @@ module.exports = class extends base {
      * @returns 
      */
     async putAction() {
+        if (!this.model) {
+            return this.fail('resource not found');
+        }
+        if (!this.id) {
+            return this.error('params error');
+        }
         try {
-            if (!this.id) {
-                return this.error('params error');
-            }
             let pk = await this.model.getPk();
             let data = this.post();
             data[pk] && delete data[pk];
             if (think.isEmpty(data)) {
                 return this.error('data is empty');
             }
-            let rows = await this.model.where({[pk]: this.id}).update(data);
+            let rows = await this.model.where({ [pk]: this.id }).update(data);
             return this.success('', rows);
         } catch (e) {
             return this.error(e.message);
