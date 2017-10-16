@@ -10,10 +10,10 @@ const koa = require('koa');
 
 //define think object
 global.think = require('./util/lib.js');
+const loader = require('./util/loader.js');
+const server = require('./util/server.js');
 const pkg = require('../package.json');
 const base = require('./base.js');
-const loader = require('./loader.js');
-const server = require('./server.js');
 
 module.exports = class {
     constructor(options = {}) {

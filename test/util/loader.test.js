@@ -3,7 +3,7 @@
 const path = require('path');
 const assert = require('assert');
 const lib = require('../../lib/util/lib.js');
-const loader = require('../../lib/loader.js');
+const loader = require('../../lib/util/loader.js');
 const thinkkoa = require('../../lib/think.js');
 
 // 这个会在所有测试前运行
