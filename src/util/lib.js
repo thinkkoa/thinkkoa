@@ -96,40 +96,6 @@ thinklib.define(lib, 'controller', function (name, ctx) {
 });
 
 /**
- * Get or instantiate a model class
- * 
- * @param {any} name 
- * @param {any} config 
- * @returns 
- */
-thinklib.define(lib, 'model', function (name, config) {
-    try {
-        if (!name) {
-            return think.model.base;
-        }
-        let cls;
-        if (!lib.isString(name) && name.__filename) {
-            cls = lib.require(name.__filename);
-        } else if (think._caches.models[name]) {
-            cls = think._caches.models[name];
-        }
-        if (!cls) {
-            throw Error(`Model ${name} is undefined`);
-        }
-        if (config === undefined) {
-            return cls;
-        }
-        config = lib.extend(think._caches.configs.middleware.config['model'] || {}, config);
-        //print sql
-        config.db_ext_config && (config.db_ext_config.db_log_sql = think.app_debug || false);
-        return new cls(config || {});
-    } catch (err) {
-        think.logger ? think.logger.error(err) : console.error(err);
-        return null;
-    }
-});
-
-/**
  * Gets or instantiates a service class
  * 
  * @param {any} name 
