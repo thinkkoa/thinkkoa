@@ -92,19 +92,19 @@ describe('util lib', () => {
         });
     });
 
-    describe('think.model', () => {
-        think.loader.loadConfigs();
-        think.loader.loadModules();
-        it('get base model', () => {
-            assert.deepEqual(think.model(), think.model.base);
-        });
-        it('get model class', () => {
-            assert.equal(lib.isFunction(think.model('user')), true);
-        });
-        it('get model instance', () => {
-            assert.equal(lib.isFunction(think.model('user'), {}), true);
-        });
-    });
+    // describe('think.model', () => {
+    //     think.loader.loadConfigs();
+    //     think.loader.loadModules();
+    //     it('get base model', () => {
+    //         assert.deepEqual(think.model(), think.model.base);
+    //     });
+    //     it('get model class', () => {
+    //         assert.equal(lib.isFunction(think.model('user')), true);
+    //     });
+    //     it('get model instance', () => {
+    //         assert.equal(lib.isFunction(think.model('user'), {}), true);
+    //     });
+    // });
 
     describe('think.service', () => {
         think.loader.loadConfigs();
