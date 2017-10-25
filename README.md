@@ -3,7 +3,7 @@
 # 介绍
 
 [![npm version](https://badge.fury.io/js/thinkkoa.svg)](https://badge.fury.io/js/thinkkoa)
-[![Package Quality](http://npm.packagequality.com/badge/thinkkoa.png)](http://packagequality.com/#?package=thinkkoa)
+[![Package Quality](http://npm.packagequality.com/badge/thinkkoa.png?style=flat-square)](http://packagequality.com/#?package=thinkkoa)
 [![Build Status](https://travis-ci.org/thinkkoa/thinkkoa.svg?branch=master)](https://travis-ci.org/thinkkoa/thinkkoa)
 [![dependencies Status](https://david-dm.org/thinkkoa/thinkkoa/status.svg)](https://david-dm.org/thinkkoa/thinkkoa)
 
