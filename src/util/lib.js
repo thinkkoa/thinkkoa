@@ -7,8 +7,29 @@
  */
 
 const thinklib = require('think_lib');
+const thinklogger = require('think_logger');
 let lib = thinklib;
 
+/**
+ * logger
+ */
+thinklib.define(lib, 'logger', thinklogger);
+
+/**
+ * Custom record log
+ * 
+ * @param {any} name log files name
+ * @param {any} msgs message
+ * @param {any} path log files path
+ * @returns 
+ */
+thinklib.define(lib, 'addLogs', function (name, msgs, path) {
+    if (typeof msgs === 'object') {
+        msgs = JSON.stringify(msgs);
+    }
+    path = path || process.env.LOGS_PATH || think.root_path + '/logs';
+    return thinklogger.write(path, name, msgs);
+});
 /**
  * Convert express middleware for koa
  * 

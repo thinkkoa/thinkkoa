@@ -89,35 +89,41 @@ module.exports = class {
             nodeVersion = nodeVersion.slice(1);
         }
         if (think.node_engines > nodeVersion) {
-            console.error(`ThinkKoa need node version > ${think.node_engines}, current version is ${nodeVersion}, please upgrade it.` );
+            think.logger.error(`ThinkKoa need node version > ${think.node_engines}, current version is ${nodeVersion}, please upgrade it.` );
             process.exit();
         }
     }
 
     /**
-     * 注册异常处理
+     * registration exception handling
      * 
      */
     captureError() {
-        //koa 错误
+        // event logs
+        think.app.on('logs', (args) => {
+            process.env.LOGS = args[0] || false;
+            process.env.LOGS_PATH = args[1] || think.root_path + '/logs';
+            process.env.LOGS_LEVEL = args[2] || [];
+        });
+        //koa error
         think.app.on('error', (err, ctx) => {
             if(!think.isPrevent(err)) {
-                console.error(err);
+                think.logger.error(err);
             }
         });
 
-        //promise reject错误
+        //promise reject error
         process.removeAllListeners('unhandledRejection');
         process.on('unhandledRejection', (reason, promise) => {
             if(!think.isPrevent(reason)) {
-                console.error(reason);
+                think.logger.error(reason);
             }
         });
 
-        //未知错误
+        //ubcaugth exception
         process.on('uncaughtException', err => {
             if(!think.isPrevent(err)) {
-                console.error(err);
+                think.logger.error(err);
             }
             if (err.message.indexOf(' EADDRINUSE ') > -1) {
                 process.exit();
@@ -126,20 +132,21 @@ module.exports = class {
     }
 
     /**
-     * 
+     * run app
      * 
      */
     run() {
+        //catch error
+        this.captureError();
+
+        //loader
         loader.loadConfigs();
         loader.loadMiddlewares();
         loader.loadControllers();
         loader.loadModules();
         
-        //catch error
-        this.captureError();
         //emit app ready
         think.app.emit('appReady');
-
         // start webserver
         think.define(think, 'server', new server({
             port: think._caches.configs.config.app_port || 3000,
