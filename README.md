@@ -15,7 +15,7 @@ ThinkKoa - 轻量级可扩展的敏捷开发Node.js框架,支持ES6/7全新特�
 
 * 基于koa2
 
-ThinkKoa基于著名的Node.js框架koa2进行了薄封装。既扩展了Koa的功能，能够迅速的进行Web开发；又保持了原有的API和风格。
+ThinkKoa基于著名的Node.js框架koa2进行了薄封装。扩展了Koa的功能，能够迅速的进行Web开发。
 
 * 支持Koa/Express中间件
 
