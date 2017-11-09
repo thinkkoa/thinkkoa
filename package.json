@@ -11,6 +11,7 @@
     "eslint": "eslint src/"
   },
   "main": "index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinkkoa/thinkkoa.git"
@@ -40,6 +41,8 @@
   },
   "homepage": "https://github.com/thinkkoa/thinkkoa",
   "devDependencies": {
+    "@types/koa": "^2.0.39",
+    "@types/node": "^8.0.50",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -52,8 +55,8 @@
   },
   "dependencies": {
     "babel-runtime": "6.26.0",
-    "bluebird": "3.5.0",
-    "koa": "2.3.0",
+    "bluebird": "3.5.1",
+    "koa": "2.4.1",
     "think_controller": "^1.x.x",
     "think_cookie": "^1.x.x",
     "think_lib": "^1.x.x",
