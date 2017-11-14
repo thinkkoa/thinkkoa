@@ -2,7 +2,7 @@
 // const test = require('ava');
 // const koa = require('koa');
 // const request = require('supertest');
-// const lib = require('./../../lib/util/lib.js');
+// const lib = require('./../../lib/util/helper.js');
 
 // let app;
 // test.before(t => {
@@ -32,7 +32,7 @@
 const koa = require('koa');
 const assert = require('assert');
 const request = require('supertest');
-const lib = require('./../../lib/util/lib.js');
+const lib = require('./../../lib/util/helper.js');
 
 describe('express middleware', () => {
     let app

@@ -2,7 +2,7 @@
 // const test = require('ava');
 const path = require('path');
 const assert = require('assert');
-const lib = require('../../lib/util/lib.js');
+const lib = require('../../lib/util/helper.js');
 const loader = require('../../lib/util/loader.js');
 const thinkkoa = require('../../lib/think.js');
 

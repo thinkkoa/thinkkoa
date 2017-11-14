@@ -6,9 +6,11 @@
  * @version    17/4/27
  */
 'use strict';
-//rewite promise, bluebird is much faster
+// rewite promise, bluebird is much faster
 global.Promise = require('bluebird');
 require('babel-runtime/core-js/promise').default = Promise;
 
 //export framework
-module.exports = require('./lib/think.js');
+const {helper} = require('./lib/think');
+
+helper.arrRemove()

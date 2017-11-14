@@ -14,11 +14,11 @@ module.exports = class extends base {
      * constructor
      * 
      * @param {any} ctx 
+     * @param {any} app 
      */
-    init(ctx) {
+    init(ctx, app) {
         this.ctx = ctx;
-        //Ctx alias, compatible with previous usage
-        this.http = this.ctx;
+        this.app = app;
     }
 
     /**

@@ -2,7 +2,7 @@
 const path = require('path');
 // const test = require('ava');
 const assert = require('assert');
-const lib = require('../../lib/util/lib.js');
+const lib = require('../../lib/util/helper.js');
 const thinkkoa = require('../../lib/think.js');
 
 // // 这个会在所有测试前运行

@@ -8,9 +8,9 @@
 const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
-const lib = require('think_lib');
-const logger = require('think_logger');
-
+const helper = require('./helper.js');
+// caches
+let thinkkoa_caches = {};
 //auto load config
 const loaderConf = {
     'configs': {
@@ -44,7 +44,7 @@ module.exports = class {
         if (options instanceof Array) {
             for (let option of options) {
                 option.skip = skip || false;
-                loaders = lib.extend(loaders, this.load(option) || {});
+                loaders = helper.extend(loaders, this.load(option) || {});
             }
         } else {
             options.skip = skip || false;
@@ -115,7 +115,7 @@ module.exports = class {
                 if (name) {
                     //clear require cache
                     this.cleanCache(tempPath);
-                    loaders[name] = lib.require(tempPath);
+                    loaders[name] = helper.require(tempPath);
                 }
             }
         }
@@ -146,13 +146,16 @@ module.exports = class {
      * @static
      * @memberof loader
      */
-    static loadConfigs() {
-        think._caches.configs = new this(think.think_path + '/lib', loaderConf.configs);
-        think._caches.configs = lib.extend(think._caches.configs, new this(think.app_path, loaderConf.configs), true);
+    static loadConfigs(app) {
+        let configs = new this(app.think_path + '/lib', loaderConf.configs);
+        configs = helper.extend(configs, new this(app.app_path, loaderConf.configs), true);
         //触发记录日志
-        if (think._caches.configs.config) {
-            think.app.emit('logs', [think._caches.configs.config.logs, think._caches.configs.config.logs_path, think._caches.configs.config.logs_level]);
+        if (configs.config) {
+            app.emit('logs', [configs.config.logs, configs.config.logs_path, configs.config.logs_level]);
         }
+        think._caches && (think._caches.configs = configs);
+        app.configs = configs;
+        app.app_port = app.configs.config && app.configs.config.app_port ? app.configs.config.app_port : 3000;
     }
 
     /**
@@ -161,40 +164,43 @@ module.exports = class {
      * @static
      * @memberof loader
      */
-    static loadMiddlewares() {
-        think._caches.middlewares = new this(think.think_path + '/lib', loaderConf.middlewares);
+    static loadMiddlewares(app) {
+        app.middlewares = new this(app.think_path + '/lib', loaderConf.middlewares);
         //The default loading order for middleware
-        think._caches._middleware_list = ['trace', 'static', 'cookie', 'payload'];
+        app.middleware_list = ['trace', 'static', 'cookie', 'payload'];
         //Load the application middleware
-        let app_middlewares = new this(think.app_path, loaderConf.middlewares);
-        think._caches.middlewares = lib.extend(app_middlewares, think._caches.middlewares);
+        let app_middlewares = new this(app.app_path, loaderConf.middlewares);
+        app.middlewares = helper.extend(app_middlewares, app.middlewares);
         //Mount application middleware
-        if (think._caches.configs.middleware.list && think._caches.configs.middleware.list.length > 0) {
-            think._caches.configs.middleware.list.forEach(item => {
-                if (!(think._caches._middleware_list).includes(item)) {
-                    (think._caches._middleware_list).push(item);
+        if (app.configs.middleware.list && app.configs.middleware.list.length > 0) {
+            app.configs.middleware.list.forEach(item => {
+                if (!(app.middleware_list).includes(item)) {
+                    (app.middleware_list).push(item);
                 }
             });
         }
         //Mount routing middleware
-        (think._caches._middleware_list).push('router');
+        (app.middleware_list).push('router');
         //Mount the controller middleware
-        (think._caches._middleware_list).push('controller');
+        (app.middleware_list).push('controller');
+
+        think._caches && (think._caches.middlewares = app.middlewares);
+        think._caches && (think._caches.middleware_list = app.middleware_list);
 
         //Automatically call middleware 
-        think._caches._middleware_list.forEach(key => {
-            if (!key || !think._caches.middlewares[key]) {
-                logger.error(`middleware ${key} load error, please check the middleware`);
+        app.middleware_list.forEach(key => {
+            if (!key || !app.middlewares[key]) {
+                helper.logger.error(`middleware ${key} load error, please check the middleware`);
                 return;
             }
-            if (think._caches.configs.middleware.config[key] === false) {
+            if (app.configs.middleware.config[key] === false) {
                 return;
             }
-            if (think._caches.configs.middleware.config[key] === true) {
-                think.use(think._caches.middlewares[key]());
+            if (app.configs.middleware.config[key] === true) {
+                helper.use(app.middlewares[key]({}, app), app);
                 return;
             }
-            think.use(think._caches.middlewares[key](think._caches.configs.middleware.config[key] || {}));
+            helper.use(app.middlewares[key](app.configs.middleware.config[key] || {}, app), app);
         });
     }
 
@@ -204,15 +210,24 @@ module.exports = class {
      * @static
      * @memberof loader
      */
-    static loadControllers() {
-        !think.controller && (lib.define(think, 'controller', {}, 1));
-        let controllers = new this(think.think_path + '/lib', loaderConf.controllers);
-        for (let n in controllers) {
-            // base controller
-            !think.controller[n] && (lib.define(think.controller, n, controllers[n]));
-        }
+    static loadControllers(app) {
         // app controller
-        think._caches.controllers = new this(think.app_path, loaderConf.controllers);
+        app.controllers = new this(app.app_path, loaderConf.controllers);
+        // muilte modules
+        app.modules = [];
+        if (app.controllers) {
+            let modules = [];
+            for (let key in app.controllers) {
+                let paths = key.split('/');
+                if (paths.length < 2) {
+                    continue;
+                }
+                modules.push(paths[0]);
+            }
+            let unionSet = new Set([...modules]);
+            app.modules = Array.from(unionSet);
+        }
+        think._caches && (think._caches.modules = app.modules);
     }
 
     /**
@@ -221,7 +236,7 @@ module.exports = class {
      * @static
      * @memberof loader
      */
-    static loadModules() {
+    static loadModules(app) {
         for (let key in loaderConf) {
             // Avoid repeated loading
             if (['configs', 'controllers', 'middlewares'].indexOf(key) > -1) {
@@ -229,24 +244,10 @@ module.exports = class {
             }
             // Keep keywords
             if (key.indexOf('_') === 0) {
-                logger.error('Reserved keywords are used in the load configuration');
+                helper.logger.error('Reserved keywords are used in the load configuration');
                 continue;
             }
-            think._caches[key] = new this(think.app_path, loaderConf[key]);
-        }
-
-        think._caches._modules = [];
-        if (think._caches.controllers) {
-            let modules = [];
-            for (let key in think._caches.controllers) {
-                let paths = key.split('/');
-                if (paths.length < 2) {
-                    continue;
-                }
-                modules.push(paths[0]);
-            }
-            let unionSet = new Set([...modules]);
-            think._caches._modules = Array.from(unionSet);
+            think._caches && (think._caches[key] = new this(app.app_path, loaderConf[key]));
         }
     }
 

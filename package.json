@@ -5,9 +5,7 @@
   "scripts": {
     "test": "npm run test-cov",
     "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -t 5000 --recursive  -R spec test/{,**/}*.test.js",
-    "compile": "babel src -d lib",
-    "watch-compile": "npm run compile -- --watch",
-    "prepublish": "npm run compile && npm test",
+    "prepublish": "npm test",
     "eslint": "eslint src/"
   },
   "main": "index.js",
@@ -29,7 +27,7 @@
     "thinkkoa"
   ],
   "engines": {
-    "node": ">6.0.0"
+    "node": ">8.0.0"
   },
   "author": {
     "name": "richenlin",
