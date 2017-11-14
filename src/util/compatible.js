@@ -132,5 +132,5 @@ module.exports = function (app) {
         enumerable: false
     });
 
-    return global.think;
+    return think;
 };
