@@ -112,23 +112,24 @@ const service = function (name, params) {
 module.exports = function (app) {
     //define think object
     global.think = Object.create(helper);
-    
-    think.app = app.koa;
-    think.config = config;
-    think.controller = controller;
-    think.controller.base = baseController;
-    think.controller.restful = restfulController;
-    think.service = service;
 
-    think.root_path = app.root_path;
-    think.think_path = app.think_path;
-    think.app_path = app.app_path;
-    think.app_debug = app.app_debug || false;
+    helper.define(think, 'app', app.koa);
+    helper.define(think, 'koa', app.koa);
+    helper.define(think, 'config', config);
+    helper.define(think, 'service', service);
+    helper.define(think, 'controller', controller);
+    helper.define(think.controller, 'base', baseController);
+    helper.define(think.controller, 'restful', restfulController);
 
-    think.version = pkg.version;
-    think.base = base;
-    think.loader = loader;
-    think.node_engines = pkg.engines.node.slice(1) || '6.0.0';
+    helper.define(think, 'root_path', app.root_path);
+    helper.define(think, 'think_path', app.think_path);
+    helper.define(think, 'app_path', app.app_path);
+    helper.define(think, 'app_debug', app.app_debug || false, 1);
+    helper.define(think, 'version', pkg.version);
+    helper.define(think, 'loader', loader);
+    helper.define(think, 'base', base);
+    helper.define(think, 'node_engines', pkg.engines.node.slice(1) || '6.0.0');
+
     // caches
     Object.defineProperty(think, '_caches', {
         value: {},
@@ -136,7 +137,7 @@ module.exports = function (app) {
         configurable: false,
         enumerable: false
     });
-
+    // load other modules
     loader.loadModules(app);
 
     return think;

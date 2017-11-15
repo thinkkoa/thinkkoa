@@ -120,7 +120,6 @@ class thinkkoa {
             port: this.app_port || 3000,
             callback: this.koa.callback()
         });
-        
         //start server
         this.server.start();
     }
