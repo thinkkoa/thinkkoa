@@ -117,9 +117,10 @@ module.exports = function (app) {
     helper.define(think, 'koa', app.koa);
     helper.define(think, 'config', config);
     helper.define(think, 'service', service);
+
+    controller.base = baseController;
+    controller.restful = restfulController;
     helper.define(think, 'controller', controller);
-    helper.define(think.controller, 'base', baseController);
-    helper.define(think.controller, 'restful', restfulController);
 
     helper.define(think, 'root_path', app.root_path);
     helper.define(think, 'think_path', app.think_path);
