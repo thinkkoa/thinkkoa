@@ -11,4 +11,4 @@ global.Promise = require('bluebird');
 require('babel-runtime/core-js/promise').default = Promise;
 
 //export framework
-module.exports = require('./src/think.js');
+module.exports = require('./lib/think.js');

@@ -10,7 +10,7 @@
 
 module.exports = {
     /*app config*/
-    app_port: 3000,
+    app_port: 3001,
     encoding: 'utf-8', //输出数据的编码
     language: 'zh-cn'
 };

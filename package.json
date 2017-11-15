@@ -1,15 +1,16 @@
 {
   "name": "thinkkoa",
-  "version": "1.10.2",
+  "version": "1.12.0",
   "description": "A lightweight, scalable for agile development Node.js web framework, based on koa2.",
   "scripts": {
     "test": "npm run test-cov",
     "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -t 5000 --recursive  -R spec test/{,**/}*.test.js",
-    "prepublish": "npm test",
+    "compile": "babel src -d lib",
+    "watch-compile": "npm run compile -- --watch",
+    "prepublish": "npm run compile && npm test",
     "eslint": "eslint src/"
   },
   "main": "index.js",
-  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinkkoa/thinkkoa.git"
@@ -27,7 +28,7 @@
     "thinkkoa"
   ],
   "engines": {
-    "node": ">8.0.0"
+    "node": ">6.0.0"
   },
   "author": {
     "name": "richenlin",
@@ -39,8 +40,6 @@
   },
   "homepage": "https://github.com/thinkkoa/thinkkoa",
   "devDependencies": {
-    "@types/koa": "^2.0.39",
-    "@types/node": "^8.0.50",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
