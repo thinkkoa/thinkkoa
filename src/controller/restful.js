@@ -14,8 +14,8 @@ module.exports = class extends base {
      * 
      * @param {any} ctx 
      */
-    init(ctx) {
-        super.init(ctx);
+    init(ctx, app) {
+        super.init(ctx, app);
         try {
             //resource id
             this.id = this.get('id') || '';
