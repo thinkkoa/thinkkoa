@@ -1,6 +1,11 @@
+const {controller, helper} = require('../../../index.js');
 
+module.exports = class extends controller {
+    init(args){
+        super.init(args);
+        this.test = 'test';
+    }
 
-module.exports = class extends think.controller.base {
     indexAction() {
         return this.write('hello world');
     }

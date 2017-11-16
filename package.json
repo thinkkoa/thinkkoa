@@ -1,14 +1,12 @@
 {
   "name": "thinkkoa",
-  "version": "1.12.0",
+  "version": "2.0.0",
   "description": "A lightweight, scalable for agile development Node.js web framework, based on koa2.",
   "scripts": {
     "test": "npm run test-cov",
     "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -t 5000 --recursive  -R spec test/{,**/}*.test.js",
-    "compile": "babel src -d lib",
-    "watch-compile": "npm run compile -- --watch",
-    "prepublish": "npm run compile && npm test",
-    "eslint": "eslint src/"
+    "prepublish": "npm test",
+    "eslint": "eslint lib/"
   },
   "main": "index.js",
   "repository": {
@@ -28,7 +26,7 @@
     "thinkkoa"
   ],
   "engines": {
-    "node": ">6.0.0"
+    "node": ">8.0.0"
   },
   "author": {
     "name": "richenlin",
@@ -40,28 +38,22 @@
   },
   "homepage": "https://github.com/thinkkoa/thinkkoa",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
     "eslint": "^4.4.1",
-    "istanbul": "^0.4.5",
+    "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.5.0",
     "supertest": "^3.0.0"
   },
   "dependencies": {
-    "babel-runtime": "6.26.0",
-    "bluebird": "3.5.1",
-    "koa": "2.4.1",
-    "think_controller": "^1.x.x",
-    "think_cookie": "^1.x.x",
-    "think_lib": "^1.x.x",
-    "think_logger": "^1.x.x",
-    "think_payload": "^1.x.x",
-    "think_router": "^1.x.x",
-    "think_static": "^1.x.x",
-    "think_trace": "^1.x.x"
+    "bluebird": "^3.5.1",
+    "koa": "^2.4.1",
+    "think_context": "^2.x.x",
+    "think_controller": "^2.x.x",
+    "think_lib": "^2.x.x",
+    "think_logger": "^2.x.x",
+    "think_payload": "^2.x.x",
+    "think_router": "^2.x.x",
+    "think_static": "^2.x.x",
+    "think_trace": "^2.x.x"
   },
   "maintainers": [
     {

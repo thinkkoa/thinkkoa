@@ -1,43 +1,19 @@
 /*eslint-disable*/
-// const test = require('ava');
-// const koa = require('koa');
-// const request = require('supertest');
-// const lib = require('./../../lib/util/helper.js');
-
-// let app;
-// test.before(t => {
-//     app = new koa();
-//     app.use((ctx, next) => {
-//         ctx.status = 404;
-//         ctx.body = 'Original';
-//         return next();
-//     });
-// });
-
-// test.cb('works with a single noop express middleware', (done) => {
-//     function noop(req, res, next) {
-//         next()
-//     }
-
-//     app.use(lib.parseExpMiddleware(noop))
-//     request(app.callback()).get('/').expect('Original').end(done);
-// });
-
-
-
-
-
-
-
-const koa = require('koa');
+const path = require('path');
 const assert = require('assert');
 const request = require('supertest');
-const lib = require('./../../lib/util/helper.js');
+const lib = require('think_lib');
+const thinkkoa = require('../index.js');
 
-describe('express middleware', () => {
+describe('exec middleware', () => {
     let app;
     beforeEach(() => {
-        app = new koa();
+        app = new thinkkoa({
+            root_path: path.resolve('./test'),
+            app_path: path.resolve('./test') + path.sep + 'app',
+            app_debug: false
+        });
+        process.setMaxListeners(0);
         app.use((ctx, next) => {
             ctx.status = 404;
             ctx.body = 'Original';
@@ -46,11 +22,10 @@ describe('express middleware', () => {
     })
 
     it('works with a single noop express middleware', (done) => {
-        function noop(req, res, next) {
-            next();
-        }
 
-        app.use(lib.parseExpMiddleware(noop))
+        app.useExp(function noop(req, res, next) {
+            next();
+        })
         request(app.callback())
             .get('/')
             .expect('Original')
@@ -62,8 +37,8 @@ describe('express middleware', () => {
             next();
         }
 
-        app.use(lib.parseExpMiddleware(noop))
-        app.use(lib.parseExpMiddleware(noop))
+        app.useExp(noop)
+        app.useExp(noop)
         request(app.callback())
             .get('/')
             .expect('Original')
@@ -79,7 +54,7 @@ describe('express middleware', () => {
             ctx.status = 200;
         }
 
-        app.use(lib.parseExpMiddleware(noop));
+        app.useExp(noop);
         app.use(goodStatusSetter);
         request(app.callback())
             .get('/')
@@ -96,10 +71,10 @@ describe('express middleware', () => {
             });
         })
 
-        app.use(lib.parseExpMiddleware((req, res) => {
+        app.useExp((req, res) => {
             res.statusCode = 200;
             callOne = true;
-        }));
+        });
 
         request(app.callback())
             .get('/')
@@ -116,9 +91,9 @@ describe('express middleware', () => {
             next().catch((err) => ctx.status = 505);
         });
 
-        app.use(lib.parseExpMiddleware((req, res, next) => {
+        app.useExp((req, res, next) => {
             next(new Error('How express does error handling'));
-        }));
+        });
 
         app.use((ctx) => {
             // Fail the test if this is reached
@@ -150,11 +125,11 @@ describe('express middleware', () => {
                 });
         });
 
-        app.use(lib.parseExpMiddleware((req, res) => {
+        app.useExp((req, res) => {
             res.statusCode = 200;
             res.setHeader('Content-Length', message.length);
             res.end(message);
-        }));
+        });
 
         request(app.callback())
             .get('/')
