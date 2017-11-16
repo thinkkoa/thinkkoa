@@ -3,6 +3,7 @@ const path = require('path');
 const assert = require('assert');
 const request = require('supertest');
 const lib = require('think_lib');
+const thinkloader = require('think_loader');
 const loader = require('../../lib/util/loader.js');
 const thinkkoa = require('../../lib/think.js');
 
@@ -24,7 +25,7 @@ describe('loader', () => {
 
     it('loader files', () => {
         loader.loadControllers(app);
-        let files = loader(app.app_path, { root: 'controller', prefix: '' });
+        let files = thinkloader(app.app_path, { root: 'controller', prefix: '' });
         it('loade home/index class file', () => {
             assert.equal(lib.isFunction(files['home/index']), true);
         });
@@ -35,7 +36,7 @@ describe('loader', () => {
 
     it('loader files on multi mod', () => {
         loader.loadControllers(app);
-        let files = loader(app.app_path, { root: 'controller', prefix: '/' });
+        let files = thinkloader(app.app_path, { root: 'controller', prefix: '/' });
         it('loade home/index class file', () => {
             assert.equal(lib.isFunction(files['home/index']), true);
         });
