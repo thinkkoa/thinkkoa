@@ -38,6 +38,7 @@ describe('think class', () => {
     });
 
     it('captureError', () => {
+        app.captureError();
         app.emit('error', new Error('ddd'))
     })
 
