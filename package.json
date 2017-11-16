@@ -49,7 +49,7 @@
     "think_controller": "^2.x.x",
     "think_cookie": "^2.x.x",
     "think_lib": "^2.x.x",
-    "think_loader": "^2.x.x",
+    "think_loader": "^1.x.x",
     "think_logger": "^2.x.x",
     "think_payload": "^2.x.x",
     "think_router": "^2.x.x",
