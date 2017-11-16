@@ -206,7 +206,6 @@
     "yoda": 0
   },
   "globals": {
-    "echo": true,
-    "__thinkcache": true
+    "echo": true
   }
 }
