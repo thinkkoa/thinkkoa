@@ -48,31 +48,24 @@ const user = require('../model/user.js');
 module.exports = class extends controller {
     //login action
     async loginAction(){
-        //如果是get请求，直接显示登录页面
+        //If it is a get request, the login page is displayed directly
         if(this.isGet()){
-          return this.render();// or this.ctx.render
+          return this.render();
         }
-        //这里可以通过post方法获取数据
-        let name = this.post('username');// or this.ctx.post
+        //Obtaining data by post method
+        let name = this.post('username');
+        if (helper.isEmpty(name)) {
+          return this.fail('username is required');
+        }
         let userModel = new user(this.app.config('model', 'middleware'));
-        //用户名去匹配数据库中对应的条目.think.model使用thinkorm模块以及think_model中间件
+        //Username matches the corresponding entries in the database.
         let result = await userModel.where({name: name, phonenum: {"not": ""}}).find();
         if(!result){
-          //输出格式化的json数据 {"status":0,"errno":500,"errmsg":"login fail","data":{}}
           return this.fail('login fail'); 
-          // 或者这样写
-          //this.ctx.type = 'application/json';
-          //this.ctx.body = {"status":0,"errno":500,"errmsg":"login fail","data":{}};
-          //return;
         }
-        //获取到用户信息后，将用户信息写入session
+        //Written into session
         await this.session('userInfo', result);
-        //输出格式化的json数据 {"status":1,"errno":200,"errmsg":"login success","data":{}}
         return this.ok('login success'); 
-        // 或者这样写
-        //this.ctx.type = 'application/json';
-        //this.ctx.body = {"status":1,"errno":200,"errmsg":"login success","data":{}};
-        //return;
     }
 }
 ```
