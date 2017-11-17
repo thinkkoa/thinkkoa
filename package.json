@@ -8,7 +8,7 @@
     "prepublish": "npm test",
     "eslint": "eslint lib/"
   },
-  "main": "index.js",
+  "main": "./lib/think.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinkkoa/thinkkoa.git"
