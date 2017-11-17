@@ -20,11 +20,11 @@ ThinkKoa基于著名的Node.js框架koa2进行了薄封装。扩展了Koa的功�
 
 * 支持Koa/Express中间件
 
-通过简单的引入机制，ThinkKoa可以很好的支持Koa中间件(包括Koa1及Koa2)。还提供了think.useExp()来使用Express的中间件。大大提升了框架的扩展性及开源模块利用率。
+通过简单的引入机制，ThinkKoa可以很好的支持Koa中间件(包括Koa1及Koa2)。还提供了useExp()来使用Express的中间件。大大提升了框架的扩展性及开源模块利用率。
 
 * 为敏捷开发而生
 
-ThinkKoa是在ThinkKoa团队3年的项目开发积累中酝酿诞生的，脱胎于ThinkNode，以提升团队开发效率、助力敏捷开发为目的。框架经过公司多个互联网产品上线、迭代以及大流量大并发的考验。
+ThinkKoa是在ThinkKoa团队3年的Node.js项目开发积累中酝酿诞生的，以提升团队开发效率、助力敏捷开发为目的。框架经过公司多个互联网产品上线、迭代以及大流量大并发的考验。
 
 * 支持多种项目结构和多种项目环境
 
@@ -36,13 +36,16 @@ ThinkKoa除默认的单模块模式(controller/action)及多模块模式(module/
 在项目中增加路由文件配置即可灵活的支持Restful等各种自定义路由。
 
 
-* 使用 ES6/7 特性来开发项目
+* 拥抱Node.js 8 LTS, 使用 ES6/7 特性来开发项目
 
-借助 Babel 编译，可以在项目中使用 ES6/7 所有的特性，无需担心哪些特性当前版本不支持。尤其是使用 `async/await` 来解决异步回调的问题。
+使用 `async/await` 等一系列新特性，让Node.js开发变得赏心悦目。
 
 ```js
+const {controller, helper} = require('thinkkoa');
+const user = require('../model/user.js');
+
 //user controller, controller/user.js
-export default class extends think.controller.base {
+export default class extends controller {
     //login action
     async loginAction(){
         //如果是get请求，直接显示登录页面
@@ -51,8 +54,9 @@ export default class extends think.controller.base {
         }
         //这里可以通过post方法获取数据
         let name = this.post('username');// or this.ctx.post
+        let userModel = new user(this.app.config('model', 'middleware'));
         //用户名去匹配数据库中对应的条目.think.model使用thinkorm模块以及think_model中间件
-        let result = await think.model('user', {}).where({name: name, phonenum: {"not": ""}}).find();
+        let result = await userModel.where({name: name, phonenum: {"not": ""}}).find();
         if(!result){
           //输出格式化的json数据 {"status":0,"errno":500,"errmsg":"login fail","data":{}}
           return this.fail('login fail'); 
@@ -73,7 +77,7 @@ export default class extends think.controller.base {
 }
 ```
 
-上面的代码我们使用了 ES6 里的 `class`, `export`, `let` 以及 ES7 里的 `async/await` 等特性，虽然查询数据库和写入 `Session` 都是异步操作，但借助 `async/await`，代码都是同步书写的。最后使用 `Babel` 进行编译，就可以稳定运行在 Node.js 的环境中了。
+上面的代码我们使用了 ES6 里的 `class`, `export`, `let` 以及 ES7 里的 `async/await` 等特性，虽然查询数据库和写入 `Session` 都是异步操作，但借助 `async/await`，代码都是同步书写的。
 
 # 文档
 
@@ -84,7 +88,7 @@ export default class extends think.controller.base {
 ## 全局安装thinkkoa_cli
 
 ```sh
-npm install -g thinkkoa_cli
+npm install -g thinkkoa_cli@2.x
 ```
 
 ## 创建项目
