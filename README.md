@@ -77,7 +77,7 @@ module.exports = class extends controller {
 }
 ```
 
-上面的代码我们使用了 ES6 里的 `class`, `export`, `let` 以及 ES7 里的 `async/await` 等特性，虽然查询数据库和写入 `Session` 都是异步操作，但借助 `async/await`，代码都是同步书写的。
+上面的代码我们使用了 ES6 里的 `class`, `let` 以及 ES7 里的 `async/await` 等特性，虽然查询数据库和写入 `Session` 都是异步操作，但借助 `async/await`，代码都是同步书写的。
 
 # 文档
 
