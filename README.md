@@ -45,7 +45,7 @@ const {controller, helper} = require('thinkkoa');
 const user = require('../model/user.js');
 
 //user controller, controller/user.js
-export default class extends controller {
+module.exports = class extends controller {
     //login action
     async loginAction(){
         //如果是get请求，直接显示登录页面
