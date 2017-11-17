@@ -1,4 +1,4 @@
-const {controller, helper} = require('../../../../index.js');
+const {controller, helper} = require('../../../../lib/think.js');
 
 module.exports = class extends controller {
     init(args){
