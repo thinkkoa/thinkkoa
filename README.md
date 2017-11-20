@@ -57,7 +57,7 @@ module.exports = class extends controller {
         if (helper.isEmpty(name)) {
           return this.fail('username is required');
         }
-        let userModel = new user(this.app.config('model', 'middleware'));
+        let userModel = new user(this.app.config('config.model', 'middleware'));
         //Username matches the corresponding entries in the database.
         let result = await userModel.where({name: name, phonenum: {"not": ""}}).find();
         if(!result){
