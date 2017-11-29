@@ -7,7 +7,7 @@
 // const http = require('../../lib/middleware/http');
 // const asyncToGenerator = require('babel-runtime/helpers/asyncToGenerator').default;
 
-// const thinkkoa = require('../../lib/think.js');
+// const thinkkoa = require('../../lib/thinkkoa.js');
 // // global.think = {};
 // // let app = new thinkkoa({
 // //     root_path: path.resolve('./test'),

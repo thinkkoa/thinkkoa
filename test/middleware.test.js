@@ -3,7 +3,7 @@ const path = require('path');
 const assert = require('assert');
 const request = require('supertest');
 const lib = require('think_lib');
-const thinkkoa = require('../lib/think.js');
+const thinkkoa = require('../lib/thinkkoa.js');
 
 describe('exec middleware', () => {
     let app;

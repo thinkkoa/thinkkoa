@@ -3,7 +3,7 @@ const path = require('path');
 const assert = require('assert');
 const helper = require('think_lib');
 const pkg = require('../package.json');
-const thinkkoa = require('../lib/think.js');
+const thinkkoa = require('../lib/thinkkoa.js');
 
 describe('think class', () => {
     let app;

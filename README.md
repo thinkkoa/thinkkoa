@@ -35,10 +35,9 @@ ThinkKoa默认支持单模块模式，适合简单快速的项目。业务复杂
 ThinkKoa除默认的单模块模式(controller/action)及多模块模式(module/controller/action）路由规则以外，还支持用户定制路由。
 在项目中增加路由文件配置即可灵活的支持Restful等各种自定义路由。
 
+* 拥抱 Node.js 8 LTS, 使用 ES6/7 特性来开发项目
 
-* 拥抱Node.js 8 LTS, 使用 ES6/7 特性来开发项目
-
-使用 `async/await` 等一系列新特性，让Node.js开发变得赏心悦目。
+Node.js 8支持99%的ES6新特性，并且相对6.0版本提升20%性能。现在使用 `async/await` 等一系列新特性，让Node.js开发变得赏心悦目。
 
 ```js
 const {controller, helper} = require('thinkkoa');

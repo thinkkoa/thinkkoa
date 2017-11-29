@@ -5,7 +5,7 @@ const request = require('supertest');
 const lib = require('think_lib');
 const thinkloader = require('think_loader');
 const loader = require('../../lib/util/loader.js');
-const thinkkoa = require('../../lib/think.js');
+const thinkkoa = require('../../lib/thinkkoa.js');
 
 
 describe('loader', () => {

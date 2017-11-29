@@ -1,4 +1,4 @@
-const {controller, helper} = require('../../../lib/think.js');
+const {controller, helper} = require('../../../lib/thinkkoa.js');
 
 module.exports = class extends controller {
     init(args){
