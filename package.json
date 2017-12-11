@@ -9,6 +9,7 @@
     "eslint": "eslint lib/"
   },
   "main": "./lib/thinkkoa.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinkkoa/thinkkoa.git"
@@ -38,6 +39,8 @@
   },
   "homepage": "https://github.com/thinkkoa/thinkkoa",
   "devDependencies": {
+    "@types/koa": "^2.0.42",
+    "@types/node": "^8.0.57",
     "eslint": "^4.11.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^4.0.1",
