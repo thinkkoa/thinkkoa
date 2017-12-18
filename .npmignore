@@ -3,6 +3,6 @@
 node_modules
 npm-debug.log
 coverage
-src
+test/logs
 .travis.yml
 .coveralls.yml
