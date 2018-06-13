@@ -1,6 +1,6 @@
 {
   "name": "thinkkoa",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "A lightweight, scalable for agile development Node.js web framework, based on koa2.",
   "scripts": {
     "test": "npm run test-cov",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
-    "koa": "^2.5.0",
+    "koa": "^2.5.1",
     "think_controller": "^2.x.x",
     "think_cookie": "^2.x.x",
     "think_lib": "^2.x.x",
