@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
-    "koa": "^2.5.1",
+    "koa": "^2.5.2",
     "think_controller": "^2.x.x",
     "think_cookie": "^2.x.x",
     "think_lib": "^2.x.x",
