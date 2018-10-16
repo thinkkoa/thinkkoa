@@ -44,8 +44,8 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "koa": "^2.5.2",
+    "bluebird": "^3.5.2",
+    "koa": "^2.5.3",
     "think_controller": "^2.x.x",
     "think_cookie": "^2.x.x",
     "think_lib": "^2.x.x",
