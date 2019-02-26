@@ -2,6 +2,8 @@
 
 # 介绍
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/thinkkoa/thinkkoa.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/thinkkoa.svg)](https://badge.fury.io/js/thinkkoa)
 [![Build Status](https://travis-ci.org/thinkkoa/thinkkoa.svg?branch=master)](https://travis-ci.org/thinkkoa/thinkkoa)
 [![dependencies Status](https://david-dm.org/thinkkoa/thinkkoa/status.svg)](https://david-dm.org/thinkkoa/thinkkoa)
