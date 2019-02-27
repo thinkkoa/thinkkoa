@@ -6,6 +6,7 @@
 [![Build Status](https://travis-ci.org/thinkkoa/thinkkoa.svg?branch=master)](https://travis-ci.org/thinkkoa/thinkkoa)
 [![dependencies Status](https://david-dm.org/thinkkoa/thinkkoa/status.svg)](https://david-dm.org/thinkkoa/thinkkoa)
 [![Package Quality](http://npm.packagequality.com/shield/thinkkoa.svg)](http://packagequality.com/#?package=thinkkoa)
+[![Greenkeeper badge](https://badges.greenkeeper.io/thinkkoa/thinkkoa.svg)](https://greenkeeper.io/)
 
 
 A lightweight, scalable for agile development Node.js web framework, based on koa2.
