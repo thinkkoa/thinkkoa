@@ -38,10 +38,11 @@
   },
   "homepage": "https://github.com/thinkkoa/thinkkoa",
   "devDependencies": {
-    "eslint": "^4.11.0",
+    "async": "^3.1.0",
+    "eslint": "^6.0.1",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^4.0.1",
-    "supertest": "^3.0.0"
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "koa": "^2.7.0",
