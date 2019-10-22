@@ -1,6 +1,6 @@
 {
   "name": "thinkkoa",
-  "version": "2.4.13",
+  "version": "2.4.14",
   "description": "A lightweight, scalable for agile development Node.js web framework, based on koa2.",
   "scripts": {
     "test": "npm run test-cov",
@@ -39,13 +39,13 @@
   "homepage": "https://github.com/thinkkoa/thinkkoa",
   "devDependencies": {
     "async": "^3.1.0",
-    "eslint": "^6.0.1",
+    "eslint": "^6.5.1",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.2",
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "koa": "^2.7.0",
+    "koa": "^2.10.0",
     "think_controller": "^2.x.x",
     "think_lib": "^2.x.x",
     "think_loader": "^2.x.x",
