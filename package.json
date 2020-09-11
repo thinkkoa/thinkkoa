@@ -45,7 +45,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "koa": "^2.10.0",
+    "koa": "^2.12.0",
     "think_controller": "^2.x.x",
     "think_lib": "^2.x.x",
     "think_loader": "^2.x.x",
